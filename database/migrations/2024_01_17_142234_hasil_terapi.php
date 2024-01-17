@@ -11,22 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('hasil_terapi', function(Blueprint $table){
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->bigInteger('anak_id');
+            $table->date('tanggal_terapi');
+            $table->string('hasil_terapi');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
+     * @return void
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('hasil_terapi');
     }
 };
