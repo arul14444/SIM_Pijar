@@ -6,27 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Static Navigation - SB Admin</title>
-    <link href="{{ asset('template/css/styles.css') }}" rel="stylesheet" />
+    <title>@yield('title')</title>
+    <link href="{{ asset('template/css/styles.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
    {{-- nav --}}
-   @include('partial.NavAdmin')
+   @include('partial.Nav')
     <div id="layoutSidenav">
         @include('partial.SidebarAdmin')
         {{--sidebar--}}
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">@yield('judul')</h1>
+                    <h1 class="mt-4">@yield('title')</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Static Navigation</li>
+                        @yield('route')
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">
+                            @stack('script')
                             @yield('content')
+                            
                         </div>
                     </div>
                 </div>

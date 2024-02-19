@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layout/MasterAdmin');
+    return view('layout/admin/ManagemenAnggota');
 });
