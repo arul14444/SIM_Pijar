@@ -1,7 +1,7 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Anggota')
+@section('title', 'Managemen Donatur')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Anggota</li>
+    <li class="breadcrumb-item active"> Managemen </li>
 @endsection
 
 @section('content')
@@ -36,11 +36,11 @@
                 <td> test</td>
                 <td> 
                     <div class="d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                        <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
                             <i class="fa-regular fa-pen-to-square"></i>
                             Edit
                         </button>
-                        <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
+                        <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
                             <i class="fas fa-trash"></i>
                             Hapus
                         </button>

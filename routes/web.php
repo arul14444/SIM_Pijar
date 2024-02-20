@@ -12,7 +12,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/managemen/donatur', function () {
+    return view('layout/admin/ManagemenDonatur');
+});
+Route::get('/managemen/anggota', function () {
     return view('layout/admin/ManagemenAnggota');
+});
+Route::get('/tambah/anggota', function () {
+    return view('layout/admin/TambahAnggota');
+});
+Route::get('/tambah/donatur', function () {
+    return view('layout/admin/TambahDonatur');
 });

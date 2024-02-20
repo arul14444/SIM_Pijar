@@ -91,6 +91,7 @@
   }
 }
 
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -102,6 +103,28 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.breadcrumb-item a {
+  color: #6c757d; 
+  text-decoration: none; /* Hilangkan garis bawah */
+}
+#myTable th:nth-child(1), #myTable td:nth-child(1) {
+  width: 20%; 
+}
+#myTable th:nth-child(2), #myTable td:nth-child(2) {
+  width: 15%; 
+}
+#myTable th:nth-child(3), #myTable td:nth-child(3) {
+  width: 15%; 
+}
+#myTable th:nth-child(4), #myTable td:nth-child(4) {
+  width: 15%; 
+}
+#myTable th:nth-child(5), #myTable td:nth-child(5) {
+  width: 15%; 
+}
+#myTable th:nth-child(6), #myTable td:nth-child(6) {
+  width: 20%; 
 }
 
 hr {
