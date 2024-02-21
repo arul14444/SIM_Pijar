@@ -25,11 +25,8 @@
                         @yield('route')
                     </ol>
                     <div class="card mb-4">
-                        <div class="card-body">
                             @stack('script')
                             @yield('content')
-                            
-                        </div>
                     </div>
                 </div>
             </main>

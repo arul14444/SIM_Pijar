@@ -5,70 +5,72 @@
 @endsection
 
 @section('content')
-    
-    <table id="myTable" class="table">
-        <thead>
-            <tr class="text-center">
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Aksi</th>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-                <td> test</td>
-                <td> test</td>
-                <td> test</td>
-                <td> test</td>
-                <td> test</td>
-                <td> 
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            Edit
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
-                            <i class="fas fa-trash"></i>
-                            Hapus
-                        </button>
-                    </div>                    
-                </td>
-            </tr>
-            <tr>
-                <td> coba</td>
-                <td> ya</td>
-                <td> ges</td>
-                <td> tuk</td>
-                <td> tuk</td>
-                <td> 
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            Edit
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
-                            <i class="fas fa-trash"></i>
-                            Hapus
-                        </button>
-                    </div>
-                                       
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Data Anggota</span>
+        <button class="btn btn-outline-dark">
+            <i class="fa-solid fa-print me-2"></i>Cetak 
+        </button>
+    </div>
+    <div class="card-body">
+        <table id="myTable" class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Aksi</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td> test</td>
+                    <td> test</td>
+                    <td> test</td>
+                    <td> test</td>
+                    <td> test</td>
+                    <td> 
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>                    
+                    </td>
+                </tr>
+                <tr>
+                    <td> coba</td>
+                    <td> ya</td>
+                    <td> ges</td>
+                    <td> tuk</td>
+                    <td> tuk</td>
+                    <td> 
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>                   
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
 
 @push('script')

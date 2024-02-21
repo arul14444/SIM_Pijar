@@ -1,5 +1,5 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Donatur')
+@section('title', 'Managemen Aset')
 @section('route')
     <li class="breadcrumb-item active"> Managemen </li>
 @endsection
