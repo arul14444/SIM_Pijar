@@ -34,23 +34,25 @@
                 </tr>
             </tfoot>
             <tbody>
-                <tr>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> 
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>                    
-                    </td>
-                </tr>
+                @foreach(range(1, 10) as $index)
+                    <tr>
+                        <td> test {{$index}}</td>
+                        <td> test</td>
+                        <td> test</td>
+                        <td> test</td>
+                        <td> test</td>
+                        <td> 
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>                    
+                        </td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td> coba</td>
                     <td> ya</td>

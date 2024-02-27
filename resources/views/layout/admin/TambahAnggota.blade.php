@@ -8,7 +8,7 @@
 @endsection
 @section('content')
     <div class="text-center mb-4">
-        <img src="{{ asset('asset/logo yayasan.png') }}" alt="Logo Yayasan Pijar" width=25% height=25%>
+        <img src="{{ asset('asset/logo yayasan.png') }}" alt="Logo Yayasan Pijar" width=15% height=15%>
     </div>
     
     <form>

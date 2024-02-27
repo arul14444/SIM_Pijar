@@ -25,4 +25,18 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+// $(document).ready(function(){
+//     $('.nav-link').on('click', function(e){
+//         e.preventDefault();
+//         var url = $(this).attr('href');
+//         $.ajax({
+//             url: url,
+//             type: 'GET',
+//             success: function(response){
+//                 $('#content').html(response);
+//             }
+//         });
+//     });
+// });
+
 
