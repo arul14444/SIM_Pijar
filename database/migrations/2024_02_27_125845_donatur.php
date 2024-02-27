@@ -11,27 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->id();    
-            $table->string('nama', 255);
+        Schema::create('donatur', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama',255);
             $table->bigInteger('nomor_telpon')->unique()->unsigned()->length(14);
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('alamat', 255);
-            $table->enum('role', ['admin', 'anggota']);
+            $table->string('alamat',255);
             $table->boolean('flag_aktif');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
 
-   /**
+    /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('donatur');
+        
     }
 };
