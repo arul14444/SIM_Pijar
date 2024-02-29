@@ -8,19 +8,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'user';
     protected $hidden = [
         'password',
         'remember_token',
         'id',
-        'username'
+        'username',
+        'flag_aktif'
     ];
     protected $fillable = [
         'username',
-        'password',
         'nama',
         'alamat',
         'role',

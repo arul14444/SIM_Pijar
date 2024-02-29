@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DonaturController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,3 +54,6 @@ Route::get('/tambah/arsip', function () {
 Route::get('/surat', function () {
     return view('layout/admin/TambahSurat');
 });
+
+
+Route::get('/managemen/donatur',[DonaturController::class,'dataDonatur']);
