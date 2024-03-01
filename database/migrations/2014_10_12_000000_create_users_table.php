@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('flag_aktif');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('uuid',20);
         });
     }
 

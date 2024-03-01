@@ -30,6 +30,7 @@
                 </tr>
             </tfoot>
             <tbody>
+                {{-- Daftar anggota --}}
                 @foreach($data as $dt)
                     <tr>
                         <td> {{$dt->nama}}</td>
@@ -37,17 +38,17 @@
                         <td> {{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
-                                <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
+                                <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>                    
                         </td>
                     </tr>
                 @endforeach
-
+                {{-------------------}}
             </tbody>
         </table>
     </div>

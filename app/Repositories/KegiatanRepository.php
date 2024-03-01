@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Donatur;
+use App\Models\Kegiatan;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
-class DonaturRepository{
-   public function getDonatur(){
-        return Donatur::select('*')
+class KegiatanRepository{
+   public function getKegiatan(){
+        return Kegiatan::select('*')
         ->get();
    }
 }

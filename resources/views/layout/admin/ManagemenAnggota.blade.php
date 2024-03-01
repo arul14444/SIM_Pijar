@@ -15,60 +15,40 @@
         <table id="myTable" class="table">
             <thead>
                 <tr class="text-center">
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
+                    <th>Nama</th>
+                    <th>Nomor Telpon</th>
+                    <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
+                    <th>Nama</th>
+                    <th>Nomor Telpon</th>
+                    <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach(range(1, 10) as $index)
+                {{-- Daftar Anggota --}}
+                @foreach($data as $dt)
                     <tr>
-                        <td> test {{$index}}</td>
-                        <td> test</td>
-                        <td> test</td>
-                        <td> test</td>
-                        <td> test</td>
+                        <td> {{$dt->nama}}</td>
+                        <td> 0{{$dt->nomor_telpon}}</td>
+                        <td> {{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
+                                </button>
+                                <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>                    
                         </td>
                     </tr>
                 @endforeach
-                <tr>
-                    <td> coba</td>
-                    <td> ya</td>
-                    <td> ges</td>
-                    <td> tuk</td>
-                    <td> tuk</td>
-                    <td> 
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>                   
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
     </div>

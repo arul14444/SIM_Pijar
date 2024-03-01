@@ -17,48 +17,30 @@
         <table id="myTable" class="table">
             <thead>
                 <tr class="text-center">
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
+                    <th>Dokumen</th>
+                    <th>Deskripsi</th>
+                    <th>Kode</th>
+                    <th>Foto</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
+                    <th>Dokumen</th>
+                    <th>Deskripsi</th>
+                    <th>Kode</th>
+                    <th>Foto</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
+                {{-- Daftar Aset --}}
+                @foreach ($data as $dt )
                 <tr>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> test</td>
-                    <td> 
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" onclick="deleteRow(this)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>                    
-                    </td>
-                </tr>
-                <tr>
-                    <td> coba</td>
-                    <td> ya</td>
-                    <td> ges</td>
-                    <td> tuk</td>
-                    <td> tuk</td>
+                    <td> {{$dt->nama_dokumen}}</td>
+                    <td> {{$dt->deskripsi_dokumen}}</td>
+                    <td> {{$dt->kode_dokumen}}</td>
+                    <td> {{$dt->nama_foto_barang}}</td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
@@ -69,7 +51,9 @@
                             </button>
                         </div>                   
                     </td>
-                </tr>
+                </tr> 
+                @endforeach
+
             </tbody>
         </table>
     </div>

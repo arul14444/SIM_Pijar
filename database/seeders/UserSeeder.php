@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 'alamat' => 'Sleman',
                 'role' => 'admin',
                 'nomor_telpon' => 8734836482,
-                'flag_aktif'=>true
+                 
             ],
             [
                 'username' => 'Ortu',
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
                 'alamat' => 'Sleman',
                 'role' => 'anggota',
                 'nomor_telpon' => 8364726474, 
-                'flag_aktif'=>true
+                 
             ]
         ];
 

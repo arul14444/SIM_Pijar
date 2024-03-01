@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DonaturController;
+use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,24 +13,41 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//login
 Route::get('/', function () {
     return view('layout/Login');
 });
+
+//dashboard
 Route::get('/dashboard/admin', function () {
     return view('layout/admin/Dashboard');
 });
+
+//namagemen anggota
 Route::get('/managemen/anggota', function () {
     return view('layout/admin/ManagemenAnggota');
 });
+Route::get('/managemen/anggota',[DataController::class,'dataAnggota']);
+
+//managemen donatur
 Route::get('/managemen/donatur', function () {
     return view('layout/admin/ManagemenDonatur');
 });
+Route::get('/managemen/donatur',[DataController::class,'dataDonatur']);
+
+//managemen aset
 Route::get('/managemen/aset', function () {
     return view('layout/admin/ManagemenAset');
 });
+Route::get('/managemen/aset',[DataController::class,'dataAset']);
+
+//managemen kegiatan
 Route::get('/managemen/kegiatan', function () {
     return view('layout/admin/ManagemenKegiatan');
 });
+Route::get('/managemen/kegiatan',[DataController::class,'dataKegiatan']);
+
+//managemen arsip
 Route::get('/managemen/arsip', function () {
     return view('layout/admin/ManagemenArsip');
 });
@@ -56,4 +73,4 @@ Route::get('/surat', function () {
 });
 
 
-Route::get('/managemen/donatur',[DonaturController::class,'dataDonatur']);
+

@@ -109,19 +109,19 @@ body {
   text-decoration: none; /* Hilangkan garis bawah */
 }
 #myTable th:nth-child(1), #myTable td:nth-child(1) {
-  width: 20%; 
-}
-#myTable th:nth-child(2), #myTable td:nth-child(2) {
   width: 15%; 
 }
-#myTable th:nth-child(3), #myTable td:nth-child(3) {
+#myTable th:nth-child(2), #myTable td:nth-child(2) {
   width: 20%; 
+}
+#myTable th:nth-child(3), #myTable td:nth-child(3) {
+  width: 15%; 
 }
 #myTable th:nth-child(4), #myTable td:nth-child(4) {
   width: 15%; 
 }
 #myTable th:nth-child(5), #myTable td:nth-child(5) {
-  width: 15%; 
+  width: 20; 
 }
 #myTable th:nth-child(6), #myTable td:nth-child(6) {
   width: 15%; 

@@ -1,0 +1,12 @@
+BEFORE INSERT
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `bi_user` BEFORE INSERT ON `user` FOR EACH ROW BEGIN 
+    IF NEW.id IS NOT NULL THEN
+        SET NEW.id = UUID_SHORT();
+    END IF;
+
+    IF NEW.uuid IS NULL THEN
+        SET NEW.uuid = SUBSTRING(UUID(), 1, 20);
+    END IF;
+    SET NEW.flag_aktif = true;
+END

@@ -6,28 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('donatur', function (Blueprint $table) {
+        Schema::create('kegiatan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',255);
-            $table->bigInteger('nomor_telpon')->unique()->unsigned()->length(14);
-            $table->string('alamat',255);
+            $table->string('nama_kegiatan',255);
+            $table->string('deskripsi_kegiatan',255);
+            $table->string('lokasi',255);
+            $table->string('sumber_dana',255);
+            $table->string('nama_foto_kegiatan');
+            $table->string('path_foto_kegiatan');
             $table->boolean('flag_aktif');
             $table->timestamps();
             $table->string('uuid',20);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('donatur');
+        Schema::dropIfExists('kegiatan');
         
     }
 };
