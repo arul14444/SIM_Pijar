@@ -108,6 +108,7 @@ body {
   color: #6c757d; 
   text-decoration: none; /* Hilangkan garis bawah */
 }
+
 #myTable th:nth-child(1), #myTable td:nth-child(1) {
   width: 15%; 
 }
@@ -121,10 +122,26 @@ body {
   width: 15%; 
 }
 #myTable th:nth-child(5), #myTable td:nth-child(5) {
-  width: 20; 
+  width: 20%; 
 }
 #myTable th:nth-child(6), #myTable td:nth-child(6) {
   width: 15%; 
+}
+
+#tabelArsip th:nth-child(1), #tabelArsip td:nth-child(1) {
+  width: 20%; 
+}
+#tabelArsip  th:nth-child(2), #tabelArsip   td:nth-child(2) {
+  width: 20%; 
+}
+#tabelArsip th:nth-child(3), #tabelArsip td:nth-child(3) {
+  width: 20%; 
+}
+#tabelArsip th:nth-child(4), #tabelArsip td:nth-child(4) {
+  width: 20%; 
+}
+#tabelArsip th:nth-child(5), #tabelArsip td:nth-child(5) {
+  width: 20%; 
 }
 
 hr {

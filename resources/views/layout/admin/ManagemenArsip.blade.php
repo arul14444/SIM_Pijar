@@ -14,7 +14,7 @@
     </div>
 
     <div class="card-body">
-        <table id="myTable" class="table">
+        <table id="tabelArsip" class="table">
             <thead>
                 <tr class="text-center">
                     <th>Dokumen</th>
@@ -37,10 +37,10 @@
                 {{-- Daftar Aset --}}
                 @foreach ($data as $dt )
                 <tr>
-                    <td> {{$dt->nama_dokumen}}</td>
-                    <td> {{$dt->deskripsi_dokumen}}</td>
-                    <td> {{$dt->kode_dokumen}}</td>
-                    <td> {{$dt->nama_foto_barang}}</td>
+                    <td> {{$dt->nama_Dokumen}}</td>
+                    <td> {{$dt->deskripsi_Dokumen}}</td>
+                    <td> {{$dt->kode_Dokumen}}</td>
+                    <td> {{$dt->nama_foto_dokumen}}</td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
@@ -64,7 +64,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#myTable');
+            new simpleDatatables.DataTable('#tabelArsip');
         });
     </script>
 @endpush

@@ -51,6 +51,7 @@ Route::get('/managemen/kegiatan',[DataController::class,'dataKegiatan']);
 Route::get('/managemen/arsip', function () {
     return view('layout/admin/ManagemenArsip');
 });
+Route::get('/managemen/arsip',[DataController::class,'dataArsip']);
 
 
 Route::get('/tambah/anggota', function () {

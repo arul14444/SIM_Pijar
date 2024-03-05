@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
 use App\Repositories\KegiatanRepository;
@@ -15,13 +16,15 @@ class DataController extends Controller
         DonaturRepository $donaturRepository,
         UserRepository $userRepository,
         KegiatanRepository $kegiatanRepository,
-        AsetRepository $asetRepository
+        AsetRepository $asetRepository,
+        ArsipRepository $arsipRepository
 
     ) {
         $this->donaturRepository = $donaturRepository;
         $this->userRepository = $userRepository;
         $this->kegiatanRepository = $kegiatanRepository;
         $this->asetRepository = $asetRepository;
+        $this->arsipRepository = $arsipRepository;
     }
     public function dataDonatur(){
         $data = $this->donaturRepository->getDonatur();
@@ -40,6 +43,11 @@ class DataController extends Controller
     public function dataAset(){
         $data = $this->asetRepository->getAset();
         return view('layout.admin.ManagemenAset')->with('data', $data);
+    }
+
+    public function dataArsip(){
+        $data = $this->arsipRepository->getArsip();
+        return view('layout.admin.ManagemenArsip')->with('data', $data);
     }
     
 }
