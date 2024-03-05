@@ -10,7 +10,9 @@ class Donatur extends Model
     protected $table = 'donatur';
     protected $hidden = [
         'id',
-        'flag_aktif'
+        'flag_aktif',
+        'created_at',
+        'updated_at'
     ];
     protected $fillable = [
         'nama',

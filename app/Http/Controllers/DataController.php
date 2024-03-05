@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anak;
+use App\Repositories\AnakRepository;
 use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
@@ -11,13 +13,14 @@ use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    protected  $donaturRepository,$userRepository,$kegiatanRepository,$asetRepository,$arsipRepository;
+    protected  $donaturRepository,$userRepository,$kegiatanRepository,$asetRepository,$arsipRepository,$anakRepository;
     public function __construct(
         DonaturRepository $donaturRepository,
         UserRepository $userRepository,
         KegiatanRepository $kegiatanRepository,
         AsetRepository $asetRepository,
-        ArsipRepository $arsipRepository
+        ArsipRepository $arsipRepository,
+        AnakRepository $anakRepository
 
     ) {
         $this->donaturRepository = $donaturRepository;
@@ -25,6 +28,7 @@ class DataController extends Controller
         $this->kegiatanRepository = $kegiatanRepository;
         $this->asetRepository = $asetRepository;
         $this->arsipRepository = $arsipRepository;
+        $this->anakRepository = $anakRepository;
     }
     public function dataDonatur(){
         $data = $this->donaturRepository->getDonatur();
@@ -49,5 +53,20 @@ class DataController extends Controller
         $data = $this->arsipRepository->getArsip();
         return view('layout.admin.ManagemenArsip')->with('data', $data);
     }
-    
+    public function dataAnak(){
+        // $data = $this->arsipRepository->getArsip();
+        // return view('layout.admin.ManagemenArsip')->with('data', $data);
+    }
+    public function infobox(){
+        $data = [
+           'anggota' => $this->userRepository->getAnggota()->count(),
+           'donatur' =>$this->donaturRepository->getDonatur()->count(),
+           'kegiatan' => $this->kegiatanRepository->getKegiatan()->count(),
+           'arsip' => $this->arsipRepository->getArsip()->count(),
+           'aset' => $this->asetRepository->getAset()->count(),
+           'anak' => $this->anakRepository->getAnak()->count()
+        ];
+
+        return view('layout.admin.Dashboard')->with('data', $data);
+    }
 }

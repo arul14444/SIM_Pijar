@@ -10,7 +10,9 @@ class Arsip extends Model
     protected $table = 'arsip';
     protected $hidden = [
         'id',
-        'flag_aktif'
+        'flag_aktif',
+        'created_at',
+        'updated_at'
     ];
     protected $fillable = [
         'nama_dokumen',

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Aset extends Model
+class Anak extends Model
 {
-    protected $table = 'aset';
+    protected $table = 'anak';
     protected $hidden = [
         'id',
         'flag_aktif',
@@ -15,11 +15,12 @@ class Aset extends Model
         'updated_at'
     ];
     protected $fillable = [
-        'nama_barang',
-        'deskripsi_barang',
-        'kode_barang',
-        'status_barang',
-        'nama_foto_barang',
-        'path_foto_barang'
+        'nama_lengkap',
+        'nama_panggilan',
+        'tgl_lahir',
+        'penyakit_penyerta',
+        'id_user',
+        'id_abd',
+        'bpjs'
     ];
 }

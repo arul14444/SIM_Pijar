@@ -14,7 +14,9 @@ class User extends Authenticatable
         'remember_token',
         'id',
         'username',
-        'flag_aktif'
+        'flag_aktif',
+        'created_at',
+        'updated_at'
     ];
     protected $fillable = [
         'username',

@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/dashboard/admin', function () {
     return view('layout/admin/Dashboard');
 });
+Route::get('/dashboard/admin',[DataController::class,'infobox']);
 
 //namagemen anggota
 Route::get('/managemen/anggota', function () {

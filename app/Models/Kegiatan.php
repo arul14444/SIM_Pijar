@@ -10,7 +10,9 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
     protected $hidden = [
         'id',
-        'flag_aktif'
+        'flag_aktif',
+        'created_at',
+        'updated_at'
     ];
     protected $fillable = [
         'nama_kegiatan',

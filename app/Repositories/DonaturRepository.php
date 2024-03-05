@@ -11,4 +11,20 @@ class DonaturRepository{
         return Donatur::select('*')
         ->get();
    }
+   public function create($data)
+   {
+       return Donatur::insert($data);
+   }
+  public function updateByUuid($data, $uuid)
+   {
+       return Donatur::where('uuid', $uuid)->update($data);
+   }
+   public function findByUuid($uuid)
+   {
+       return Donatur::from('donatur as d')->where(['d.uuid' => $uuid, 'flag_aktif' => true])->first();
+   }
+   public function delete($user, $uuid)
+   {
+       return Donatur::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+   }
 }
