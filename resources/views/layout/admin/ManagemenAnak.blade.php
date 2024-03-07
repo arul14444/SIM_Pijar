@@ -1,7 +1,7 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Anggota')
+@section('title', 'Managemen Anank')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Anggota</li>
+    <li class="breadcrumb-item active"> Managemen Anak</li>
 @endsection
 
 @section('content')
@@ -15,26 +15,29 @@
         <table id="myTable" class="table">
             <thead>
                 <tr class="text-center">
-                    <th>Nama</th>
-                    <th>Nomor Telpon</th>
+                    <th>Nama Anak</th>
+                    <th>Nomor Tepon</th>
+                    <th>Nama Orangtua</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Nama</th>
-                    <th>Nomor Telpon</th>
+                    <th>Nama Anak</th>
+                    <th>Nomor Tepon</th>
+                    <th>Nama Orangtua</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
-                {{-- Daftar Anggota --}}
+                {{-- Daftar Anank --}}
                 @foreach($data as $dt)
                     <tr>
-                        <td> {{$dt->nama}}</td>
-                        <td> 0{{$dt->nomor_telepon}}</td>
+                        <td> {{$dt->nama_lengkap}}</td>
+                        <td> 0{{$dt->nomor_telpon}}</td>
+                        <td> {{$dt->ortu}}</td>
                         <td> {{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">

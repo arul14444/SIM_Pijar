@@ -34,10 +34,12 @@ class DataController extends Controller
         $data = $this->donaturRepository->getDonatur();
         return view('layout.admin.ManagemenDonatur')->with('data', $data);
     }
+
     public function dataAnggota(){
         $data = $this->userRepository->getAnggota();
         return view('layout.admin.ManagemenAnggota')->with('data', $data);
     }
+    
 
     public function dataKegiatan(){
         $data = $this->kegiatanRepository->getKegiatan();
@@ -54,8 +56,8 @@ class DataController extends Controller
         return view('layout.admin.ManagemenArsip')->with('data', $data);
     }
     public function dataAnak(){
-        // $data = $this->arsipRepository->getArsip();
-        // return view('layout.admin.ManagemenArsip')->with('data', $data);
+        $data = $this->anakRepository->getAnak();
+        return view('layout.admin.ManagemenAnak')->with('data', $data);
     }
     public function infobox(){
         $data = [

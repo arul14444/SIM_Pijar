@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\TambahDataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,12 @@ Route::get('/managemen/anggota', function () {
 });
 Route::get('/managemen/anggota',[DataController::class,'dataAnggota']);
 
+//namagemen anak
+Route::get('/managemen/anak', function () {
+    return view('layout/admin/ManagemenAnak');
+});
+Route::get('/managemen/anak',[DataController::class,'dataAnak']);
+
 //managemen donatur
 Route::get('/managemen/donatur', function () {
     return view('layout/admin/ManagemenDonatur');
@@ -55,18 +62,32 @@ Route::get('/managemen/arsip', function () {
 Route::get('/managemen/arsip',[DataController::class,'dataArsip']);
 
 
+//tambah anggota
 Route::get('/tambah/anggota', function () {
     return view('layout/admin/TambahAnggota');
 });
+Route::post('/tambah/anggota',[TambahDataController::class,'tambahAnggota']);
+
+//tambah anak
+Route::get('/tambah/anak', function () {
+    return view('layout/admin/TambahAnak');
+});
+Route::get('/tambah/anak',[TambahDataController::class,'listOrtu']);
+Route::post('/tambah/anak',[TambahDataController::class,'tambahAnak']);
+
+//tambah donatur
 Route::get('/tambah/donatur', function () {
     return view('layout/admin/TambahDonatur');
 });
+//tambah aset
 Route::get('/tambah/aset', function () {
     return view('layout/admin/TambahAset');
 });
+//tambah kegiatan
 Route::get('/tambah/kegiatan', function () {
     return view('layout/admin/TambahKegiatan');
 });
+//tambah arsip
 Route::get('/tambah/arsip', function () {
     return view('layout/admin/TambahArsip');
 });

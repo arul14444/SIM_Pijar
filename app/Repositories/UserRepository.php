@@ -21,7 +21,7 @@ class UserRepository{
    }
    public function findByUuid($uuid)
    {
-       return User::from('anak as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
+       return User::from('user')->where(['user.uuid' => $uuid, 'flag_aktif' => true])->first();
    }
    public function delete($user, $uuid)
    {

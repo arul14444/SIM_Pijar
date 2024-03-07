@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AnakRepository{
    public function getAnak(){
-        return Anak::select('*')
-        ->where(['flag_aktif'=>1])
+        return Anak::select('anak.nama_lengkap','anak.nomor_telpon','user.nama as ortu','user.alamat','abd.jenis_abd_kanan','abd.jenis_abd_kiri')
+        ->join('user', 'user.id','anak.id_user')
+        ->join('abd','abd.id','anak.id_abd')
+        ->where(['anak.flag_aktif'=>1])
         ->get();
    }
    public function create($data)
