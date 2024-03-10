@@ -54,12 +54,16 @@ class TambahDataController extends Controller
         //=========================== tambah Data =========================== 
     public function tambahAnggota(Request $request){
         try{
-            DB::beginTransaction();
-            $this->tambahAnggotaService->setData($request);
-            DB::commit();
-            return response()->json(['success' => true, 'message' => 'Data anak berhasil ditambahkan']);
+            if($request->password == $request->konfirmasi_password){
+                DB::beginTransaction();
+                $this->tambahAnggotaService->setData($request);
+                DB::commit();
+                return response()->json(['success' => true, 'message' => 'Data anggota berhasil ditambahkan']);}
+            else{
+                return response()->json(['success' => false, 'message' => 'konfirmasi password tidak sesuai' ]);
+            }
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Gagal menambahkan data anak: ' . $e->getMessage()]);
+            return response()->json(['success' => false, 'message' => 'Gagal menambahkan data anggota: ' . $e->getMessage()]);
         }
     }
     public function tambahAnakbyAdmin(Request $request){
@@ -73,10 +77,14 @@ class TambahDataController extends Controller
         }
     }
     public function tambahDonatur(Request $request){
-        DB::beginTransaction();
-        $inputData = $this->tambahDonaturService->setData($request);
-        DB::commit();
-        return $inputData;
+        try{
+            DB::beginTransaction();
+            $inputData = $this->tambahDonaturService->setData($request);
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Data donatur berhasil ditambahkan']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal menambahkan data donatur: ' . $e->getMessage()]);
+        }
     }
     public function tambahAset(Request $request){
         DB::beginTransaction();

@@ -35,65 +35,83 @@ class PrintController extends Controller
     public function printPdfAnggota()
     {
         $data = $this->userRepository->getAnggota();
-        $view = view('print.PrintAnggota', ['data' => $data])->render();
+        $html = view('print.PrintAnggota', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($view);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anggota_' . $tanggal . '.pdf';
-                return $dompdf->stream($nama_file);
+        $nama_file = 'Data_Anggota_' . $tanggal . '.pdf';
+
+        return $dompdf->stream($nama_file);
     }
+    
+    private function appendBootstrapCSS($html)
+    {
+        // Bootstrap CSS dari CDN
+        $bootstrap_css = file_get_contents('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
+
+        // Tambahkan Bootstrap CSS secara inline
+        $html_with_bootstrap = '<style>' . $bootstrap_css . '</style>' . $html;
+
+        return $html_with_bootstrap;
+    }
+
+    
     public function printPdfAnak()
     {
         $data = $this->anakRepository->getAnak();
-        $view = view('print.PrintAnggota', ['data' => $data])->render();
+        $html = view('print.PrintAnak', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($view);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anggota_' . $tanggal . '.pdf';
+        $nama_file = 'Data_Anak_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
     public function printPdfDonatur()
     {
         $data = $this->donaturRepository->getDonatur();
-        $view = view('print.PrintAnggota', ['data' => $data])->render();
+        $html = view('print.PrintDonatur', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($view);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anggota_' . $tanggal . '.pdf';
+        $nama_file = 'Data_Donatur_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
     public function printPdfAset()
     {
         $data = $this->asetRepository->getAset();
-        $view = view('print.PrintAnggota', ['data' => $data])->render();
+        $html = view('print.PrintAnak', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($view);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anggota_' . $tanggal . '.pdf';
+        $nama_file = 'data_Anak_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
     public function printPdfKegiatan()

@@ -109,8 +109,8 @@ Route::get('/surat', function () {
 
 
 
-Route::get('/print/anggota', function () {
-    return view('print/PrintAnggota');
+Route::get('/print/surat', function () {
+    return view('print/PrintSurat');
 });
 
 

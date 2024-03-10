@@ -9,7 +9,7 @@
 <body>
     @include('print.header')
     <div class="mx-auto text-center" style="font-size: 16px; text-decoration: underline;">
-        <b>Data Anggota</b>
+        <b>Data Donatur</b>
     </div>    
     <div class="card-body">
         <table id="myTable" class="table table-striped table-bordered">

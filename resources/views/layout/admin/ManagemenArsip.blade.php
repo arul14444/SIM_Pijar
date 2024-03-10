@@ -11,7 +11,7 @@
         <form method="POST" action="/arsip/print-pdf" target="_blank">
             @csrf
             <button type="submit" class="btn btn-outline-dark">
-                <i class="fa-solid fa-print me-2"></i>Cetak
+                <i class="fa-solid  fa-download me-2"></i>Unduh
             </button>
         </form>
     </div>

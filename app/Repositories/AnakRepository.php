@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AnakRepository{
    public function getAnak(){
-        return Anak::select('anak.nama_lengkap','anak.nomor_telepon','user.nama as ortu','user.alamat')
+        return Anak::select('*')
         ->join('user', 'user.id','anak.id_user')
+        ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
+        ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
         ->where(['anak.flag_aktif'=>1])
         ->get();
    }

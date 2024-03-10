@@ -7,7 +7,7 @@
     </ol>
 @endsection
 @section('content')
-    <form id="addForm" method="POST" action="/tambah/anak">
+    <form id="tambahAnak" method="POST" action="/tambah/anak">
         @csrf
         <div style="margin: 0 auto;">
             <div class="row mb-3">
@@ -116,6 +116,6 @@
                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
             </div>
         </div>
+        <script src="{{ asset('resources/anak.js') }}"></script>
     </form>
-    <script src="{{ asset('resources/alert.js') }}"></script>
 @endsection

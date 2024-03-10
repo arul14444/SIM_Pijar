@@ -10,6 +10,7 @@
     <link href="{{ asset('resources/app.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     
+    
 </head>
 <body>
    {{-- nav --}}

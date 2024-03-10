@@ -7,7 +7,7 @@
     </ol>
 @endsection
 @section('content')
-    <form method="POST" action="/tambah/anggota">
+    <form id="tambahAnggota" method="POST" action="/tambah/anggota">
         @csrf
         <div style="margin: 0 auto; ">
             <div class="form-floating mb-3">
@@ -45,5 +45,5 @@
             </div>
         </div>
     </form>
-    
+    <script src="{{ asset('resources/anggota.js') }}"></script>
 @endsection

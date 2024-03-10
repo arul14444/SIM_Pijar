@@ -14,7 +14,6 @@ class TambahAnggotaService{
     }
 
     public function setData($data){
-        if($data->password == $data->konfirmasi_password){
             $password = bcrypt($data->password);
             $setData = [
                 'nama' => $data->nama,
@@ -26,9 +25,6 @@ class TambahAnggotaService{
             ];
             $this->userRepository->create($setData);
             return ;
-        }else{
-            return('Password tidak sesuai');
-        }
 
     }
 }

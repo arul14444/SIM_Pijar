@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<form method="POST" action="/tambah/aset">
+<form id="addForm" method="POST" action="/tambah/aset">
     @csrf
     <div class="form-floating mb-3">
         <input class="form-control" id="inputNamaBarang" name="nama_barang" type="text" placeholder="Masukkan nama barang" />
