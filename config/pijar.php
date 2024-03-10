@@ -7,5 +7,16 @@ return[
         'pengurus'=>[
             'kode'=>'admin'
         ]
+        ],
+    'status'=>[
+        'tersedia'=>[
+            'kode'=>'TER' 
+        ],'tidak_tersedia'=>[
+            'kode'=>'TDK'
+        ],'rusak'=>[
+            'kode'=>'RSK'
+        ],'dalam_perbaikan'=>[
+            'kode'=>'DPR'
+        ]
     ]
 ];

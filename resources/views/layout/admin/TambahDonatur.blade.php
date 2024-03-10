@@ -7,41 +7,24 @@
     </ol>
 @endsection
 @section('content')
-    <form>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                    <label for="inputFirstName">First name</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                    <label for="inputLastName">Last name</label>
-                </div>
-            </div>
+<form method="POST" action="/tambah/donatur">
+    @csrf
+    <div style="margin: 0 auto; ">
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputNama" name="nama" type="text" placeholder="Masukan nama lengkap" />
+            <label for="inputNama">Nama Lengkap</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-            <label for="inputEmail">Email address</label>
+            <input class="form-control" id="inputNomorTelpon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
+            <label for="inputNomorTelepon">Nomor Telepon</label>
         </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                    <label for="inputPassword">Password</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                    <label for="inputPasswordConfirm">Confirm Password</label>
-                </div>
-            </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputAlamat" name="alamat" type="text" rows="3" placeholder="Masukan alamat lengkap" />
+            <label for="inputAlamat">Alamat</label>
         </div>
         <div class="mt-4 mb-0">
-            <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
+            <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
         </div>
-    </form>
+    </div>
+</form>
 @endsection

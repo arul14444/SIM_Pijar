@@ -1,48 +1,49 @@
 @extends('layout.admin.MasterAdmin')
-@section('title','Tambah Arsip')
+@section('title','Tambah Aset')
 @section('route')
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Managemen</a></li>
-        <li class="breadcrumb-item active">Tambah</li>
+        <li class="breadcrumb-item active">Tambah Aset</li>
     </ol>
 @endsection
 
 @section('content')
-    <form>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                    <label for="inputFirstName">First name</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                    <label for="inputLastName">Last name</label>
-                </div>
+<form method="POST" action="/tambah/aset">
+    @csrf
+    <div class="form-floating mb-3">
+        <input class="form-control" id="inputNamaBarang" name="nama_barang" type="text" placeholder="Masukkan nama barang" />
+        <label for="inputNamaBarang">Nama Barang</label>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input class="form-control" id="inputKode" name="kode" type="text" placeholder="Masukkan kode" />
+                <label for="inputKode">Kode</label>
             </div>
         </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-            <label for="inputEmail">Email address</label>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                    <label for="inputPassword">Password</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                    <label for="inputPasswordConfirm">Confirm Password</label>
-                </div>
+        <div class="col-md-6">
+            <div class="form-floating">
+                <select class="form-select" id="inputStatusAset" name="uuid_status_aset" aria-label="Pilih Status Aset">
+                    <option selected disabled>Pilih Status Aset</option>
+                        @foreach ($listStatus as $data)    
+                            <option value="{{$data->uuid}}">{{$data->status}}</option>
+                        @endforeach
+                </select>
+                <label for="inputStatusAset">Status Aset</label>
             </div>
         </div>
-        <div class="mt-4 mb-0">
-            <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
-        </div>
-    </form>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="inputDeskripsi" name="deskripsi" type="text" placeholder="Masukkan deskripsi" />
+        <label for="inputDeskripsi">Deskripsi</label>
+    </div>
+    <div>
+        <label for="formFileLampiran" class="form-label">Lampiran Dokumen</label>
+        <input class="form-control form-control" id="formFileLampiran" name="lampiran_dokumen" type="file">
+    </div>
+    <div class="mt-4 mb-0">
+        <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
+    </div>
+</form>
+
 @endsection

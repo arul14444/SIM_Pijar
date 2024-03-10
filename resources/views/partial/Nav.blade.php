@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" >
     <button class="btn ps-4 btn-link btn-sm order-1 order-lg-0 " id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <div class="col-3">
         <a class="navbar-brand ps-3  mb-0" href="" >

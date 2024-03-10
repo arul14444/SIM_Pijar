@@ -1,15 +1,18 @@
 @extends('layout.admin.MasterAdmin')
 @section('title', 'Managemen Kegiatan')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen </li>
+    <li class="breadcrumb-item active"> Managemen Kegiatan</li>
 @endsection
 
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
         <span>Data Kegiatan</span>
-        <button class="btn btn-outline-dark">
-            <i class="fa-solid fa-print me-2"></i>Cetak 
-        </button>
+        <form method="POST" action="/kegiatan/print-pdf" target="_blank">
+            @csrf
+            <button type="submit" class="btn btn-outline-dark">
+                <i class="fa-solid fa-print me-2"></i>Cetak
+            </button>
+        </form>
     </div>
     <div class="card-body">
         <table id="myTable" class="table">

@@ -7,9 +7,12 @@
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
         <span>Data Anggota</span>
-        <button class="btn btn-outline-dark">
-            <i class="fa-solid fa-print me-2"></i>Cetak 
-        </button>
+        <form method="POST" action="/ansk/print-pdf" target="_blank">
+            @csrf
+            <button type="submit" class="btn btn-outline-dark">
+                <i class="fa-solid fa-print me-2"></i>Cetak
+            </button>
+        </form>
     </div>
     <div class="card-body">
         <table id="myTable" class="table">
@@ -36,7 +39,7 @@
                 @foreach($data as $dt)
                     <tr>
                         <td> {{$dt->nama_lengkap}}</td>
-                        <td> 0{{$dt->nomor_telpon}}</td>
+                        <td> 0{{$dt->nomor_telepon}}</td>
                         <td> {{$dt->ortu}}</td>
                         <td> {{$dt->alamat}}</td>
                         <td> 

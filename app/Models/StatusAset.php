@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Abd extends Model
+class StatusAset extends Model
 {
-    protected $table = 'abd';
+    protected $table = 'status_aset';
     protected $hidden = [
         'id',
         'flag_aktif',

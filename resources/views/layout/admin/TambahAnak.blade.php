@@ -7,7 +7,7 @@
     </ol>
 @endsection
 @section('content')
-    <form method="POST" action="/tambah/anak">
+    <form id="addForm" method="POST" action="/tambah/anak">
         @csrf
         <div style="margin: 0 auto;">
             <div class="row mb-3">
@@ -15,8 +15,8 @@
                     <div class="form-floating">
                         <select class="form-select" id="inputNamaOrangTua" name="uuid_orang_tua" aria-label="Pilih Nama Orang Tua">
                             <option selected disabled>Pilih Nama Orang Tua</option>
-                                @foreach ($listOrtu as $data)    
-                                    <option value="{{$data->uuid}}">{{$data->nama}}</option>
+                                @foreach ($data['listOrtu'] as $dt)    
+                                    <option value="{{$dt->uuid}}">{{$dt->nama}}</option>
                                 @endforeach
                         </select>
                         <label for="inputNamaOrangTua">Nama Orang Tua</label>
@@ -31,25 +31,24 @@
                         <label for="inputGangguanTelingaKanan">Kepemilikan BPJS</label>
                     </div>
                 </div>
-                
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="inputNamaLengkap" name="nama_lengkap" type="text" placeholder="Enter your first name" />
+                <label for="inputNamaLengkap">Nama Lengkap</label>
             </div>
             <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputNamaLengkap" name="nama_lengkap" type="text" placeholder="Enter your first name" />
-                        <label for="inputNamaLengkap">Nama Lengkap</label>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="form-floating">
                         <input class="form-control" id="inputNamaPanggilan" name="nama_panggilan" type="text" placeholder="Enter your last name" />
                         <label for="inputNamaPanggilan">Nama Panggilan</label>
                     </div>
                 </div>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="inputNomorTelpon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
-                <label for="inputNomorTelepon">Nomor Telepon</label>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <input class="form-control" id="inputNomorTelpon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
+                        <label for="inputNomorTelepon">Nomor Telepon</label>
+                    </div>
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -67,15 +66,45 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputGangguanTelingaKiri" name="gangguan_telinga_kiri" type="text" placeholder="Enter your first name" />
-                        <label for="inputGangguanTelingaKiri">Gangguan Telinga Kiri (Hz)</label>
+                    <div class="form-floating">
+                        <select class="form-select" id="inputAbdKiri" name="uuid_abd_kiri" aria-label="Pilih Jenis ABD Telinga Kiri">
+                            <option selected disabled>Pilih Jenis Abd</option>
+                            @foreach ($data['listAbd'] as $jenis)    
+                            <option value="{{$jenis->uuid}}">{{$jenis->jenis}}</option>
+                            @endforeach
+                        </select>
+                        <label for="inputAbdKiri">Jenis ABD Telinga Kiri</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" id="inputGangguanTelingaKanan" name="gangguan_telinga_kanan" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Gangguan Telinga Kanan (Hz)</label>
+                        <select class="form-select" id="inputAbdKanan" name="uuid_abd_kanan" aria-label="Pilih Jenis ABD Telinga Kanan">
+                            <option selected disabled>Pilih Jenis Abd</option>
+                            @foreach ($data['listAbd'] as $jenis)    
+                            <option value="{{$jenis->uuid}}">{{$jenis->jenis}}</option>
+                            @endforeach
+                        </select>
+                        <label for="inputAbdKanan">Jenis ABD Telinga Kanan</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <input class="form-control" id="inputGangguanTelingaKiri" name="kemampuan_telinga_kiri" type="text" placeholder="Enter your first name" />
+                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri (Hz)</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan (Hz)</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural(Hz)</label>
                     </div>
                 </div>
             </div>
@@ -84,8 +113,9 @@
                 <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
             <div class="mt-4 mb-0">
-                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Register</button></div>
+                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
             </div>
         </div>
     </form>
+    <script src="{{ asset('resources/alert.js') }}"></script>
 @endsection

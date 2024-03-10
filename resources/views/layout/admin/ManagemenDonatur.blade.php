@@ -1,15 +1,18 @@
 @extends('layout.admin.MasterAdmin')
 @section('title', 'Managemen Donatur')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen </li>
+    <li class="breadcrumb-item active"> Managemen Donatur </li>
 @endsection
 
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
         <span>Data Donatur</span>
-        <button class="btn btn-outline-dark">
-            <i class="fa-solid fa-print me-2"></i>Cetak 
-        </button>
+        <form method="POST" action="/donatur/print-pdf" target="_blank">
+            @csrf
+            <button type="submit" class="btn btn-outline-dark">
+                <i class="fa-solid fa-print me-2"></i>Cetak
+            </button>
+        </form>
     </div>
     <div class="card-body">
         <table id="myTable" class="table">
@@ -34,7 +37,7 @@
                 @foreach($data as $dt)
                     <tr>
                         <td> {{$dt->nama}}</td>
-                        <td> 0{{$dt->nomor_telpon}}</td>
+                        <td> 0{{$dt->nomor_telepon}}</td>
                         <td> {{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
