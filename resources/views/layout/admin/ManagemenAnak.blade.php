@@ -15,11 +15,12 @@
         </form>
     </div>
     <div class="card-body">
-        <table id="myTable" class="table">
+        <table id="tabelAnak" class="table">
             <thead>
                 <tr class="text-center">
+                    <th>No</th>
                     <th>Nama Anak</th>
-                    <th>Nomor Tepon</th>
+                    <th>Nomor Telepon</th>
                     <th>Nama Orangtua</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
@@ -27,36 +28,38 @@
             </thead>
             <tfoot>
                 <tr>
+                    <th>No</th>
                     <th>Nama Anak</th>
-                    <th>Nomor Tepon</th>
+                    <th>Nomor Telepon</th>
                     <th>Nama Orangtua</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
-                {{-- Daftar Anank --}}
-                @foreach($data as $dt)
-                    <tr>
-                        <td> {{$dt->nama_lengkap}}</td>
-                        <td> 0{{$dt->nomor_telepon}}</td>
-                        <td> {{$dt->ortu}}</td>
-                        <td> {{$dt->alamat}}</td>
-                        <td> 
-                            <div class="d-flex justify-content-center align-items-center">
-                                <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>                    
-                        </td>
-                    </tr>
+                {{-- Daftar Anak --}}
+                @foreach($data as $index => $dt)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $dt->nama_lengkap }}</td>
+                    <td>0{{ $dt->nomor_telepon }}</td>
+                    <td>{{ $dt->username }}</td>
+                    <td>{{ $dt->alamat }}</td>
+                    <td> 
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>                    
+                    </td>
+                </tr>
                 @endforeach
-                
             </tbody>
         </table>
+        
     </div>
 @endsection
 
@@ -65,7 +68,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#myTable');
+            new simpleDatatables.DataTable('#tabelAnak');
         });
     </script>
 @endpush

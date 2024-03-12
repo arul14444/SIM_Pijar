@@ -79,11 +79,18 @@
                         <a class="nav-link" href="{{ url('/tambah/arsip')}}">Tambah</a>
                     </nav>
                 </div>
-                
-                <a class="nav-link" href="{{ url('/surat')}}" >
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSurat" aria-expanded="false" aria-controls="collapseSurat">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-envelope"></i></div>
                     Surat
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <div class="collapse" id="collapseSurat" aria-labelledby="headingSurat" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ url('/managemen/surat')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/tambah/surat')}}">Tambah</a>
+                    </nav>
+                </div>
+                
             </div>
         </div>
     </nav>

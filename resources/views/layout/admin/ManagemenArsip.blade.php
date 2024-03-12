@@ -20,6 +20,7 @@
         <table id="tabelArsip" class="table">
             <thead>
                 <tr class="text-center">
+                    <th>No</th>
                     <th>Dokumen</th>
                     <th>Deskripsi</th>
                     <th>Kode</th>
@@ -29,6 +30,7 @@
             </thead>
             <tfoot>
                 <tr>
+                    <th>No</th>
                     <th>Dokumen</th>
                     <th>Deskripsi</th>
                     <th>Kode</th>
@@ -38,12 +40,13 @@
             </tfoot>
             <tbody>
                 {{-- Daftar Aset --}}
-                @foreach ($data as $dt )
+                @foreach ($data as $index => $dt )
                 <tr>
-                    <td> {{$dt->nama_Dokumen}}</td>
-                    <td> {{$dt->deskripsi_Dokumen}}</td>
-                    <td> {{$dt->kode_Dokumen}}</td>
-                    <td> {{$dt->nama_foto_dokumen}}</td>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $dt->nama_Dokumen }}</td>
+                    <td>{{ $dt->deskripsi_Dokumen }}</td>
+                    <td>{{ $dt->kode_Dokumen }}</td>
+                    <td>{{ $dt->nama_foto_dokumen }}</td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
@@ -56,10 +59,11 @@
                     </td>
                 </tr> 
                 @endforeach
-
+    
             </tbody>
         </table>
     </div>
+    
 @endsection
 
 @push('script')

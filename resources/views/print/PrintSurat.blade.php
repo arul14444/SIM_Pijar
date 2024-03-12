@@ -6,45 +6,95 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
 </head>
 <body>
+    @include('print.header')
     <div class="row text-center">
-        <div class="col-md-6" style="padding-top: 20px"> 
-            <div class="mx-auto"style="font-size: 16px;">
-                <b>YAYASAN PEDULI JUANG ANAK TUNA RUNGU (PiJAR) MUTIARA BANGSA</b>
-            </div>
-        </div>
+        <div class="col-md-5"  style="font-size: 12pt; text-decoration: underline;">
+            <b>SURAT TUGAS</b> 
+        </div> 
     </div>
     <div class="row text-center">
-        <div class="col-md-6"> 
-            <div class="mx-auto"style="font-size: 14px;">
-                <b>Akta Notaris Widi Astuti, SH. No. 04 - 11 Juni 2022</b>
-            </div>
-        </div>
+        <div class="col-md-5"  style="font-size: 12pt;">
+            Nomor : 01/PMB/XI/2023
+        </div> 
     </div>
-    <div class="row text-center">
-        <div class="col-md-6"> 
-            <div class="mx-auto"style="font-size: 10px;">
-                <b>Sekretariat: Jl. K.A. Gringsing 8, RT/RW: 05/01, Pondok Mulyo, Gergunung, Klaten Utara, Klaten, Jateng. 57434</b>
-                <br> <b>Phone: 081351819928, e-mail: pijarmutiarabangsa@gmail.com</b>
-            </div>
+    <div style="padding-top:20px; padding-bottom:20px ">
+        Yang bertanda tangan dibawah ini: 
+        <div style="padding-top: 20px; padding-bottom:20px">
+            <table>
+                <tr>
+                    <td style="width: 100px"> Nama </td>
+                    <td style="width: 10px"> : </td>
+                    <td style="width: 600px"> Puspanjana ST </td>
+                </tr>
+                <tr>
+                    <td> Jabatan </td>
+                    <td> : </td>
+                    <td> Ketua Yayasan PiJAR Mutiara Bangsa </td>
+                </tr>
+                <tr>
+                    <td> Alamat </td>
+                    <td> : </td>
+                    <td> Jl. Ki Ageng Gringsing 8, No. 44, RT/RW: 005/001, Pondok Mulyo, Gergunung, Klaten Utara, Klaten, Jawa Tengah.  </td>
+                </tr>
+            </table>
         </div>
+        Dengan ini menugaskan kepada: 
     </div>
-    <div class="row text-center">
-        <div class="col-md-6"> 
-            <div class="mx-auto"style="font-size: 14px;">
-                <b>SK. Kemenkumham: No. AHU-00165542.AH.01.04 Tahun 2022</b>
-            </div>
-        </div>
+    <div style="padding-top: 20px; padding-bottom:20px">
+        <table>
+            <tr>
+                <td style="width: 100px"> Nama </td>
+                <td style="width: 10px"> : </td>
+                <td style="width: 600px"> Endang Sulistyawati </td>
+            </tr>
+            <tr>
+                <td> Jabatan </td>
+                <td> : </td>
+                <td> Bagian Perlengkapan Yayasan PiJAR Mutiara Bangsa </td>
+            </tr>
+            <tr>
+                <td> Alamat </td>
+                <td> : </td>
+                <td> Jl. Ki Ageng Gringsing 8, No. 44, RT/RW: 005/001, Pondok Mulyo, Gergunung, Klaten Utara, Klaten, Jawa Tengah.  </td>
+            </tr>
+        </table>
     </div>
-    <div class="row text-center">
-        <div class="col-md-6"> 
-            <div class="mx-auto"style="font-size: 10px;">
-                <b>NPWP : 60.987.276.7-525.000</b>
-            </div>
-        </div>
-        <hr style="margin-top: 10px; margin-bottom: 10px; border: 1px solid;">
+    <div style="width: 700px; padding-bottom:20px">
+        Untuk mengambil 4 (empat) unit komputer, hibah dari Jurusan Informatika Fakultas Teknologi Industri UII, di Ruang 1.07 Lantai 1 Gedung K.H. Mas Mansyur. 
     </div>
+    <div style="padding-bottom: 80px">
+        Demikian Surat Tugas ini dibuat untuk dapat digunakan sebagaimana mestinya. 
+    </div> 
+    <div style="padding-bottom: 60px">
+        <table>
+            <tr>
+                <td style="width: 480px"></td>
+                <td style="width: 300px; text-align: center;">Klaten, 26 November 2023</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: center;">Ketua</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td style="width: 480px"></td>
+                <td style="width: 300px; text-align: center;">Puspanjana ST</td>
+            </tr>
+        </table>
+    </div>
+    
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

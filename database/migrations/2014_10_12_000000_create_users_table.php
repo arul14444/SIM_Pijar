@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->id();    
             $table->string('nama', 255);
-            $table->bigInteger('nomor_telpon')->unique()->unsigned()->length(14);
+            $table->bigInteger('nomor_telepon')->unique()->unsigned()->length(14);
             $table->string('username')->unique();
             $table->string('password');
             $table->string('alamat', 255);

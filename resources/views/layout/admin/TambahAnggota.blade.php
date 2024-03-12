@@ -15,7 +15,7 @@
                 <label for="inputNama">Nama Lengkap</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputNomorTelpon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
+                <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
                 <label for="inputNomorTelepon">Nomor Telepon</label>
             </div>
             <div class="form-floating mb-3">

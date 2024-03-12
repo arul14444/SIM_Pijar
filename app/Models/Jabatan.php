@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Donatur extends Model
+class Jabatan extends Model
 {
-    protected $table = 'donatur';
+    protected $table = 'Jabatan';
     protected $hidden = [
         'id',
         'flag_aktif',
@@ -15,8 +15,6 @@ class Donatur extends Model
         'updated_at'
     ];
     protected $fillable = [
-        'nama',
-        'nomor_telepon',
-        'alamat'
+        'id_user',
     ];
 }

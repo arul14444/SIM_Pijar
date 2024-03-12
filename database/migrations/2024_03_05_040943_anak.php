@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_lengkap', 255);
             $table->string('nama_panggilan', 255);
             $table->date('tgl_lahir');
-            $table->bigInteger('nomor_telpon')->unique()->unsigned()->length(14);
+            $table->bigInteger('nomor_telepon')->unique()->unsigned()->length(14);
             $table->string('penyakit_penyerta',255);
             $table->bigInteger('id_user');
             $table->bigInteger('id_abd');

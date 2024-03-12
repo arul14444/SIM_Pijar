@@ -15,9 +15,10 @@
         </form>
     </div>
     <div class="card-body">
-        <table id="myTable" class="table">
+        <table id="tabelAset" class="table">
             <thead>
                 <tr class="text-center">
+                    <th>No</th>
                     <th>Barang</th>
                     <th>Deskripsi</th>
                     <th>Kode</th>
@@ -28,6 +29,7 @@
             </thead>
             <tfoot>
                 <tr>
+                    <th>No</th>
                     <th>Barang</th>
                     <th>Deskripsi</th>
                     <th>Kode</th>
@@ -37,13 +39,14 @@
                 </tr>
             </tfoot>
             <tbody>
-                @foreach ($data as $dt )
+                @foreach ($data as $index => $dt)
                 <tr>
-                    <td> {{$dt->nama_barang}}</td>
-                    <td> {{$dt->deskripsi_barang}}</td>
-                    <td> {{$dt->kode_barang}}</td>
-                    <td> {{$dt->status_barang}}</td>
-                    <td> {{$dt->nama_foto_barang}}</td>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $dt->nama_barang }}</td>
+                    <td>{{ $dt->deskripsi_barang }}</td>
+                    <td>{{ $dt->kode_barang }}</td>
+                    <td>{{ $dt->status_barang }}</td>
+                    <td>{{ $dt->nama_foto_barang }}</td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
@@ -58,6 +61,7 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
 @endsection
 
@@ -66,7 +70,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#myTable');
+            new simpleDatatables.DataTable('#tabelAset');
         });
     </script>
 @endpush

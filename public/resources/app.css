@@ -109,40 +109,48 @@ body {
   text-decoration: none; /* Hilangkan garis bawah */
 }
 
-#myTable th:nth-child(1), #myTable td:nth-child(1) {
-  width: 15%; 
-}
-#myTable th:nth-child(2), #myTable td:nth-child(2) {
-  width: 20%; 
-}
-#myTable th:nth-child(3), #myTable td:nth-child(3) {
-  width: 15%; 
-}
-#myTable th:nth-child(4), #myTable td:nth-child(4) {
-  width: 15%; 
-}
-#myTable th:nth-child(5), #myTable td:nth-child(5) {
-  width: 20%; 
-}
-#myTable th:nth-child(6), #myTable td:nth-child(6) {
-  width: 15%; 
-}
+#tabelAnggota th:nth-child(1), #tabelAnggota td:nth-child(1) { width: 3%; }
+#tabelAnggota th:nth-child(2), #tabelAnggota td:nth-child(2) { width: 20%; }
+#tabelAnggota th:nth-child(3), #tabelAnggota td:nth-child(3) { width: 17%; }
+#tabelAnggota th:nth-child(4), #tabelAnggota td:nth-child(4) { width: 20%; }
+#tabelAnggota th:nth-child(5), #tabelAnggota td:nth-child(5) { width: 15%; }
 
-#tabelArsip th:nth-child(1), #tabelArsip td:nth-child(1) {
-  width: 20%; 
-}
-#tabelArsip  th:nth-child(2), #tabelArsip   td:nth-child(2) {
-  width: 20%; 
-}
-#tabelArsip th:nth-child(3), #tabelArsip td:nth-child(3) {
-  width: 20%; 
-}
-#tabelArsip th:nth-child(4), #tabelArsip td:nth-child(4) {
-  width: 20%; 
-}
-#tabelArsip th:nth-child(5), #tabelArsip td:nth-child(5) {
-  width: 20%; 
-}
+#tabelAnak th:nth-child(1), #tabelAnak td:nth-child(1) {width: 3%; }
+#tabelAnak th:nth-child(2), #tabelAnak td:nth-child(2) {width: 20%; }
+#tabelAnak th:nth-child(3), #tabelAnak td:nth-child(3) {width: 20%; }
+#tabelAnak th:nth-child(4), #tabelAnak td:nth-child(4) {width: 20%; }
+#tabelAnak th:nth-child(5), #tabelAnak td:nth-child(5) {width: 22%; }
+#tabelAnak th:nth-child(6), #tabelAnak td:nth-child(6) {width: 15%; }
+
+
+#tabelDonatur th:nth-child(1), #tabelDonatur td:nth-child(1) { width: 3%; }
+#tabelDonatur th:nth-child(2), #tabelDonatur td:nth-child(2) { width: 20%; }
+#tabelDonatur th:nth-child(3), #tabelDonatur td:nth-child(3) { width: 17%; }
+#tabelDonatur th:nth-child(4), #tabelDonatur td:nth-child(4) { width: 20%; }
+#tabelDonatur th:nth-child(5), #tabelDonatur td:nth-child(5) { width: 15%; }
+
+#tabelAset th:nth-child(1), #tabelAset td:nth-child(1) { width: 3%; }
+#tabelAset th:nth-child(2), #tabelAset td:nth-child(2) { width: 20%; }
+#tabelAset th:nth-child(3), #tabelAset td:nth-child(3) { width: 20%; }
+#tabelAset th:nth-child(4), #tabelAset td:nth-child(4) { width: 15%; }
+#tabelAset th:nth-child(5), #tabelAset td:nth-child(5) { width: 12%; }
+#tabelAset th:nth-child(6), #tabelAset td:nth-child(6) { width: 15%; }
+#tabelAset th:nth-child(7), #tabelAset td:nth-child(7) { width: 15%; }
+
+#tabelKegiatan th:nth-child(1),#tabelKegiatan td:nth-child(1) { width: 3%; }
+#tabelKegiatan th:nth-child(2),#tabelKegiatan td:nth-child(2) { width: 17%; }
+#tabelKegiatan th:nth-child(3),#tabelKegiatan td:nth-child(3) { width: 20%; }
+#tabelKegiatan th:nth-child(4),#tabelKegiatan td:nth-child(4) { width: 15%; }
+#tabelKegiatan th:nth-child(5),#tabelKegiatan td:nth-child(5) { width: 15%; }
+#tabelKegiatan th:nth-child(6),#tabelKegiatan td:nth-child(6) { width: 15%; }
+#tabelKegiatan th:nth-child(7),#tabelKegiatan td:nth-child(7) { width: 15%; }
+
+#tabelArsip th:nth-child(1), #tabelArsip td:nth-child(1) {width: 3%; }
+#tabelArsip th:nth-child(2), #tabelArsip td:nth-child(2) {width: 20%; }
+#tabelArsip th:nth-child(3), #tabelArsip td:nth-child(3) {width: 20%; }
+#tabelArsip th:nth-child(4), #tabelArsip td:nth-child(4) {width: 20%; }
+#tabelArsip th:nth-child(5), #tabelArsip td:nth-child(5) {width: 22%; }
+#tabelArsip th:nth-child(6), #tabelArsip td:nth-child(6) {width: 15%; }
 
 hr {
   margin: 1rem 0;

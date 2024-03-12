@@ -68,6 +68,10 @@ Route::get('/managemen/arsip', function () {
 });
 Route::get('/managemen/arsip',[DataController::class,'dataArsip']);
 Route::post('/arsip/print-pdf', [PrintController::class, 'printPdfArsip']);
+//managemen Surat
+Route::get('/managemen/surat', function () {
+    return view('layout/admin/ManagemenSurat');
+});
 
 
 //tambah anggota
@@ -102,7 +106,7 @@ Route::get('/tambah/kegiatan', function () {
 Route::get('/tambah/arsip', function () {
     return view('layout/admin/TambahArsip');
 });
-Route::get('/surat', function () {
+Route::get('/tambah/surat', function () {
     return view('layout/admin/TambahSurat');
 });
 

@@ -8,6 +8,8 @@ use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
 use App\Repositories\KegiatanRepository;
 use App\Repositories\UserRepository;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Http\Request;
@@ -53,20 +55,36 @@ class PrintController extends Controller
     
     private function appendBootstrapCSS($html)
     {
-        // Bootstrap CSS dari CDN
-        $bootstrap_css = file_get_contents('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
-
+        // Bootstrap 4 CSS dari CDN
+        $bootstrap_css = file_get_contents('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+    
         // Tambahkan Bootstrap CSS secara inline
         $html_with_bootstrap = '<style>' . $bootstrap_css . '</style>' . $html;
-
+    
         return $html_with_bootstrap;
     }
-
+    
     
     public function printPdfAnak()
     {
         $data = $this->anakRepository->getAnak();
-        $html = view('print.PrintAnak', ['data' => $data])->render();
+        $html = view('print.PrintSurat', ['data' => $data])->render();
+    
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+    
+        $dompdf = new Dompdf($options);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
+        $dompdf->render();
+    
+        $tanggal = date('Y-m-d');
+        $nama_file = 'Data_Anak_' . $tanggal . '.pdf';
+                return $dompdf->stream($nama_file);
+    }
+    public function printSurat()
+    {
+        $html = view('print.PrintSurat')->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);

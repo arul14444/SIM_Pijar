@@ -1,22 +1,15 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Anggota')
+@section('title', 'Managemen Surat Tugas')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Anggota</li>
+    <li class="breadcrumb-item active"> Managemen Surat Tugas</li>
 @endsection
 
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Anggota</span>
-        <form method="POST" action="/anggota/print-pdf" target="_blank">
-            @csrf
-            <button type="submit" class="btn btn-outline-dark">
-                <i class="fa-solid fa-download me-2"></i>Unduh
-            </button>
-        </form>
+        <span>Data Surat Tugas</span>
     </div>
-
     <div class="card-body">
-        <table id="tabelAnggota" class="table">
+        <table id="myTable" class="table">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
@@ -36,7 +29,7 @@
                 </tr>
             </tfoot>
             <tbody>
-                {{-- Daftar Anggota --}}
+                {{-- Daftar anggota --}}
                 @foreach($data as $index => $dt)
                     <tr>
                         <td>{{$index + 1}}</td>
@@ -55,7 +48,6 @@
                         </td>
                     </tr>
                 @endforeach
-                
             </tbody>
         </table>
         
@@ -67,7 +59,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#tabelAnggota');
+            new simpleDatatables.DataTable('#myTable');
         });
     </script>
 @endpush

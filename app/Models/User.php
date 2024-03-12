@@ -23,6 +23,6 @@ class User extends Authenticatable
         'nama',
         'alamat',
         'role',
-        'nomorTelpon',
+        'nomortelepon',
     ];
 }
