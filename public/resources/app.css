@@ -152,6 +152,22 @@ body {
 #tabelArsip th:nth-child(5), #tabelArsip td:nth-child(5) {width: 22%; }
 #tabelArsip th:nth-child(6), #tabelArsip td:nth-child(6) {width: 15%; }
 
+#tabelSurat th:nth-child(1), #tabelSurat td:nth-child(1) {width: 3%; }
+#tabelSurat th:nth-child(2), #tabelSurat td:nth-child(2) {width: 10%; }
+#tabelSurat th:nth-child(3), #tabelSurat td:nth-child(3) {width: 20%; }
+#tabelSurat th:nth-child(4), #tabelSurat td:nth-child(4) {width: 17%; }
+#tabelSurat th:nth-child(5), #tabelSurat td:nth-child(5) {width: 20%; }
+#tabelSurat th:nth-child(6), #tabelSurat td:nth-child(6) {width: 15%; }
+#tabelSurat th:nth-child(7), #tabelSurat td:nth-child(7) {width: 15%; }
+
+#tabelPengurus th:nth-child(1), #tabelPengurus td:nth-child(1) {width: 3%; }
+#tabelPengurus th:nth-child(2), #tabelPengurus td:nth-child(2) {width: 20%; }
+#tabelPengurus th:nth-child(3), #tabelPengurus td:nth-child(3) {width: 20%; }
+#tabelPengurus th:nth-child(4), #tabelPengurus td:nth-child(4) {width: 25%; }
+#tabelPengurus th:nth-child(5), #tabelPengurus td:nth-child(5) {width: 27%; }
+#tabelPengurus th:nth-child(6), #tabelPengurus td:nth-child(6) {width: 15%; }
+
+
 hr {
   margin: 1rem 0;
   color: inherit;

@@ -21,7 +21,7 @@
     </div>
     <div class="row text-center">
         <div class="col-md-5"  style="font-size: 12pt;">
-            Nomor : 01/PMB/XI/2023
+            {{$data->nomor_surat}}
         </div> 
     </div>
     <div style="padding-top:20px; padding-bottom:20px ">
@@ -31,17 +31,17 @@
                 <tr>
                     <td style="width: 100px"> Nama </td>
                     <td style="width: 10px"> : </td>
-                    <td style="width: 600px"> Puspanjana ST </td>
+                    <td style="width: 600px"> {{$data->pemberi}}</td>
                 </tr>
                 <tr>
                     <td> Jabatan </td>
                     <td> : </td>
-                    <td> Ketua Yayasan PiJAR Mutiara Bangsa </td>
+                    <td> {{$data->jabatan_pemberi}} PiJAR Mutiara Bangsa </td>
                 </tr>
                 <tr>
                     <td> Alamat </td>
                     <td> : </td>
-                    <td> Jl. Ki Ageng Gringsing 8, No. 44, RT/RW: 005/001, Pondok Mulyo, Gergunung, Klaten Utara, Klaten, Jawa Tengah.  </td>
+                    <td> {{$data->alamat_pemberi}} </td>
                 </tr>
             </table>
         </div>
@@ -52,22 +52,22 @@
             <tr>
                 <td style="width: 100px"> Nama </td>
                 <td style="width: 10px"> : </td>
-                <td style="width: 600px"> Endang Sulistyawati </td>
+                <td style="width: 600px"> {{$data->penerima}} </td>
             </tr>
             <tr>
                 <td> Jabatan </td>
                 <td> : </td>
-                <td> Bagian Perlengkapan Yayasan PiJAR Mutiara Bangsa </td>
+                <td> {{$data->jabatan_penerima}} PiJAR Mutiara Bangsa </td>
             </tr>
             <tr>
                 <td> Alamat </td>
                 <td> : </td>
-                <td> Jl. Ki Ageng Gringsing 8, No. 44, RT/RW: 005/001, Pondok Mulyo, Gergunung, Klaten Utara, Klaten, Jawa Tengah.  </td>
+                <td> {{$data->alamat_penerima}} </td>
             </tr>
         </table>
     </div>
     <div style="width: 700px; padding-bottom:20px">
-        Untuk mengambil 4 (empat) unit komputer, hibah dari Jurusan Informatika Fakultas Teknologi Industri UII, di Ruang 1.07 Lantai 1 Gedung K.H. Mas Mansyur. 
+        {{$data->keperluan}}
     </div>
     <div style="padding-bottom: 80px">
         Demikian Surat Tugas ini dibuat untuk dapat digunakan sebagaimana mestinya. 
@@ -75,20 +75,24 @@
     <div style="padding-bottom: 60px">
         <table>
             <tr>
-                <td style="width: 480px"></td>
-                <td style="width: 300px; text-align: center;">Klaten, 26 November 2023</td>
+                <td style="width: 430px"></td>
+                <td style="width: 350px; text-align: center;">{{$data->tempat_dibuat}}, {{$data->tgl_dibuat}}</td>
             </tr>
             <tr>
                 <td></td>
-                <td style="text-align: center;">Ketua</td>
+                <td style="text-align: center;">{{$data->jabatan_pemberi}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: center;"> PiJAR Mutiara Bangsa </td>
             </tr>
         </table>
     </div>
     <div>
         <table>
             <tr>
-                <td style="width: 480px"></td>
-                <td style="width: 300px; text-align: center;">Puspanjana ST</td>
+                <td style="width: 430px"></td>
+                <td style="width: 350px; text-align: center;">{{$data->pemberi}}</td>
             </tr>
         </table>
     </div>

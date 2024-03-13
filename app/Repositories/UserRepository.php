@@ -11,6 +11,12 @@ class UserRepository{
         ->where(['role'=>'anggota','flag_aktif'=>1])
         ->get();
    }
+   public function getPengurus(){
+        return User::select('*')
+        ->join('jabatan as j','j.id_user','user.id')
+        ->where(['user.role'=>'admin','user.flag_aktif'=>1])
+        ->get();
+   }
    public function create($data)
    {
        return User::insert($data);

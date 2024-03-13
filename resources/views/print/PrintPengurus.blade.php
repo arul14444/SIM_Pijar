@@ -14,7 +14,7 @@
 <body>
     @include('print.header')
     <div class="mx-auto text-center" style="font-size: 16px; text-decoration: underline;">
-        <b>Data Donatur</b>
+        <b>Data Pengurus</b>
     </div>    
     <div class="card-body">
         <table id="myTable" class="table table-striped table-bordered">
@@ -22,23 +22,23 @@
                 <tr class="text-center">
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Jabatan</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
                 </tr>
             </thead>
             <tbody>
                 {{-- Daftar Anggota --}}
-                @php
-                    $nomor = 1; // Inisialisasi nomor urut
-                @endphp
-                @foreach($data as $dt)
-                <tr>
-                    <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah -->
-                    <td>{{ $dt->nama }}</td>
-                    <td>0{{ $dt->nomor_telepon }}</td>
-                    <td>{{ $dt->alamat }}</td>
-                </tr>
-                @endforeach 
+                @foreach($data as $index => $dt)
+                    <tr>
+                        <td>{{$index + 1}}</td>
+                        <td>{{$dt->nama}}</td>
+                        <td>{{$dt->jabatan}}
+                        <td>0{{$dt->nomor_telepon}}</td>
+                        <td>{{$dt->alamat}}</td>
+                    </tr>
+                @endforeach
+                
             </tbody>
         </table>
         

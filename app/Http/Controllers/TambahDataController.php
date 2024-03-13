@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\AbdRepository;
+use App\Repositories\JabatanRepository;
 use App\Repositories\StatusAsetRepository;
+use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use App\Services\TambahAnakService;
 use App\Services\TambahAnggotaService;
 use App\Services\TambahAsetService;
 use App\Services\TambahDonaturService;
+use App\Services\TambahSuratService;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TambahDataController extends Controller
 {
     protected $userRepository, $tambahAnggotaService, $tambahAnakService, $tambahDonaturService, 
-    $tambahArsipService,$tambahAsetService, $tambahKegiatanService,$statusAsetRepository, $abdRepository;
+    $tambahArsipService,$tambahAsetService, $tambahKegiatanService,$statusAsetRepository, $abdRepository, 
+    $tambahSuratService, $jabatanRepository;
 
     public function __construct(
         TambahAnggotaService $tambahAnggotaService,
@@ -24,7 +30,9 @@ class TambahDataController extends Controller
         TambahDonaturService $tambahDonaturService,
         TambahAsetService $tambahAsetService,
         StatusAsetRepository $statusAsetRepository,
-        AbdRepository $abdRepository
+        AbdRepository $abdRepository,
+        TambahSuratService $tambahSuratService,
+        JabatanRepository $jabatanRepository,
         
         
         ) {
@@ -35,7 +43,10 @@ class TambahDataController extends Controller
             $this->tambahAsetService = $tambahAsetService;
             $this->statusAsetRepository = $statusAsetRepository;
             $this->abdRepository = $abdRepository;
+            $this->tambahSuratService = $tambahSuratService;
+            $this->jabatanRepository = $jabatanRepository;
         }
+
         // Ambil Data
         public function listDataTambahAnak(){
             $data=[
@@ -43,12 +54,17 @@ class TambahDataController extends Controller
                 'listAbd' => $this->abdRepository->getAbd(),
             ];
             return  view('layout.admin.TambahAnak')->with('data', $data);
-    
         }
         public function listStatusAset(){
             $listStatus = $this->statusAsetRepository->getStatus();
             return  view('layout.admin.TambahAset')->with('listStatus', $listStatus);
-    
+        }
+        public function listPengurus(){
+            $data = [
+                'pengurusInti'=>$this->jabatanRepository->getJabatan(),
+                'pengurus'=>$this->userRepository->getAnggota()
+            ];
+            return  view('layout.admin.TambahSurat')->with('data', $data);
         }
 
         //=========================== tambah Data =========================== 
@@ -79,7 +95,7 @@ class TambahDataController extends Controller
     public function tambahDonatur(Request $request){
         try{
             DB::beginTransaction();
-            $inputData = $this->tambahDonaturService->setData($request);
+            $this->tambahDonaturService->setData($request);
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Data donatur berhasil ditambahkan']);
         } catch (\Exception $e) {
@@ -87,10 +103,25 @@ class TambahDataController extends Controller
         }
     }
     public function tambahAset(Request $request){
-        DB::beginTransaction();
-        $inputData = $this->tambahAsetService->setData($request);
-        DB::commit();
-        return $inputData;
+        try{
+            DB::beginTransaction();
+            $inputData = $this->tambahAsetService->setData($request);
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Data aset berhasil ditambahkan']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Data set gagal ditambahkan' . $e->getMessage()]);
+        }
     }
-
+    public function tambahSurat(Request $request){
+        try {
+            DB::beginTransaction();
+            $this->tambahSuratService->setData($request);
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Surat berhasil dibuat']);
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Gagal membuat surat: ' . $e->getMessage()]);
+        } 
+    }
 }

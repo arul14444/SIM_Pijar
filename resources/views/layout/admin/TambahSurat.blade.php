@@ -5,116 +5,72 @@
 
 @endsection
 @section('content')
-<form id="tambahAnak" method="POST" action="/tambah/anak">
+<form id="tambahSurat" method="POST" action="/tambah/surat">
         @csrf
         <div style="margin: 0 auto;">
             <div class="row mb-3">
-                <div class="col-md-9">
+                <div class="col">
                     <div class="form-floating">
-                        <select class="form-select" id="inputNamaOrangTua" name="uuid_orang_tua" aria-label="Pilih Nama Orang Tua">
-                            <option selected disabled>Pilih Nama Orang Tua</option>
-                                @foreach ($data['listOrtu'] as $dt)    
+                        <input class="form-control" id="inputNoSurat" name="nomor_surat" type="text" placeholder="Masukan nomorSurat" />
+                        <label for="inputNoSurat">Nomor Surat</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <select class="form-select" id="inputPemberiTugas" name="uuid_jabatan_pemberi" aria-label="Pilih Pemberi Tugas">
+                            <option selected disabled>Pilih pemberi tugas</option>
+                                @foreach ($data['pengurusInti'] as $dt)    
+                                    <option value="{{$dt->uuid}}">{{$dt->nama}} ({{$dt->jabatan}})</option>
+                                @endforeach
+                        </select>
+                        <label for="inputNamaOrangTua">Yang bertanda tangan</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <select class="form-select" id="inputPenerimaTugas" name="uuid_penerima" aria-label="Pilih Penerima Tugas">
+                            <option selected disabled>Pilih penerima tugas</option>
+                                @foreach ($data['pengurus'] as $dt)    
                                     <option value="{{$dt->uuid}}">{{$dt->nama}}</option>
                                 @endforeach
                         </select>
-                        <label for="inputNamaOrangTua">Nama Orang Tua</label>
+                        <label for="inputNamaOrangTua">Penerima Tugas</label>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="form-floating">
-                        <select class="form-select" id="inputBpjs" name="bpjs">
-                            <option value="ya">Punya</option>
-                            <option value="tidak">Tidak</option>
-                        </select>
-                        <label for="inputGangguanTelingaKanan">Kepemilikan BPJS</label>
+                        <input class="form-control" id="inputJabatan" name="jabatan_penerima" type="text" placeholder="Masukan jabatan" />
+                        <label for="inputJabatan">Jabatan</label>
                     </div>
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputNamaLengkap" name="nama_lengkap" type="text" placeholder="Enter your first name" />
-                <label for="inputNamaLengkap">Nama Lengkap</label>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="inputNamaPanggilan" name="nama_panggilan" type="text" placeholder="Enter your last name" />
-                        <label for="inputNamaPanggilan">Nama Panggilan</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
-                        <label for="inputNomorTelepon">Nomor Telepon</label>
-                    </div>
-                </div>
+                <input class="form-control" id="inputKeperluan" name="keperluan" type="text" placeholder="Masukan Keperluan" />
+                <label for="inputKeperluan">Keperluan</label>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputTempatLahir" name="tempat_lahir" type="text" placeholder="Enter your first name" />
-                        <label for="inputTempatLahir">Tempat Lahir</label>
+                        <input class="form-control" id="inputTempatDibuat" name="tempat_dibuat" type="text" placeholder="Enter your first name" />
+                        <label for="inputTempatDibuat">Tempat dibuat</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" id="inputTanggalLahir" name="tgl_lahir" type="date" placeholder="Enter your last name" />
-                        <label for="inputTanggalLahir">Tanggal Lahir</label>
+                        <input class="form-control" id="inputTanggalDibuat" name="tgl_dibuat" type="date" placeholder="Enter your last name" />
+                        <label for="inputTanggalDibuat">Tanggal dibuat</label>
                     </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <select class="form-select" id="inputAbdKiri" name="uuid_abd_kiri" aria-label="Pilih Jenis ABD Telinga Kiri">
-                            <option selected disabled>Pilih Jenis Abd</option>
-                            @foreach ($data['listAbd'] as $jenis)    
-                            <option value="{{$jenis->uuid}}">{{$jenis->jenis}}</option>
-                            @endforeach
-                        </select>
-                        <label for="inputAbdKiri">Jenis ABD Telinga Kiri</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <select class="form-select" id="inputAbdKanan" name="uuid_abd_kanan" aria-label="Pilih Jenis ABD Telinga Kanan">
-                            <option selected disabled>Pilih Jenis Abd</option>
-                            @foreach ($data['listAbd'] as $jenis)    
-                            <option value="{{$jenis->uuid}}">{{$jenis->jenis}}</option>
-                            @endforeach
-                        </select>
-                        <label for="inputAbdKanan">Jenis ABD Telinga Kanan</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputGangguanTelingaKiri" name="kemampuan_telinga_kiri" type="text" placeholder="Enter your first name" />
-                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri (Hz)</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan (Hz)</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural(Hz)</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="inputPenyakitPenyerta" name="penyakit_penyerta" type="text" placeholder="Masukan penyakit penyerta" />
-                <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
             <div class="mt-4 mb-0">
                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
             </div>
         </div>
-        <script src="{{ asset('resources/anak.js') }}"></script>
+        <script src="{{ asset('resources/surat.js') }}"></script>
     </form>
 
 @endsection

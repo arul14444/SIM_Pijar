@@ -8,19 +8,21 @@ use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
 use App\Repositories\KegiatanRepository;
+use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    protected  $donaturRepository,$userRepository,$kegiatanRepository,$asetRepository,$arsipRepository,$anakRepository;
+    protected  $suratRepository,$donaturRepository,$userRepository,$kegiatanRepository,$asetRepository,$arsipRepository,$anakRepository;
     public function __construct(
         DonaturRepository $donaturRepository,
         UserRepository $userRepository,
         KegiatanRepository $kegiatanRepository,
         AsetRepository $asetRepository,
         ArsipRepository $arsipRepository,
-        AnakRepository $anakRepository
+        AnakRepository $anakRepository,
+        SuratRepository $suratRepository
 
     ) {
         $this->donaturRepository = $donaturRepository;
@@ -29,6 +31,7 @@ class DataController extends Controller
         $this->asetRepository = $asetRepository;
         $this->arsipRepository = $arsipRepository;
         $this->anakRepository = $anakRepository;
+        $this->suratRepository = $suratRepository;
     }
     public function dataDonatur(){
         $data = $this->donaturRepository->getDonatur();
@@ -38,6 +41,11 @@ class DataController extends Controller
     public function dataAnggota(){
         $data = $this->userRepository->getAnggota();
         return view('layout.admin.ManagemenAnggota')->with('data', $data);
+    }
+
+    public function dataPengurus(){
+        $data = $this->userRepository->getPengurus();
+        return view('layout.admin.ManagemenPengurus')->with('data', $data);
     }
     
 
@@ -59,6 +67,10 @@ class DataController extends Controller
         $data = $this->anakRepository->getAnak();
         return view('layout.admin.ManagemenAnak')->with('data', $data);
     }
+    public function dataSurat(){
+        $data = $this->suratRepository->getSurat();
+        return view('layout.admin.ManagemenSurat')->with('data', $data);
+    }
     public function infobox(){
         $data = [
            'anggota' => $this->userRepository->getAnggota()->count(),
@@ -66,7 +78,9 @@ class DataController extends Controller
            'kegiatan' => $this->kegiatanRepository->getKegiatan()->count(),
            'arsip' => $this->arsipRepository->getArsip()->count(),
            'aset' => $this->asetRepository->getAset()->count(),
-           'anak' => $this->anakRepository->getAnak()->count()
+           'anak' => $this->anakRepository->getAnak()->count(),
+           'surat' => $this->suratRepository->getSurat()->count(),
+           'pengurus' => $this->userRepository->getPengurus()->count()
         ];
 
         return view('layout.admin.Dashboard')->with('data', $data);

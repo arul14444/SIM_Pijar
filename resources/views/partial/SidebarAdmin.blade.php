@@ -8,6 +8,18 @@
                     Dashboard
                 </a>
 
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePengurus" aria-expanded="false" aria-controls="collapseAnggota">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    Pengurus
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePengurus" aria-labelledby="headingPengurus" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ url('/managemen/pengurus')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/tambah/anggota')}}">Tambah</a>
+                    </nav>
+                </div>
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAnggota" aria-expanded="false" aria-controls="collapseAnggota">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                     Anggota

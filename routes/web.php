@@ -33,6 +33,13 @@ Route::get('/managemen/anggota', function () {
 Route::get('/managemen/anggota',[DataController::class,'dataAnggota']);
 Route::post('/anggota/print-pdf', [PrintController::class, 'printPdfAnggota']);
 
+//namagemen pengurus
+Route::get('/managemen/pengurus', function () {
+    return view('layout/admin/ManagemenAnggota');
+});
+Route::get('/managemen/pengurus',[DataController::class,'dataPengurus']);
+Route::post('/pengurus/print-pdf', [PrintController::class, 'printPdfPengurus']);
+
 
 //namagemen anak
 Route::get('/managemen/anak', function () {
@@ -72,7 +79,8 @@ Route::post('/arsip/print-pdf', [PrintController::class, 'printPdfArsip']);
 Route::get('/managemen/surat', function () {
     return view('layout/admin/ManagemenSurat');
 });
-
+Route::get('/managemen/surat',[DataController::class,'dataSurat']);
+Route::post('/surat/print-pdf/{uuid}', [PrintController::class, 'printPdfSurat']);
 
 //tambah anggota
 Route::get('/tambah/anggota', function () {
@@ -106,16 +114,19 @@ Route::get('/tambah/kegiatan', function () {
 Route::get('/tambah/arsip', function () {
     return view('layout/admin/TambahArsip');
 });
+
+//tambah surat
 Route::get('/tambah/surat', function () {
     return view('layout/admin/TambahSurat');
 });
-
-
+Route::get('/tambah/surat',[TambahDataController::class,'listPengurus']);
+Route::post('/tambah/surat',[TambahDataController::class,'tambahSurat']);
 
 
 Route::get('/print/surat', function () {
     return view('print/PrintSurat');
 });
+Route::get('/print/surat',[TambahDataController::class,'dataSurat']);
 
 
 
