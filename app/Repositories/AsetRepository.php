@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AsetRepository{
    public function getAset(){
-        return Aset::select('*')
-        ->where(['flag_aktif'=>1])
+        return Aset::select('aset.*','sa.status')
+        ->join('status_aset as sa','sa.id','aset.id_status_aset')
+        ->where(['aset.flag_aktif'=>1])
         ->get();
    }
    public function create($data)

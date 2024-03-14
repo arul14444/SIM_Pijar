@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<form id="addForm" method="POST" action="/tambah/aset">
+<form id="tambahAset" method="POST" action="/tambah/aset" enctype="multipart/form-data">
     @csrf
     <div class="form-floating mb-3">
         <input class="form-control" id="inputNamaBarang" name="nama_barang" type="text" placeholder="Masukkan nama barang" />
@@ -38,12 +38,13 @@
         <label for="inputDeskripsi">Deskripsi</label>
     </div>
     <div>
-        <label for="formFileLampiran" class="form-label">Lampiran Dokumen</label>
-        <input class="form-control form-control" id="formFileLampiran" name="lampiran_dokumen" type="file">
+        <label for="formFileMultiple" class="form-label">Lampiran</label>
+        <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
     </div>
+    
     <div class="mt-4 mb-0">
         <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
     </div>
 </form>
-
+<script src="{{ asset('resources/aset.js') }}"></script>
 @endsection

@@ -104,8 +104,12 @@ class TambahDataController extends Controller
     }
     public function tambahAset(Request $request){
         try{
+            $request->validate([
+                'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
+            ]);
+
             DB::beginTransaction();
-            $inputData = $this->tambahAsetService->setData($request);
+            $this->tambahAsetService->setData($request);
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Data aset berhasil ditambahkan']);
         } catch (\Exception $e) {

@@ -33,6 +33,8 @@ class DataController extends Controller
         $this->anakRepository = $anakRepository;
         $this->suratRepository = $suratRepository;
     }
+
+    
     public function dataDonatur(){
         $data = $this->donaturRepository->getDonatur();
         return view('layout.admin.ManagemenDonatur')->with('data', $data);
@@ -56,8 +58,14 @@ class DataController extends Controller
     
     public function dataAset(){
         $data = $this->asetRepository->getAset();
+        foreach ($data as $aset) {
+            $aset->nama_foto_barang = explode(';', $aset->nama_foto_barang);
+            $aset->path_foto_barang = explode(';', $aset->path_foto_barang);
+        }
+    
         return view('layout.admin.ManagemenAset')->with('data', $data);
     }
+    
 
     public function dataArsip(){
         $data = $this->arsipRepository->getArsip();
@@ -85,4 +93,5 @@ class DataController extends Controller
 
         return view('layout.admin.Dashboard')->with('data', $data);
     }
+
 }

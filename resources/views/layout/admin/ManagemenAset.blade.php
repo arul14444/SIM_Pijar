@@ -45,8 +45,12 @@
                     <td>{{ $dt->nama_barang }}</td>
                     <td>{{ $dt->deskripsi_barang }}</td>
                     <td>{{ $dt->kode_barang }}</td>
-                    <td>{{ $dt->status_barang }}</td>
-                    <td>{{ $dt->nama_foto_barang }}</td>
+                    <td>{{ $dt->status }}</td>
+                    <td>
+                        @foreach($dt->path_foto_barang as $path_foto)
+                            <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                        @endforeach
+                    </td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">

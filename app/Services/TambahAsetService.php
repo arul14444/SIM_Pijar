@@ -2,44 +2,61 @@
 
 namespace App\Services;
 
+
 use App\Repositories\AsetRepository;
+use App\Repositories\StatusAsetRepository;
 
 class TambahAsetService{
-    protected  $asetRepository;
+    protected  $asetRepository,$statusAsetRepository;
 
     public function __construct(
         AsetRepository $asetRepository,
+        StatusAsetRepository $statusAsetRepository
 
     ) {
         $this->asetRepository = $asetRepository;
+        $this->statusAsetRepository = $statusAsetRepository;
     }
 
-    public function setData($data){
-        dd($data);
-        if ($_SERVER["REQUEST_METHOD"] == isset($_FILES["files"])) {
-            $uploadDir = "/path/to/upload/directory/";
-        
-            // Loop melalui setiap file yang di-upload
-            for ($i = 0; $i < count($_FILES["files"]["name"]); $i++) {
-                $fileName = $_FILES["files"]["name"][$i];
-                $fileTmpName = $_FILES["files"]["tmp_name"][$i];
-                $fileDest = $uploadDir . $fileName;
-        
-                // Pindahkan file ke direktori tujuan
-                if (move_uploaded_file($fileTmpName, $fileDest)) {
-                    echo "File $fileName berhasil di-upload.<br>";
-                } else {
-                    echo "Gagal meng-upload file $fileName.<br>";
-                }
+    public function setData($data) {
+        // Inisialisasi array kosong untuk menyimpan nama file dan path lampiran
+        $lampiranNames = [];
+        $pathLampiran = [];
+        // Memeriksa apakah ada file yang diunggah
+        if ($data->hasFile('lampiran')) {
+            // Mendapatkan array dari file yang diunggah
+            $lampiranFiles = $data->file('lampiran');
+    
+            // Iterasi melalui setiap file yang diunggah
+            foreach ($lampiranFiles as $lampiran) {
+                // Mendapatkan nama asli file
+                $lampiranNames[] = $lampiran->getClientOriginalName();
+                // Menyimpan file ke dalam direktori yang ditentukan
+                $lampiran->move('dokumen/aset', $lampiran->getClientOriginalName());
+                // Menyimpan path file ke dalam array
+                $pathLampiran[] = 'dokumen/aset/' . $lampiran->getClientOriginalName();
             }
         }
-            $setData = [
-                'nama' => $data->nama,
-                'nomor_telepon' => $data->nomor_telepon,
-                'alamat' => $data->alamat,
-            ];
-           return $this->asetRepository->create($setData);
-         
-
+    
+        // Menggabungkan nama-nama file menjadi satu string yang dipisahkan oleh titik koma
+        $lampiran = implode('; ', $lampiranNames);
+        // Menggabungkan path lampiran menjadi satu string yang dipisahkan oleh titik koma
+        $path = implode('; ', $pathLampiran);
+    
+        $aset = $this->statusAsetRepository->findByUuid($data->uuid_status_aset);
+    
+        // Membuat data yang akan disimpan ke dalam basis data
+        $setData = [
+            'nama_barang' => $data->nama_barang,
+            'kode_barang' => $data->kode,
+            'id_status_aset' => $aset->id,
+            'deskripsi_barang' => $data->deskripsi,
+            'nama_foto_barang' => $lampiran,
+            'path_foto_barang' => $path 
+        ];
+    
+        return $this->asetRepository->create($setData);
     }
+    
+    
 }

@@ -20,6 +20,11 @@ Route::get('/', function () {
     return view('layout/Login');
 });
 
+//gambar
+Route::get('/gambar', function () {
+    return view('gambar');
+});
+
 //dashboard
 Route::get('/dashboard/admin', function () {
     return view('layout/admin/Dashboard');
