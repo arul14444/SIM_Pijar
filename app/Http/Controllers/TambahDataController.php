@@ -9,6 +9,7 @@ use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use App\Services\TambahAnakService;
 use App\Services\TambahAnggotaService;
+use App\Services\TambahArsipService;
 use App\Services\TambahAsetService;
 use App\Services\TambahDonaturService;
 use App\Services\TambahKegiatanService;
@@ -35,6 +36,7 @@ class TambahDataController extends Controller
         TambahSuratService $tambahSuratService,
         JabatanRepository $jabatanRepository,
         TambahKegiatanService $tambahKegiatanService,
+        TambahArsipService $tambahArsipService
         
         ) {
             $this->tambahAnggotaService = $tambahAnggotaService;
@@ -47,6 +49,7 @@ class TambahDataController extends Controller
             $this->tambahSuratService = $tambahSuratService;
             $this->jabatanRepository = $jabatanRepository;
             $this->tambahKegiatanService = $tambahKegiatanService;
+            $this->tambahArsipService = $tambahArsipService;
         }
 
         // Ambil Data
@@ -134,10 +137,24 @@ class TambahDataController extends Controller
         try {
             $request->validate([
                 'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
-            ]); 
-            
+            ]);
             DB::beginTransaction();
             $this->tambahKegiatanService->setData($request);
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Data kegiatan berhasil ditambahkan']);
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: ' . $e->getMessage()]);
+        } 
+    }
+    public function tambahArsip(Request $request){
+        try {
+            $request->validate([
+                'lampiran.*' => 'mimes:pdf|max:4096',
+            ]);
+            DB::beginTransaction();
+            $this->tambahArsipService->setData($request);
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Data kegiatan berhasil ditambahkan']);
             

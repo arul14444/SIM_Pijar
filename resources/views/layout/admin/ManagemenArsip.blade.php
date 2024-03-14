@@ -43,10 +43,14 @@
                 @foreach ($data as $index => $dt )
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $dt->nama_Dokumen }}</td>
-                    <td>{{ $dt->deskripsi_Dokumen }}</td>
-                    <td>{{ $dt->kode_Dokumen }}</td>
-                    <td>{{ $dt->nama_foto_dokumen }}</td>
+                    <td>{{ $dt->nama_dokumen }}</td>
+                    <td>{{ $dt->deskripsi_dokumen }}</td>
+                    <td>{{ $dt->kode_dokumen }}</td>
+                    <td> 
+                        @foreach($dt->path_file_dokumen as $path_file)
+                        <a href="{{(config('app.url').'/'.$path_file)}}" target="_blank">{{ basename($path_file) }}</a>
+                         @endforeach
+                </td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">

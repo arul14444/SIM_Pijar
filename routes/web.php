@@ -122,6 +122,7 @@ Route::post('/tambah/kegiatan',[TambahDataController::class,'tambahKegiatan']);
 Route::get('/tambah/arsip', function () {
     return view('layout/admin/TambahArsip');
 });
+Route::post('/tambah/arsip',[TambahDataController::class,'tambahArsip']);
 
 //tambah surat
 Route::get('/tambah/surat', function () {

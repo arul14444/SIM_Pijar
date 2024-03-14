@@ -138,7 +138,7 @@ class PrintController extends Controller
     public function printPdfAset()
     {
         $data = $this->asetRepository->getAset();
-        $html = view('print.PrintAnak', ['data' => $data])->render();
+        $html = view('print.PrintAset', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
@@ -149,39 +149,41 @@ class PrintController extends Controller
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anak_' . $tanggal . '.pdf';
+        $nama_file = 'data_Aset_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
     public function printPdfKegiatan()
     {
         $data = $this->kegiatanRepository->getKegiatan();
-        $view = view('print.PrintAnggota', ['data' => $data])->render();
+        $html = view('print.PrintKegiatan', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($view);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anggota_' . $tanggal . '.pdf';
+        $nama_file = 'data_Kegiatan_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
     public function printPdfArsip()
     {
         $data = $this->arsipRepository->getArsip();
-        $view = view('print.PrintAnggota', ['data' => $data])->render();
+        $html = view('print.PrintArsip', ['data' => $data])->render();
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($view);
+        $html_with_bootstrap = $this->appendBootstrapCSS($html);
+        $dompdf->loadHtml($html_with_bootstrap);
         $dompdf->render();
 
         $tanggal = date('Y-m-d');
-        $nama_file = 'data_Anggota_' . $tanggal . '.pdf';
+        $nama_file = 'data_Arsip_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
 

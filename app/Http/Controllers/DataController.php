@@ -74,6 +74,10 @@ class DataController extends Controller
 
     public function dataArsip(){
         $data = $this->arsipRepository->getArsip();
+        foreach ($data as $aset) {
+            $aset->nama_file_dokumen = explode(';', $aset->nama_file_dokumen);
+            $aset->path_file_dokumen = explode(';', $aset->path_file_dokumen);
+        }
         return view('layout.admin.ManagemenArsip')->with('data', $data);
     }
     public function dataAnak(){
