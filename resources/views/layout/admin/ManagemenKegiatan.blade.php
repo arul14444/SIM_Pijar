@@ -50,7 +50,11 @@
                     <td>{{ $dt->tgl_kegiatan }}</td>
                     <td>{{ $dt->lokasi }}</td>
                     <td>{{ $dt->sumber_dana }}</td>
-                    <td>{{ $dt->nama_foto_kegiatan }}</td>
+                    <td> 
+                        @foreach($dt->path_foto_kegiatan as $path_foto)
+                            <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                        @endforeach
+                    </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">

@@ -8,41 +8,44 @@
 @endsection
 
 @section('content')
-    <form>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                    <label for="inputFirstName">First name</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                    <label for="inputLastName">Last name</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-            <label for="inputEmail">Email address</label>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                    <label for="inputPassword">Password</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating mb-3 mb-md-0">
-                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                    <label for="inputPasswordConfirm">Confirm Password</label>
-                </div>
+<form id="tambahKegiatan" method="POST" action="/tambah/kegiatan" enctype="multipart/form-data">
+    @csrf
+    <div class="form-floating mb-3">
+        <input class="form-control" id="inputNamaKegiatan" name="nama_kegiatan" type="text" placeholder="Masukkan nama kegiatan" />
+        <label for="inputNamaKegiatan">Nama Kegiatan</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="inputDeskripsi" name="deskripsi" type="text" placeholder="Masukkan deskripsi" />
+        <label for="inputDeskripsi">Deskripsi</label>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="inputLokasi" name="lokasi" type="text" placeholder="Masukkan lokasi" />
+                <label for="inputLokasi">Lokasi</label>
             </div>
         </div>
-        <div class="mt-4 mb-0">
-            <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="inputTanggal" name="tanggal" type="date" placeholder="Masukkan tanggal" />
+                <label for="inputTanggal">Tanggal</label>
+            </div>
         </div>
-    </form>
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="inputSumberDana" name="sumber_dana" type="text" placeholder="Masukkan sumber dana" />
+                <label for="inputSumberDana">Sumber dana</label>
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="formFileMultiple" class="form-label">Lampiran</label>
+        <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
+    </div>
+    
+    <div class="mt-4 mb-0">
+        <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
+    </div>
+</form>
+<script src="{{ asset('resources/kegiatan.js') }}"></script>
 @endsection

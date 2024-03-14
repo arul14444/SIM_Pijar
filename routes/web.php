@@ -111,10 +111,13 @@ Route::get('/tambah/aset', function () {
 });
 Route::post('/tambah/aset',[TambahDataController::class,'tambahAset']);
 Route::get('/tambah/aset',[TambahDataController::class,'listStatusAset']);
+
 //tambah kegiatan
 Route::get('/tambah/kegiatan', function () {
     return view('layout/admin/TambahKegiatan');
 });
+Route::post('/tambah/kegiatan',[TambahDataController::class,'tambahKegiatan']);
+
 //tambah arsip
 Route::get('/tambah/arsip', function () {
     return view('layout/admin/TambahArsip');

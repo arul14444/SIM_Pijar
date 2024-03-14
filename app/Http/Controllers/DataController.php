@@ -53,6 +53,11 @@ class DataController extends Controller
 
     public function dataKegiatan(){
         $data = $this->kegiatanRepository->getKegiatan();
+
+        foreach ($data as $kegiatan) {
+            $kegiatan->nama_foto_kegiatan = explode(';', $kegiatan->nama_foto_kegiatan);
+            $kegiatan->path_foto_kegiatan = explode(';', $kegiatan->path_foto_kegiatan);
+        }
         return view('layout.admin.ManagemenKegiatan')->with('data', $data);
     }
     

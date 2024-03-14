@@ -11,6 +11,7 @@ use App\Services\TambahAnakService;
 use App\Services\TambahAnggotaService;
 use App\Services\TambahAsetService;
 use App\Services\TambahDonaturService;
+use App\Services\TambahKegiatanService;
 use App\Services\TambahSuratService;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -33,7 +34,7 @@ class TambahDataController extends Controller
         AbdRepository $abdRepository,
         TambahSuratService $tambahSuratService,
         JabatanRepository $jabatanRepository,
-        
+        TambahKegiatanService $tambahKegiatanService,
         
         ) {
             $this->tambahAnggotaService = $tambahAnggotaService;
@@ -45,6 +46,7 @@ class TambahDataController extends Controller
             $this->abdRepository = $abdRepository;
             $this->tambahSuratService = $tambahSuratService;
             $this->jabatanRepository = $jabatanRepository;
+            $this->tambahKegiatanService = $tambahKegiatanService;
         }
 
         // Ambil Data
@@ -113,7 +115,7 @@ class TambahDataController extends Controller
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Data aset berhasil ditambahkan']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Data set gagal ditambahkan' . $e->getMessage()]);
+            return response()->json(['success' => false, 'message' => 'Data aset gagal ditambahkan' . $e->getMessage()]);
         }
     }
     public function tambahSurat(Request $request){
@@ -126,6 +128,22 @@ class TambahDataController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Gagal membuat surat: ' . $e->getMessage()]);
+        } 
+    }
+    public function tambahKegiatan(Request $request){
+        try {
+            $request->validate([
+                'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
+            ]); 
+            
+            DB::beginTransaction();
+            $this->tambahKegiatanService->setData($request);
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Data kegiatan berhasil ditambahkan']);
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: ' . $e->getMessage()]);
         } 
     }
 }
