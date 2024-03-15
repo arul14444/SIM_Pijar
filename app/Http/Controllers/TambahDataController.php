@@ -55,7 +55,7 @@ class TambahDataController extends Controller
         // Ambil Data
         public function listDataTambahAnak(){
             $data=[
-                'listOrtu' => $this->userRepository->getAnggota(),
+                'listOrtu' => $this->userRepository->getOrangtua(),
                 'listAbd' => $this->abdRepository->getAbd(),
             ];
             return  view('layout.admin.TambahAnak')->with('data', $data);

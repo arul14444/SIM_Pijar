@@ -113,9 +113,9 @@
                 <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
             <div class="mt-4 mb-0">
-                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
+                <button type="submit" class="btn btn-primary btn-block" onclick="return tambahData()">Tambah</button>
             </div>
         </div>
-        <script src="{{ asset('resources/anak.js') }}"></script>
     </form>
+    <script src="{{ asset('resources/anak.js') }}"></script>
 @endsection

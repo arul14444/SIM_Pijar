@@ -17,6 +17,11 @@ class UserRepository{
         ->where(['user.role'=>'admin','user.flag_aktif'=>1])
         ->get();
    }
+   public function getOrangtua(){
+    return User::select('*')
+    ->where(['user.flag_aktif'=>1])
+    ->get();
+}
    public function create($data)
    {
        return User::insert($data);

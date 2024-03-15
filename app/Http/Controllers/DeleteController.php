@@ -37,9 +37,11 @@ class DeleteController extends Controller
     {
         try {
             $this->userRepository->delete($uuid);
-            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anggota']);
+            // Menggunakan JavaScript untuk menampilkan alert pada sisi klien
+            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anggota', 'alert' => "alert('Berhasil menghapus data anggota')"]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anggota: ' . $e->getMessage()]);
+            // Menggunakan JavaScript untuk menampilkan alert pada sisi klien
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anggota: ' . $e->getMessage(), 'alert' => "alert('Gagal menghapus data anggota: " . addslashes($e->getMessage()) . "')"]);
         }
     }
 
@@ -87,9 +89,10 @@ class DeleteController extends Controller
     {
         try {
             $this->anakRepository->delete($uuid);
-            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anak']);
+            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anggota', 'alert' => "alert('Berhasil menghapus data anggota')"]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anak: ' . $e->getMessage()]);
+            // Menggunakan JavaScript untuk menampilkan alert pada sisi klien
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anggota: ' . $e->getMessage(), 'alert' => "alert('Gagal menghapus data anggota: " . addslashes($e->getMessage()) . "')"]);
         }
     }
 

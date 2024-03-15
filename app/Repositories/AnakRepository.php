@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AnakRepository{
    public function getAnak(){
-        return Anak::select('*')
+        return Anak::select('anak.*','abd_kiri.jenis','abd_kanan.jenis','user.nama','user.alamat')
         ->join('user', 'user.id','anak.id_user')
         ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
         ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')

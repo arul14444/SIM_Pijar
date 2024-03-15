@@ -43,7 +43,7 @@
     </div>
     
     <div class="mt-4 mb-0">
-        <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Tambah</button></div>
+        <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
     </div>
 </form>
 <script src="{{ asset('resources/aset.js') }}"></script>

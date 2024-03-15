@@ -41,7 +41,7 @@
                 <label for="inputAlamat">Alamat</label>
             </div>
             <div class="mt-4 mb-0">
-                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block">Register</button></div>
+                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
             </div>
         </div>
     </form>

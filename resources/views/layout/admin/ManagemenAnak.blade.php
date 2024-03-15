@@ -43,16 +43,21 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $dt->nama_lengkap }}</td>
                     <td>0{{ $dt->nomor_telepon }}</td>
-                    <td>{{ $dt->username }}</td>
+                    <td>{{ $dt->nama }}</td>
                     <td>{{ $dt->alamat }}</td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            <form id="tambahAnak" method="POST" action="/anak/delete/{{$dt->uuid}}">
+                                @csrf
+                                @method('PUT')
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>                                
+                            </form>
+                            
                         </div>                    
                     </td>
                 </tr>
@@ -61,9 +66,10 @@
         </table>
         
     </div>
-@endsection
-
-@push('script')
+    <script src="{{ asset('resources/anak.js') }}"></script>
+    @endsection
+    
+    @push('script')
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
