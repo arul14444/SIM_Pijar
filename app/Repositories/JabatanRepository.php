@@ -24,8 +24,8 @@ class JabatanRepository{
    {
        return Jabatan::from('jabatan')->where(['uuid' => $uuid, 'flag_aktif' => true])->first();
    }
-   public function delete($user, $uuid)
+   public function delete($uuid)
    {
-       return Jabatan::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+       return Jabatan::where('uuid', $uuid)->update(['flag_aktif' => 0]);
    }
 }

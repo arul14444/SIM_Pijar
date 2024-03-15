@@ -5,6 +5,25 @@
 @endsection
 @section('content')
 <div class="row">
+    {{-- Infobox Pengurus --}}
+    <div class="col-xl-3 col-md-4 mb-4">
+        <a href="{{url('/managemen/pengurus')}}" style='text-decoration: none; color: inherit;'>
+            <div class="card border-left-warning shadow h-100 py-3">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-3">
+                            <div class="h5 mb-0 text-uppercase">
+                                Pengurus Inti</div>
+                            <div class="text-xs mb-1">{{$data['pengurus']}} orang</div>
+                        </div>
+                        <div class="col-auto"> 
+                            <i class="fa-solid fa-sitemap fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
     <!-- Infobox anggota -->
     <div class="col-xl-3 col-md-4 mb-4">
         <a href="{{url('/managemen/anggota')}}" style='text-decoration: none; color: inherit;'>
@@ -118,25 +137,6 @@
                         </div>
                         <div class="col-auto"> 
                             <i class="fa-solid fa-children fa-2x text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-    {{-- Infobox Pengurus --}}
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/pengurus')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-warning shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Pengurus Inti</div>
-                            <div class="text-xs mb-1">{{$data['pengurus']}} orang</div>
-                        </div>
-                        <div class="col-auto"> 
-                            <i class="fa-solid fa-sitemap fa-2x"></i>
                         </div>
                     </div>
                 </div>

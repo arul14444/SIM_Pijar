@@ -33,8 +33,8 @@ class SuratRepository{
        ->where(['s.uuid' => $uuid, 's.flag_aktif' => true])
        ->first();
    }
-   public function delete($user, $uuid)
+   public function delete($uuid)
    {
-       return Surat::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+       return Surat::where('uuid', $uuid)->update(['flag_aktif' => 0]);
    }
 }

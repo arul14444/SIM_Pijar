@@ -23,8 +23,8 @@ class ArsipRepository{
     {
         return Arsip::from('arsip as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
     }
-    public function delete($user, $uuid)
+    public function delete($uuid)
     {
-        return Arsip::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+        return Arsip::where('uuid', $uuid)->update(['flag_aktif' => 0]);
     }
 }

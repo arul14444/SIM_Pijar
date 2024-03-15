@@ -102,22 +102,6 @@ class PrintController extends Controller
         $nama_file = 'Data_Anak_' . $tanggal . '.pdf';
                 return $dompdf->stream($nama_file);
     }
-    public function printSurat()
-    {
-        $html = view('print.PrintSurat')->render();
-
-        $options = new Options();
-        $options->set('isHtml5ParserEnabled', true);
-
-        $dompdf = new Dompdf($options);
-        $html_with_bootstrap = $this->appendBootstrapCSS($html);
-        $dompdf->loadHtml($html_with_bootstrap);
-        $dompdf->render();
-
-        $tanggal = date('Y-m-d');
-        $nama_file = 'Data_Anak_' . $tanggal . '.pdf';
-                return $dompdf->stream($nama_file);
-    }
     public function printPdfDonatur()
     {
         $data = $this->donaturRepository->getDonatur();
@@ -191,11 +175,7 @@ class PrintController extends Controller
 public function printPdfSurat($uuid)
 {
     $data = $this->suratRepository->findByUuid($uuid);
-    
-    // Konversi tgl_dibuat ke dalam objek Carbon
     $tgl_dibuat = Carbon::parse($data->tgl_dibuat);
-
-    // Mengonversi nama bulan ke dalam bahasa Indonesia
     $bulanIndonesia = [
         1 => 'Januari',
         2 => 'Februari',
@@ -210,14 +190,8 @@ public function printPdfSurat($uuid)
         11 => 'November',
         12 => 'Desember'
     ];
-
-    // Mendapatkan nama bulan dalam bahasa Indonesia
     $namaBulan = $bulanIndonesia[$tgl_dibuat->month];
-
-    // Format tanggal dalam format "7 Januari 2024"
     $formatted_tgl_dibuat = $tgl_dibuat->day . ' ' . $namaBulan . ' ' . $tgl_dibuat->year;
-
-    // Mengirimkan data yang telah diformat ke tampilan
     $data->tgl_dibuat = $formatted_tgl_dibuat;
 
     $html = view('print.PrintSurat', ['data' => $data])->render();
@@ -230,8 +204,7 @@ public function printPdfSurat($uuid)
     $dompdf->loadHtml($html_with_bootstrap);
     $dompdf->render();
 
-    $tanggal = date('Y-m-d');
-    $nama_file = 'Surat Tugas ' . $tanggal . ' ' . $data->nomor_surat . '.pdf';
+    $nama_file = 'Surat Tugas ' . $data->nomor_surat . $data->tgl_dibuat . ' ' . '.pdf';
     return $dompdf->stream($nama_file);
 }
 

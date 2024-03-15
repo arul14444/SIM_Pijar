@@ -29,8 +29,8 @@ class UserRepository{
    {
        return User::from('user')->where(['user.uuid' => $uuid, 'flag_aktif' => true])->first();
    }
-   public function delete($user, $uuid)
+   public function delete($uuid)
    {
-       return User::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+       return User::where('uuid', $uuid)->update(['flag_aktif' => 0]);
    }
 }

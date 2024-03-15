@@ -24,14 +24,14 @@
             {{$data->nomor_surat}}
         </div> 
     </div>
-    <div style="padding-top:20px; padding-bottom:20px ">
-        Yang bertanda tangan dibawah ini: 
-        <div style="padding-top: 20px; padding-bottom:20px">
-            <table>
+    <div style="padding-top: 20px; padding-bottom: 20px;">
+        Yang bertanda tangan dibawah ini:
+        <div style="padding-top: 20px; padding-bottom: 20px;">
+            <table style="width: 100%;">
                 <tr>
-                    <td style="width: 100px"> Nama </td>
-                    <td style="width: 10px"> : </td>
-                    <td style="width: 600px"> {{$data->pemberi}}</td>
+                    <td style="width: 100px;"> Nama </td>
+                    <td style="width: 10px;"> : </td>
+                    <td style="width: 600px;"> {{$data->pemberi}}</td>
                 </tr>
                 <tr>
                     <td> Jabatan </td>
@@ -39,20 +39,20 @@
                     <td> {{$data->jabatan_pemberi}} PiJAR Mutiara Bangsa </td>
                 </tr>
                 <tr>
-                    <td> Alamat </td>
-                    <td> : </td>
-                    <td> {{$data->alamat_pemberi}} </td>
+                    <td style="vertical-align: top;"> Alamat </td>
+                    <td style="vertical-align: top;"> : </td>
+                    <td style="width: 600px;"> {{$data->alamat_pemberi}} </td>
                 </tr>
             </table>
         </div>
         Dengan ini menugaskan kepada: 
     </div>
-    <div style="padding-top: 20px; padding-bottom:20px">
-        <table>
+    <div style="padding-top: 20px; padding-bottom: 20px;">
+        <table style="width: 100%;">
             <tr>
-                <td style="width: 100px"> Nama </td>
-                <td style="width: 10px"> : </td>
-                <td style="width: 600px"> {{$data->penerima}} </td>
+                <td style="width: 100px;"> Nama </td>
+                <td style="width: 10px;"> : </td>
+                <td style="width: 600px;"> {{$data->penerima}} </td>
             </tr>
             <tr>
                 <td> Jabatan </td>
@@ -60,12 +60,12 @@
                 <td> {{$data->jabatan_penerima}} PiJAR Mutiara Bangsa </td>
             </tr>
             <tr>
-                <td> Alamat </td>
-                <td> : </td>
-                <td> {{$data->alamat_penerima}} </td>
+                <td style="vertical-align: top;"> Alamat </td>
+                <td style="vertical-align: top;"> : </td>
+                <td style="width: 600px;"> {{$data->alamat_penerima}} </td>
             </tr>
         </table>
-    </div>
+    </div>    
     <div style="width: 700px; padding-bottom:20px">
         {{$data->keperluan}}
     </div>

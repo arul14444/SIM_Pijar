@@ -23,8 +23,8 @@ class KegiatanRepository{
    {
        return Kegiatan::from('anak as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
    }
-   public function delete($user, $uuid)
+   public function delete($uuid)
    {
-       return Kegiatan::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+       return Kegiatan::where('uuid', $uuid)->update(['flag_aktif' => 0]);
    }
 }

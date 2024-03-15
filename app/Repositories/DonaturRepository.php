@@ -23,8 +23,8 @@ class DonaturRepository{
    {
        return Donatur::from('donatur as d')->where(['d.uuid' => $uuid, 'flag_aktif' => true])->first();
    }
-   public function delete($user, $uuid)
+   public function delete($uuid)
    {
-       return Donatur::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+       return Donatur::where('uuid', $uuid)->update(['flag_aktif' => 0]);
    }
 }

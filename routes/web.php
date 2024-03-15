@@ -20,10 +20,10 @@ Route::get('/', function () {
     return view('layout/Login');
 });
 
-//gambar
-Route::get('/gambar', function () {
-    return view('gambar');
-});
+
+use App\Http\Controllers\DeleteController;
+
+
 
 //dashboard
 Route::get('/dashboard/admin', function () {
@@ -31,14 +31,15 @@ Route::get('/dashboard/admin', function () {
 });
 Route::get('/dashboard/admin',[DataController::class,'infobox']);
 
-//namagemen anggota
+//managemen anggota
 Route::get('/managemen/anggota', function () {
     return view('layout/admin/ManagemenAnggota');
 });
 Route::get('/managemen/anggota',[DataController::class,'dataAnggota']);
 Route::post('/anggota/print-pdf', [PrintController::class, 'printPdfAnggota']);
+Route::put('/anggota/delete/{uuid}', [DeleteController::class, 'deleteAnggota']);
 
-//namagemen pengurus
+//managemen pengurus
 Route::get('/managemen/pengurus', function () {
     return view('layout/admin/ManagemenAnggota');
 });
@@ -46,12 +47,13 @@ Route::get('/managemen/pengurus',[DataController::class,'dataPengurus']);
 Route::post('/pengurus/print-pdf', [PrintController::class, 'printPdfPengurus']);
 
 
-//namagemen anak
+//managemen anak
 Route::get('/managemen/anak', function () {
     return view('layout/admin/ManagemenAnak');
 });
 Route::get('/managemen/anak',[DataController::class,'dataAnak']);
 Route::post('/anak/print-pdf', [PrintController::class, 'printPdfAnak']);
+Route::put('/anak/delete/{uuid}', [DeleteController::class, 'deleteAnak']);
 
 //managemen donatur
 Route::get('/managemen/donatur', function () {
@@ -59,6 +61,7 @@ Route::get('/managemen/donatur', function () {
 });
 Route::get('/managemen/donatur',[DataController::class,'dataDonatur']);
 Route::post('/donatur/print-pdf', [PrintController::class, 'printPdfDonatur']);
+Route::put('/donatur/delete/{uuid}', [DeleteController::class, 'deleteDonatur']);
 
 //managemen aset
 Route::get('/managemen/aset', function () {
@@ -66,6 +69,7 @@ Route::get('/managemen/aset', function () {
 });
 Route::get('/managemen/aset',[DataController::class,'dataAset']);
 Route::post('/aset/print-pdf', [PrintController::class, 'printPdfAset']);
+Route::put('/aset/delete/{uuid}', [DeleteController::class, 'deleteAset']);
 
 //managemen kegiatan
 Route::get('/managemen/kegiatan', function () {
@@ -73,6 +77,7 @@ Route::get('/managemen/kegiatan', function () {
 });
 Route::get('/managemen/kegiatan',[DataController::class,'dataKegiatan']);
 Route::post('/kegiatan/print-pdf', [PrintController::class, 'printPdfKegiatan']);
+Route::put('/kegiatan/delete/{uuid}', [DeleteController::class, 'deleteKegiatan']);
 
 //managemen arsip
 Route::get('/managemen/arsip', function () {
@@ -80,12 +85,15 @@ Route::get('/managemen/arsip', function () {
 });
 Route::get('/managemen/arsip',[DataController::class,'dataArsip']);
 Route::post('/arsip/print-pdf', [PrintController::class, 'printPdfArsip']);
+Route::put('/arsip/delete/{uuid}', [DeleteController::class, 'deleteArsip']);
+
 //managemen Surat
 Route::get('/managemen/surat', function () {
     return view('layout/admin/ManagemenSurat');
 });
 Route::get('/managemen/surat',[DataController::class,'dataSurat']);
 Route::post('/surat/print-pdf/{uuid}', [PrintController::class, 'printPdfSurat']);
+Route::put('/surat/delete/{uuid}', [DeleteController::class, 'deleteSurat']);
 
 //tambah anggota
 Route::get('/tambah/anggota', function () {

@@ -47,9 +47,14 @@
                     <td>{{ $dt->kode_barang }}</td>
                     <td>{{ $dt->status }}</td>
                     <td>
-                        @foreach($dt->path_foto_barang as $path_foto)
-                            <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
-                        @endforeach
+                        <ul>
+                            @foreach($dt->path_foto_barang as $path_foto)
+                            <li>
+                                <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        
                     </td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">

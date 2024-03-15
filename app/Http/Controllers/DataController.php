@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anak;
 use App\Repositories\AnakRepository;
 use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
@@ -10,6 +9,7 @@ use App\Repositories\DonaturRepository;
 use App\Repositories\KegiatanRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
@@ -54,9 +54,30 @@ class DataController extends Controller
     public function dataKegiatan(){
         $data = $this->kegiatanRepository->getKegiatan();
 
-        foreach ($data as $kegiatan) {
-            $kegiatan->nama_foto_kegiatan = explode(';', $kegiatan->nama_foto_kegiatan);
-            $kegiatan->path_foto_kegiatan = explode(';', $kegiatan->path_foto_kegiatan);
+        foreach ($data as $dt){
+            // Ubah format tanggal dibuat
+            $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);
+            $bulanIndonesia = [
+                1 => 'Januari',
+                2 => 'Februari',
+                3 => 'Maret',
+                4 => 'April',
+                5 => 'Mei',
+                6 => 'Juni',
+                7 => 'Juli',
+                8 => 'Agustus',
+                9 => 'September',
+                10 => 'Oktober',
+                11 => 'November',
+                12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_kegiatan->month];
+            $formatted_tgl_dibuat = $tgl_kegiatan->day . ' ' . $namaBulan . ' ' . $tgl_kegiatan->year;
+            $dt->tgl_kegiatan= $formatted_tgl_dibuat;
+        
+            // Pisahkan nama foto dan path foto kegiatan
+            $dt->nama_foto_kegiatan = explode(';', $dt->nama_foto_kegiatan);
+            $dt->path_foto_kegiatan = explode(';', $dt->path_foto_kegiatan);
         }
         return view('layout.admin.ManagemenKegiatan')->with('data', $data);
     }
@@ -86,6 +107,26 @@ class DataController extends Controller
     }
     public function dataSurat(){
         $data = $this->suratRepository->getSurat();
+        foreach ($data as $dt){
+        $tgl_dibuat = Carbon::parse($dt->tgl_dibuat);
+        $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+        $namaBulan = $bulanIndonesia[$tgl_dibuat->month];
+        $formatted_tgl_dibuat = $tgl_dibuat->day . ' ' . $namaBulan . ' ' . $tgl_dibuat->year;
+        $dt->tgl_dibuat = $formatted_tgl_dibuat;
+        }
         return view('layout.admin.ManagemenSurat')->with('data', $data);
     }
     public function infobox(){

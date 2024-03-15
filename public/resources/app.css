@@ -167,6 +167,12 @@ body {
 #tabelPengurus th:nth-child(5), #tabelPengurus td:nth-child(5) {width: 27%; }
 #tabelPengurus th:nth-child(6), #tabelPengurus td:nth-child(6) {width: 15%; }
 
+ul {
+  list-style-type: square;
+  margin: 0;
+  padding: 0;
+}
+
 
 hr {
   margin: 1rem 0;

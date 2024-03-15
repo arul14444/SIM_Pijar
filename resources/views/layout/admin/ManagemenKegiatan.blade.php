@@ -51,9 +51,13 @@
                     <td>{{ $dt->lokasi }}</td>
                     <td>{{ $dt->sumber_dana }}</td>
                     <td> 
+                        <ul>
                         @foreach($dt->path_foto_kegiatan as $path_foto)
-                            <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                            <li>
+                                <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                            </li>
                         @endforeach
+                        <ul>
                     </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">

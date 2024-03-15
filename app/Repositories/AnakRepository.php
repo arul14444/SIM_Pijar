@@ -31,9 +31,9 @@ class AnakRepository{
     {
         return Anak::from('anak as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
     }
-    public function delete($user, $uuid)
+    public function delete($uuid)
     {
-        return Anak::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update' => $user]);
+        return Anak::where('uuid', $uuid)->update(['flag_aktif' => 0]);
     }
 
     public function createGangguan($data)
