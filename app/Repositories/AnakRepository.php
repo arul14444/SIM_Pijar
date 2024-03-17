@@ -12,8 +12,7 @@ class AnakRepository{
         ->join('user', 'user.id','anak.id_user')
         ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
         ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
-        ->where(['anak.flag_aktif'=>1])
-        ->get();
+        ->where(['anak.flag_aktif'=>1]);
    }
    public function getFirst(){
     return Anak::orderBy('created_at', 'DESC')->first();

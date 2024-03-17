@@ -25,14 +25,15 @@ function tambahAnggota(formData) {
         setTimeout(function() {
             responseMessage.innerText = '';
             document.getElementById('responseMessage').style.backgroundColor = 'white';
-        }, 3000);
+        }, 2000);
     });
 }
 
 
 
 function confirmDelete(uuid) {
-    if (confirm('Apakah Anda yakin ingin menghapus?')) {
+    var name = document.getElementById('hapusData').getAttribute('data-name');
+    if (confirm('Apakah Anda yakin ingin menghapus data anggota '+name+'?')) {
         fetch(`/anggota/delete/${uuid}`, {
             method: 'PUT',
             headers: {
@@ -55,7 +56,7 @@ function confirmDelete(uuid) {
                 responseMessage.innerText = '';
                 responseMessage.style.backgroundColor = 'white';
                 location.reload(); 
-            }, 3000);
+            }, 2000);
             
         })
         .catch(error => {

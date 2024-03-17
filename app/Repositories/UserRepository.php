@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\Collection;
 class UserRepository{
    public function getAnggota(){
         return User::select('*')
-        ->where(['role'=>'anggota','flag_aktif'=>1])
-        ->get();
+        ->where(['role'=>'anggota','flag_aktif'=>1]);
    }
    public function getPengurus(){
         return User::select('*')
         ->join('jabatan as j','j.id_user','user.id')
-        ->where(['user.role'=>'admin','user.flag_aktif'=>1])
-        ->get();
+        ->where(['user.role'=>'admin','user.flag_aktif'=>1]);
    }
    public function getOrangtua(){
     return User::select('*')

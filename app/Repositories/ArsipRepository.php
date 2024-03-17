@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 class ArsipRepository{
    public function getArsip(){
         return Arsip::select('*')
-        ->where(['flag_aktif'=>1])
-        ->get();
+        ->where(['flag_aktif'=>1]);
    }
    public function create($data)
     {

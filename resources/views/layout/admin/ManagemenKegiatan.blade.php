@@ -64,10 +64,10 @@
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                            <form id="tambahKegiatan" method="POST" action="/kegiatan/delete/{{$dt->uuid}}">
+                            <form method="POST" action="/kegiatan/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')
-                                <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                <button id="hapusData" data-name="{{$dt->nama_kegiatan}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                     <i class="fas fa-trash"></i>
                                 </button>                                                                 
                             </form>

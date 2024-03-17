@@ -37,23 +37,30 @@ class DataController extends Controller
     
     public function dataDonatur(){
         $data = $this->donaturRepository->getDonatur();
-        return view('layout.admin.ManagemenDonatur')->with('data', $data);
+
+        return view('layout.admin.ManagemenDonatur')->with('data', $data->get());
     }
 
     public function dataAnggota(){
         $data = $this->userRepository->getAnggota();
-        return view('layout.admin.ManagemenAnggota')->with('data', $data);
+
+
+        return view('layout.admin.ManagemenAnggota')->with('data', $data->get());
     }
 
     public function dataPengurus(){
         $data = $this->userRepository->getPengurus();
-        return view('layout.admin.ManagemenPengurus')->with('data', $data);
+        
+       
+        return view('layout.admin.ManagemenPengurus')->with('data', $data->get());
     }
     
 
     public function dataKegiatan(){
-        $data = $this->kegiatanRepository->getKegiatan();
+        $data = $this->kegiatanRepository->getKegiatan()->get();
 
+
+    
         foreach ($data as $dt){
             // Ubah format tanggal dibuat
             $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);
@@ -83,7 +90,9 @@ class DataController extends Controller
     }
     
     public function dataAset(){
-        $data = $this->asetRepository->getAset();
+        $data = $this->asetRepository->getAset()->get();
+
+
         foreach ($data as $aset) {
             $aset->nama_foto_barang = explode(';', $aset->nama_foto_barang);
             $aset->path_foto_barang = explode(';', $aset->path_foto_barang);
@@ -94,7 +103,9 @@ class DataController extends Controller
     
 
     public function dataArsip(){
-        $data = $this->arsipRepository->getArsip();
+        $data = $this->arsipRepository->getArsip()->get();
+
+
         foreach ($data as $aset) {
             $aset->nama_file_dokumen = explode(';', $aset->nama_file_dokumen);
             $aset->path_file_dokumen = explode(';', $aset->path_file_dokumen);
@@ -103,10 +114,13 @@ class DataController extends Controller
     }
     public function dataAnak(){
         $data = $this->anakRepository->getAnak();
-        return view('layout.admin.ManagemenAnak')->with('data', $data);
+
+
+        return view('layout.admin.ManagemenAnak')->with('data', $data->get());
     }
     public function dataSurat(){
-        $data = $this->suratRepository->getSurat();
+        $data = $this->suratRepository->getSurat()->get();
+
         foreach ($data as $dt){
         $tgl_dibuat = Carbon::parse($dt->tgl_dibuat);
         $bulanIndonesia = [

@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 class KegiatanRepository{
    public function getKegiatan(){
         return Kegiatan::select('*')
-        ->where('flag_aktif',true)
-        ->get();
+        ->where('flag_aktif',true);
    }
    public function create($data)
    {

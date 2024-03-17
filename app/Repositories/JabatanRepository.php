@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 class JabatanRepository{
    public function getJabatan(){
         return Jabatan::select('jabatan.jabatan','pengurus.nama','pengurus.alamat','jabatan.uuid')
-        ->join('user as pengurus', 'pengurus.id','jabatan.id_user')
-        ->get();
+        ->join('user as pengurus', 'pengurus.id','jabatan.id_user');
    }
    public function create($data)
    {

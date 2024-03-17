@@ -9,8 +9,7 @@ class AsetRepository{
    public function getAset(){
         return Aset::select('aset.*','sa.status')
         ->join('status_aset as sa','sa.id','aset.id_status_aset')
-        ->where(['aset.flag_aktif'=>1])
-        ->get();
+        ->where(['aset.flag_aktif'=>1]);
    }
    public function create($data)
    {

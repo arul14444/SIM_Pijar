@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class DonaturRepository{
    public function getDonatur(){
-        return Donatur::select('*')
-        ->get();
+        return Donatur::select('*');
    }
    public function create($data)
    {
