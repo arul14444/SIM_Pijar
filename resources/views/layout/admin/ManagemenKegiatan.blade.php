@@ -64,9 +64,13 @@
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            <form id="tambahKegiatan" method="POST" action="/kegiatan/delete/{{$dt->uuid}}">
+                                @csrf
+                                @method('PUT')
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>                                                                 
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -75,6 +79,7 @@
         </table>
         
     </div>
+    <script src="{{ asset('resources/kegiatan.js') }}"></script>
 @endsection
 
 @push('script')

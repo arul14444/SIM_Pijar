@@ -16,7 +16,6 @@
                 <div class="collapse" id="collapsePengurus" aria-labelledby="headingPengurus" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ url('/managemen/pengurus')}}">Data</a>
-                        <a class="nav-link" href="{{ url('/tambah/anggota')}}">Tambah</a>
                     </nav>
                 </div>
 

@@ -13,6 +13,7 @@ class SuratRepository{
         ->join('jabatan as j','j.id','s.id_jabatan_pemberi')
         ->join('user as u1','u1.id','j.id_user')
         ->join('user as u2','u2.id','s.id_user_penerima')
+        ->where('s.flag_aktif',true)
         ->get();
    }
    public function create($data)

@@ -1,3 +1,9 @@
+document.getElementById('tambahAnak').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    tambahAnak(formData);
+});
+
 function tambahAnak(formData) {
     fetch('/tambah/anak', {
         method: 'POST',
@@ -16,7 +22,6 @@ function tambahAnak(formData) {
             document.getElementById('responseMessage').style.backgroundColor = 'red';
         }
     
-        // Set timeout untuk menghilangkan pesan setelah 3 detik
         setTimeout(function() {
             responseMessage.innerText = '';
             document.getElementById('responseMessage').style.backgroundColor = 'white';
@@ -24,11 +29,6 @@ function tambahAnak(formData) {
     });
 }
 
-document.getElementById('tambahAnak').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    tambahAnak(formData);
-});
 
 
 function confirmDelete(uuid) {
@@ -51,11 +51,10 @@ function confirmDelete(uuid) {
                 responseMessage.style.backgroundColor = 'red';
             }
     
-            // Set timeout untuk menghilangkan pesan setelah 3 detik
             setTimeout(function() {
                 responseMessage.innerText = '';
                 responseMessage.style.backgroundColor = 'white';
-                location.reload(); // Refresh halaman jika berhasil dihapus
+                location.reload(); 
             }, 3000);
             
         })

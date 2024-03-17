@@ -37,11 +37,9 @@ class DeleteController extends Controller
     {
         try {
             $this->userRepository->delete($uuid);
-            // Menggunakan JavaScript untuk menampilkan alert pada sisi klien
-            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anggota', 'alert' => "alert('Berhasil menghapus data anggota')"]);
+            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data Anggota']);
         } catch (\Exception $e) {
-            // Menggunakan JavaScript untuk menampilkan alert pada sisi klien
-            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anggota: ' . $e->getMessage(), 'alert' => "alert('Gagal menghapus data anggota: " . addslashes($e->getMessage()) . "')"]);
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data Anggota: ' . $e->getMessage()]);
         }
     }
 
@@ -54,7 +52,7 @@ class DeleteController extends Controller
             return response()->json(['success' => false, 'message' => 'Gagal menghapus data donatur: ' . $e->getMessage()]);
         }
     }
-
+    
     public function deleteKegiatan($uuid)
     {
         try {
@@ -89,10 +87,9 @@ class DeleteController extends Controller
     {
         try {
             $this->anakRepository->delete($uuid);
-            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anggota', 'alert' => "alert('Berhasil menghapus data anggota')"]);
+            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data anak']);
         } catch (\Exception $e) {
-            // Menggunakan JavaScript untuk menampilkan alert pada sisi klien
-            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anggota: ' . $e->getMessage(), 'alert' => "alert('Gagal menghapus data anggota: " . addslashes($e->getMessage()) . "')"]);
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data anak: ' . $e->getMessage()]);
         }
     }
 
