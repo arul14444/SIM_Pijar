@@ -32,9 +32,14 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-floating mb-3">
-                <input class="form-control" id="inputSumberDana" name="sumber_dana" type="text" placeholder="Masukkan sumber dana" />
-                <label for="inputSumberDana">Sumber dana</label>
+            <div class="form-floating">
+                <select class="form-select" id="sumber_dana" name="sumber_dana" aria-label="Pilih Sumber Dana">
+                    <option selected disabled>Pilih Sumber Dana</option>
+                    @foreach ($data as $dt)    
+                    <option value="{{$dt->uuid}}">{{$dt->sumber}}</option>
+                    @endforeach
+                </select>
+                <label for="inputAbdKanan">Sumber Dana</label>
             </div>
         </div>
     </div>
@@ -46,5 +51,5 @@
         <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
     </div>
 </form>
-<script src="{{ asset('resources/kegiatan.js') }}"></script>
+<script src="{{ asset('resources/js/kegiatan.js') }}"></script>
 @endsection

@@ -27,5 +27,5 @@
         </div>
     </div>
 </form>
-<script src="{{ asset('resources/donatur.js') }}"></script>
+<script src="{{ asset('resources/js/donatur.js') }}"></script>
 @endsection

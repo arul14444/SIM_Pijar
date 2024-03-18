@@ -68,7 +68,7 @@
         </table>
         
     </div>
-    <script src="{{ asset('resources/surat.js') }}"></script>
+    <script src="{{ asset('resources/js/surat.js') }}"></script>
 @endsection
 
 @push('script')

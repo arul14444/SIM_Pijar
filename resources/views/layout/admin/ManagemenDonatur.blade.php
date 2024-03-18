@@ -62,7 +62,7 @@
         </table>
         
     </div>
-    <script src="{{ asset('resources/donatur.js') }}"></script>
+    <script src="{{ asset('resources/js/donatur.js') }}"></script>
 @endsection
 
 @push('script')

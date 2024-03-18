@@ -75,7 +75,7 @@
             </tbody>
         </table>
     </div>
-    <script src="{{ asset('resources/arsip.js') }}"></script>
+    <script src="{{ asset('resources/js/arsip.js') }}"></script>
 @endsection
 
 @push('script')

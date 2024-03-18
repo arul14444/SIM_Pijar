@@ -45,5 +45,5 @@
             </div>
         </div>
     </form>
-    <script src="{{ asset('resources/anggota.js') }}"></script>
+    <script src="{{ asset('resources/js/anggota.js') }}"></script>
 @endsection

@@ -30,6 +30,7 @@ Route::get('/dashboard/admin', function () {
     return view('layout/admin/Dashboard');
 });
 Route::get('/dashboard/admin',[DataController::class,'infobox']);
+Route::get('/dashboard/admin',[DataController::class,'infobox']);
 
 //managemen anggota
 Route::get('/managemen/anggota', function () {
@@ -125,6 +126,7 @@ Route::get('/tambah/kegiatan', function () {
     return view('layout/admin/TambahKegiatan');
 });
 Route::post('/tambah/kegiatan',[TambahDataController::class,'tambahKegiatan']);
+Route::get('/tambah/kegiatan',[TambahDataController::class,'listSumberDana']);
 
 //tambah arsip
 Route::get('/tambah/arsip', function () {

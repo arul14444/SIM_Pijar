@@ -66,7 +66,7 @@
         </table>
         
     </div>
-    <script src="{{ asset('resources/anak.js') }}"></script>
+    <script src="{{ asset('resources/js/anak.js') }}"></script>
     @endsection
     
     @push('script')

@@ -4,18 +4,23 @@ namespace App\Services;
 
 
 use App\Repositories\KegiatanRepository;
+use App\Repositories\SumberDanaRepository;
 
 class TambahKegiatanService{
-    protected $kegiatanRepository;
+    protected $kegiatanRepository, $sumberDanaRepository;
 
     public function __construct(
         KegiatanRepository $kegiatanRepository,
+        SumberDanaRepository $sumberDanaRepository
 
     ) {
         $this->kegiatanRepository = $kegiatanRepository;
+        $this->sumberDanaRepository = $sumberDanaRepository;
+
     }
 
     public function setData($data) {
+        $sumber = $this->sumberDanaRepository->findByUuid($data->sumber_dana);
         $lampiranNames = [];
         $pathLampiran = [];
         
@@ -33,7 +38,7 @@ class TambahKegiatanService{
             'nama_kegiatan' => $data->nama_kegiatan,
             'deskripsi_kegiatan' => $data->deskripsi,
             'lokasi' => $data->lokasi,
-            'sumber_dana' => $data->sumber_dana,
+            'id_sumber_dana' => $sumber->id,
             'tgl_kegiatan' => $data->tanggal,
             'nama_foto_kegiatan' => $lampiran,
             'path_foto_kegiatan' => $path 

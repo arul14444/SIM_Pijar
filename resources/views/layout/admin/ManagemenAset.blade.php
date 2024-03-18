@@ -76,7 +76,7 @@
         </table>
         
     </div>
-    <script src="{{ asset('resources/aset.js') }}"></script>
+    <script src="{{ asset('resources/js/aset.js') }}"></script>
 @endsection
 
 @push('script')

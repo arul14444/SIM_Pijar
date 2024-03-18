@@ -49,7 +49,7 @@
                     <td>{{ $dt->deskripsi_kegiatan }}</td>
                     <td>{{ $dt->tgl_kegiatan }}</td>
                     <td>{{ $dt->lokasi }}</td>
-                    <td>{{ $dt->sumber_dana }}</td>
+                    <td>{{ $dt->sumber }}</td>
                     <td> 
                         <ul>
                         @foreach($dt->path_foto_kegiatan as $path_foto)
@@ -79,7 +79,7 @@
         </table>
         
     </div>
-    <script src="{{ asset('resources/kegiatan.js') }}"></script>
+    <script src="{{ asset('resources/js/kegiatan.js') }}"></script>
 @endsection
 
 @push('script')

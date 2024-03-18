@@ -163,11 +163,49 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Grafik Kegiatan
+            </div>
+            <div  class="card-body"><canvas id="chartKegiatan" width="100%" height="50"></canvas></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Grafik Aset
+            </div>
+            <div  class="card-body"><canvas id="chartAset" width="100%" height="50"></canvas></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Grafik Anak
+            </div>
+            <div  class="card-body"><canvas id="chartKegiatan" width="100%" height="50"></canvas></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Grafik Sumber Dana Kegiatan
+            </div>
+            <div  class="card-body"><canvas id="chartAset" width="100%" height="50"></canvas></div>
+        </div>
+    </div>
+</div>
 
 
 
 
-
-
-
+<script src="{{ asset('resources/js/dashboard.js') }}"></script>
 @endsection

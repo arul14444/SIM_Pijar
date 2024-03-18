@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\AbdRepository;
 use App\Repositories\JabatanRepository;
 use App\Repositories\StatusAsetRepository;
+use App\Repositories\SumberDanaRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use App\Services\TambahAnakService;
@@ -23,7 +24,7 @@ class TambahDataController extends Controller
 {
     protected $userRepository, $tambahAnggotaService, $tambahAnakService, $tambahDonaturService, 
     $tambahArsipService,$tambahAsetService, $tambahKegiatanService,$statusAsetRepository, $abdRepository, 
-    $tambahSuratService, $jabatanRepository;
+    $tambahSuratService, $jabatanRepository, $sumberDanaRepository;
 
     public function __construct(
         TambahAnggotaService $tambahAnggotaService,
@@ -36,7 +37,9 @@ class TambahDataController extends Controller
         TambahSuratService $tambahSuratService,
         JabatanRepository $jabatanRepository,
         TambahKegiatanService $tambahKegiatanService,
-        TambahArsipService $tambahArsipService
+        TambahArsipService $tambahArsipService,
+        SumberDanaRepository $sumberDanaRepository
+
         
         ) {
             $this->tambahAnggotaService = $tambahAnggotaService;
@@ -50,6 +53,7 @@ class TambahDataController extends Controller
             $this->jabatanRepository = $jabatanRepository;
             $this->tambahKegiatanService = $tambahKegiatanService;
             $this->tambahArsipService = $tambahArsipService;
+            $this->sumberDanaRepository = $sumberDanaRepository;
         }
 
         // Ambil Data
@@ -63,6 +67,10 @@ class TambahDataController extends Controller
         public function listStatusAset(){
             $listStatus = $this->statusAsetRepository->getStatus();
             return  view('layout.admin.TambahAset')->with('listStatus', $listStatus);
+        }
+        public function listSumberDana(){
+            $data = $this->sumberDanaRepository->getSumber();
+            return  view('layout.admin.TambahKegiatan')->with('data', $data);
         }
         public function listPengurus(){
             $data = [

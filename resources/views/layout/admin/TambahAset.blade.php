@@ -46,5 +46,5 @@
         <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
     </div>
 </form>
-<script src="{{ asset('resources/aset.js') }}"></script>
+<script src="{{ asset('resources/js/aset.js') }}"></script>
 @endsection
