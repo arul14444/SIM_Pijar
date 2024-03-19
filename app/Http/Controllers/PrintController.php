@@ -51,7 +51,7 @@ class PrintController extends Controller
 
     public function printPdfAnggota()
     {
-        $data = $this->userRepository->getAnggota();
+        $data = $this->userRepository->getAnggota()->get();
         $html = view('print.PrintAnggota', ['data' => $data])->render();
 
         $options = new Options();
@@ -69,7 +69,7 @@ class PrintController extends Controller
     }
     
     public function printPdfPengurus(){
-        $data = $this->userRepository->getPengurus();
+        $data = $this->userRepository->getPengurus()->get();
         $html = view('print.PrintPengurus', ['data' => $data])->render();
     
         $options = new Options();
@@ -87,7 +87,7 @@ class PrintController extends Controller
 
     public function printPdfAnak()
     {
-        $data = $this->anakRepository->getAnak();
+        $data = $this->anakRepository->getAnak()->get();
         $html = view('print.PrintAnak', ['data' => $data])->render();
     
         $options = new Options();
@@ -104,7 +104,7 @@ class PrintController extends Controller
     }
     public function printPdfDonatur()
     {
-        $data = $this->donaturRepository->getDonatur();
+        $data = $this->donaturRepository->getDonatur()->get();
         $html = view('print.PrintDonatur', ['data' => $data])->render();
 
         $options = new Options();
@@ -121,7 +121,7 @@ class PrintController extends Controller
     }
     public function printPdfAset()
     {
-        $data = $this->asetRepository->getAset();
+        $data = $this->asetRepository->getAset()->get();
         $html = view('print.PrintAset', ['data' => $data])->render();
 
         $options = new Options();
@@ -138,7 +138,7 @@ class PrintController extends Controller
     }
     public function printPdfKegiatan()
     {
-        $data = $this->kegiatanRepository->getKegiatan();
+        $data = $this->kegiatanRepository->getKegiatan()->get();
         $html = view('print.PrintKegiatan', ['data' => $data])->render();
 
         $options = new Options();
@@ -155,7 +155,7 @@ class PrintController extends Controller
     }
     public function printPdfArsip()
     {
-        $data = $this->arsipRepository->getArsip();
+        $data = $this->arsipRepository->getArsip()->get();
         $html = view('print.PrintArsip', ['data' => $data])->render();
 
         $options = new Options();

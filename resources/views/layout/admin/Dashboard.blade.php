@@ -163,23 +163,28 @@
         </div>
     </div>
 </div>
+{{-- Dashboard --}}
 <div class="row">
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>
-                Grafik Kegiatan
+                Grafik Kepemilikan ABD
             </div>
-            <div  class="card-body"><canvas id="chartKegiatan" width="100%" height="50"></canvas></div>
+            <div class="card-body">
+                <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="300"></canvas>
+            </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>
-                Grafik Aset
+                Grafik Kepemilikan ABD
             </div>
-            <div  class="card-body"><canvas id="chartAset" width="100%" height="50"></canvas></div>
+            <div class="card-body">
+                <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="300"></canvas>
+            </div>
         </div>
     </div>
 </div>
@@ -188,9 +193,9 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>
-                Grafik Anak
+                Grafik Kegiatan
             </div>
-            <div  class="card-body"><canvas id="chartKegiatan" width="100%" height="50"></canvas></div>
+            <div  class="card-body"><canvas id="chartKegiatan" width="100%" height="300"></canvas></div>
         </div>
     </div>
     <div class="col-md-6">
@@ -199,13 +204,41 @@
                 <i class="fas fa-chart-bar me-1"></i>
                 Grafik Sumber Dana Kegiatan
             </div>
-            <div  class="card-body"><canvas id="chartAset" width="100%" height="50"></canvas></div>
+            <div  class="card-body"><canvas id="chartSumberDana" width="100%" height="300"></canvas></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+         <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Grafik Aset
+            </div>
+            <div class="card-body">
+                <canvas id="chartAset" data-tersedia="{{$data['dataAset']['tersedia']}}" data-tidakTersedia="{{$data['dataAset']['tidak_tersedia']}}" data-rusak="{{$data['dataAset']['rusak']}}" data-perbaikan="{{$data['dataAset']['dalam_perbaikan']}}" width="100%" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Data Aset
+            </div>
+            <div  class="card-body">
+                
+            </div>
         </div>
     </div>
 </div>
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ asset('resources/js/dashboard.js') }}"></script>
+<script src="{{ asset('resources/js/chartAbd.js') }}"></script>
+<script src="{{ asset('resources/js/chartAset.js') }}"></script>
+<script src="{{ asset('resources/js/chartDana.js') }}"></script>
+<script src="{{ asset('resources/js/chartKegiatan.js') }}"></script>
 @endsection

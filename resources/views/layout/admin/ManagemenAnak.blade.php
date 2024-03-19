@@ -22,6 +22,8 @@
                     <th>Nama Anak</th>
                     <th>Nomor Telepon</th>
                     <th>Nama Orangtua</th>
+                    <th>ABD Kiri</th>
+                    <th>ABD Kanan</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
@@ -32,6 +34,8 @@
                     <th>Nama Anak</th>
                     <th>Nomor Telepon</th>
                     <th>Nama Orangtua</th>
+                    <th>ABD Kiri</th>
+                    <th>ABD Kanan</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
@@ -44,6 +48,8 @@
                     <td>{{ $dt->nama_lengkap }}</td>
                     <td>0{{ $dt->nomor_telepon }}</td>
                     <td>{{ $dt->nama }}</td>
+                    <td>{{ $dt->jenis_abd_kiri }}</td>
+                    <td>{{ $dt->jenis_abd_kanan }}</td>
                     <td>{{ $dt->alamat }}</td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">

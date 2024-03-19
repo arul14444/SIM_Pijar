@@ -144,6 +144,8 @@ class DataController extends Controller
         return view('layout.admin.ManagemenSurat')->with('data', $data);
     }
     public function infobox(){
+        $jumlahAnak= $this->anakRepository->getAnak()->count();
+        $jumlahKepemilikanAbd = $this->anakRepository->jumlahKepemilikanAbd();
         $data = [
            'anggota' => $this->userRepository->getAnggota()->count(),
            'donatur' =>$this->donaturRepository->getDonatur()->count(),
@@ -152,7 +154,16 @@ class DataController extends Controller
            'aset' => $this->asetRepository->getAset()->count(),
            'anak' => $this->anakRepository->getAnak()->count(),
            'surat' => $this->suratRepository->getSurat()->count(),
-           'pengurus' => $this->userRepository->getPengurus()->count()
+           'pengurus' => $this->userRepository->getPengurus()->count(),
+           'dataAbd' =>[
+                'tidak_punya' => $jumlahAnak - $jumlahKepemilikanAbd,
+                'kepemilikan' =>$jumlahKepemilikanAbd,
+           ], 'dataAset'=>[
+                'tersedia'=> $this->asetRepository->getAsetStatus(config('pijar.status.tersedia.kode'))->count(),
+                'tidak_tersedia'=> $this->asetRepository->getAsetStatus(config('pijar.status.tidak_tersedia.kode'))->count(),
+                'rusak'=> $this->asetRepository->getAsetStatus(config('pijar.status.rusak.kode'))->count(),
+                'dalam_perbaikan'=> $this->asetRepository->getAsetStatus(config('pijar.status.dalam_perbaikan.kode'))->count()
+           ],'dataDana'
         ];
 
         return view('layout.admin.Dashboard')->with('data', $data);

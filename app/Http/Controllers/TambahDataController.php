@@ -59,8 +59,8 @@ class TambahDataController extends Controller
         // Ambil Data
         public function listDataTambahAnak(){
             $data=[
-                'listOrtu' => $this->userRepository->getOrangtua(),
-                'listAbd' => $this->abdRepository->getAbd(),
+                'listOrtu' => $this->userRepository->getOrangtua()->get(),
+                'listAbd' => $this->abdRepository->getAbd()->get(),
             ];
             return  view('layout.admin.TambahAnak')->with('data', $data);
         }
@@ -74,8 +74,8 @@ class TambahDataController extends Controller
         }
         public function listPengurus(){
             $data = [
-                'pengurusInti'=>$this->jabatanRepository->getJabatan(),
-                'pengurus'=>$this->userRepository->getAnggota()
+                'pengurusInti'=>$this->jabatanRepository->getJabatan()->get(),
+                'pengurus'=>$this->userRepository->getAnggota()->get()
             ];
             return  view('layout.admin.TambahSurat')->with('data', $data);
         }

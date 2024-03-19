@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\DB;
 class KegiatanRepository{
    public function getKegiatan(){
         return Kegiatan::select('kegiatan.*','sumber_dana.sumber')
-        ->join('sumber_dana','sumber_dana.id','kegiatan.id_sumber_dana')
-        ->where('kegiatan.flag_aktif',true);
+            ->join('sumber_dana','sumber_dana.id','kegiatan.id_sumber_dana')
+            ->where('kegiatan.flag_aktif',true);
    }
+   public function getTotalKegiatanPerBulan()
+   {
+        return Kegiatan::select(DB::raw('DATE_FORMAT(tgl_kegiatan, "%Y-%m") as bulan'), DB::raw('COUNT(*) as total'))
+            ->groupBy('bulan')->get();}
    public function create($data)
    {
        return Kegiatan::insert($data);
