@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 class AbdRepository{
    public function getAbd(){
         return Abd::select('*')
-        ->where(['flag_aktif'=>1])
-        ->get();
+        ->where(['flag_aktif'=>1]);
    }
    public function findByUuid($uuid)
    {

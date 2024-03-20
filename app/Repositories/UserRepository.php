@@ -17,8 +17,7 @@ class UserRepository{
    }
    public function getOrangtua(){
     return User::select('*')
-    ->where(['user.flag_aktif'=>1])
-    ->get();
+    ->where(['user.flag_aktif'=>1]);
 }
    public function create($data)
    {
