@@ -12,10 +12,19 @@ class KegiatanRepository{
             ->join('sumber_dana','sumber_dana.id','kegiatan.id_sumber_dana')
             ->where('kegiatan.flag_aktif',true);
    }
+   public function getTotalSumberDana($sumber){
+        return Kegiatan::select('kegiatan.*','sumber_dana.sumber')
+                ->join('sumber_dana','sumber_dana.id','kegiatan.id_sumber_dana')
+                ->where(['kegiatan.flag_aktif'=>true, 'sumber_dana.sumber'=>$sumber])
+                ->count();
+   }
    public function getTotalKegiatanPerBulan()
    {
-        return Kegiatan::select(DB::raw('DATE_FORMAT(tgl_kegiatan, "%Y-%m") as bulan'), DB::raw('COUNT(*) as total'))
-            ->groupBy('bulan')->get();}
+        return Kegiatan::select(DB::raw('DATE_FORMAT(tgl_kegiatan, "%m-%Y") as bulan'), DB::raw('COUNT(*) as total'))
+        ->groupBy('bulan')
+        ->orderByRaw('MIN(tgl_kegiatan)') // Urutkan berdasarkan tanggal terkecil di setiap kelompok bulan-tahun
+        ->get();
+    }
    public function create($data)
    {
        return Kegiatan::insert($data);

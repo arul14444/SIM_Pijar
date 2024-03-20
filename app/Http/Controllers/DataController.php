@@ -143,7 +143,13 @@ class DataController extends Controller
         }
         return view('layout.admin.ManagemenSurat')->with('data', $data);
     }
-    public function infobox(){
+    public function infobox(Request $request){
+        $kdStatus = $request->input('kd_status');
+        $aset = $this->asetRepository->getAset();
+        $aset->when($kdStatus, function ($query, $kdStatus) {
+          $query->where('sa.kd_statys', $kdStatus);
+        });
+        $aset = $aset->get();
         $jumlahAnak= $this->anakRepository->getAnak()->count();
         $jumlahKepemilikanAbd = $this->anakRepository->jumlahKepemilikanAbd();
         $data = [
@@ -163,10 +169,18 @@ class DataController extends Controller
                 'tidak_tersedia'=> $this->asetRepository->getAsetStatus(config('pijar.status.tidak_tersedia.kode'))->count(),
                 'rusak'=> $this->asetRepository->getAsetStatus(config('pijar.status.rusak.kode'))->count(),
                 'dalam_perbaikan'=> $this->asetRepository->getAsetStatus(config('pijar.status.dalam_perbaikan.kode'))->count()
-           ],'dataDana'
+           ],'listAset'=>$aset,
+           'sumberDana'=>[
+                'pemerintah'=> $this->kegiatanRepository->getTotalSumberDana('Pemerintah'),
+                'kas'=> $this->kegiatanRepository->getTotalSumberDana('Kas'),
+                'iuran'=> $this->kegiatanRepository->getTotalSumberDana('Iuran'),
+                'sponsor'=> $this->kegiatanRepository->getTotalSumberDana('Sponsor'),
+                'donatur'=> $this->kegiatanRepository->getTotalSumberDana('Donatur'),
+           ],
+           'totalKegiatan'=>$this->kegiatanRepository->getTotalKegiatanPerBulan()
         ];
 
         return view('layout.admin.Dashboard')->with('data', $data);
     }
-
+            
 }
