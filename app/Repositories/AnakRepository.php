@@ -34,21 +34,21 @@ class AnakRepository{
     {
         return Anak::insert($data);
      }
-   public function updateByUuid($data, $uuid)
+   public function updateBy($data, $uuid)
     {
         return Anak::where('uuid', $uuid)->update($data);
     }
     public function findByUuid($uuid)
     {
-        return Anak::from('anak as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
+        return Anak::from('anak as a')
+            ->select('a.*','abd_kiri.jenis as jenis_abd_kiri','abd_kanan.jenis as jenis_abd_kanan','user.nama','user.alamat')
+            ->join('user', 'user.id','a.id_user')
+            ->join('abd as abd_kiri','abd_kiri.id','a.id_abd_kiri')
+            ->join('abd as abd_kanan','abd_kanan.id','a.id_abd_kanan')
+            ->where(['a.uuid' => $uuid, 'a.flag_aktif' => true])->first();
     }
     public function delete($uuid)
     {
         return Anak::where('uuid', $uuid)->update(['flag_aktif' => 0]);
-    }
-
-    public function createGangguan($data)
-    {
-         return Gangguan::insert($data);
     }
 }

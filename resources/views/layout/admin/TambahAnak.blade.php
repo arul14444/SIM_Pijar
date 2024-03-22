@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
+                        <input class="form-control" id="inputGangguanTelingaBinaural" name="kemampuan_telinga_binaural" type="text" placeholder="Enter your last name" />
                         <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural(Hz)</label>
                     </div>
                 </div>

@@ -7,41 +7,24 @@
     </ol>
 @endsection
 @section('content')
-    <form id="editAnggota" method="POST" action="/edit/anggota">
+    <form id="editAnggota" method="POST" action="/anggota/edit/{{$data->uuid}}">
         @csrf
+        @method('PUT')
         <div style="margin: 0 auto; ">
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputNama" name="nama" type="text" placeholder="Masukan nama lengkap" />
+                <input class="form-control" id="inputNama" name="nama" type="text" value="{{$data->nama}}" />
                 <label for="inputNama">Nama Lengkap</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" placeholder="Masukan nomor telepon" />
+                <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" value="0{{$data->nomor_telepon}}" />
                 <label for="inputNomorTelepon">Nomor Telepon</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputUsername" name="username" type="text" placeholder="Masukan username" />
-                <label for="inputUsername">Username</label>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputPassword" name="password" type="password" placeholder="Enter your first name" />
-                        <label for="inputPassword">Password</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="inputKonfirmasiPassword" name="konfirmasi_password" type="password" placeholder="Enter your last name" />
-                        <label for="inputKonfirmasiPassword">Konfirmasi Password</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="inputAlamat" name="alamat" type="text" rows="3" placeholder="Masukan alamat lengkap" />
+                <input class="form-control" id="inputAlamat" name="alamat" type="text" rows="3" value="{{$data->alamat}}" />
                 <label for="inputAlamat">Alamat</label>
             </div>
             <div class="mt-4 mb-0">
-                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return editData()">Simpan</button></div>
+                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick=" ">Simpan</button></div>
             </div>
         </div>
     </form>

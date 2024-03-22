@@ -45,9 +45,11 @@
                         <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
+                                <a href="{{ route('anggota.edit', $dt->uuid) }}">
+                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                </a>
                                 <form method="POST" action="/anggota/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')

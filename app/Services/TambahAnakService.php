@@ -4,18 +4,21 @@ namespace App\Services;
 
 use App\Repositories\AbdRepository;
 use App\Repositories\AnakRepository;
+use App\Repositories\gangguanRepository;
 use App\Repositories\UserRepository;
 
 class TambahAnakService{
-    protected  $anakRepository,$userRepository,$abdRepository;
+    protected  $anakRepository,$userRepository,$abdRepository, $gangguanRepository;
     public function __construct(
         AnakRepository $anakRepository,
         UserRepository $userRepository,
         AbdRepository $abdRepository,
+        gangguanRepository $gangguanRepository,
     ) {
         $this->anakRepository = $anakRepository;
         $this->userRepository = $userRepository;
         $this->abdRepository = $abdRepository;
+        $this->gangguanRepository=$gangguanRepository;
 
     }
 
@@ -33,7 +36,7 @@ class TambahAnakService{
             'nomor_telepon'=>$data->nomor_telepon,
             'kemampuan_kiri'=> $data->kemampuan_telinga_kiri,
             'kemampuan_kanan'=> $data->kemampuan_telinga_kanan,
-            'kemampuan_binaural'=>$data->kemampuan_binaural,
+            'kemampuan_binaural'=>$data->kemampuan_telinga_binaural,
             'penyakit_penyerta'=>$data->penyakit_penyerta,
             'id_user'=> $ortu->id,
             'bpjs'=> $data->bpjs
@@ -47,7 +50,7 @@ class TambahAnakService{
             'id_anak'=> $getAnak->id
         ];
 
-        return $this->anakRepository->createGangguan($setGangguan);
+        return $this->gangguanRepository->create($setGangguan);
         ;
     }
 

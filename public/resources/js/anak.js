@@ -4,6 +4,8 @@ document.getElementById('tambahAnak').addEventListener('submit', function(event)
     tambahAnak(formData);
 });
 
+
+
 function tambahAnak(formData) {
     fetch('/tambah/anak', {
         method: 'POST',
@@ -32,8 +34,7 @@ function tambahAnak(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus data '+name+'?')) {
+    if (confirm('Apakah Anda yakin ingin menghapus data?')) {
         fetch(`/anak/delete/${uuid}`, {
             method: 'PUT',
             headers: {
@@ -66,5 +67,36 @@ function confirmDelete(uuid) {
     }
 }
 
+// function editData(uuid, formData) {
+//     fetch(`/anak/edit/${uuid}`, {
+//         method: 'PUT',
+//         body: formData,
+//         headers: {
+//             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         let responseMessage = document.getElementById('responseMessage');
+//         responseMessage.innerText = data.message;
+//         responseMessage.style.color = 'white';
+
+//         if (data.success) {
+//             document.getElementById('editAnak').reset();
+//             responseMessage.style.backgroundColor = 'green';
+//         } else {
+//             responseMessage.style.backgroundColor = 'red';
+//         }
+    
+//         setTimeout(function() {
+//             responseMessage.innerText = '';
+//             responseMessage.style.backgroundColor = 'white';
+//         }, 2000);
+//     })
+//     .catch(error => {
+//         console.error('Terjadi kesalahan:', error);
+//         alert('Terjadi kesalahan: ' + error.message);
+//     });
+// }
 
 

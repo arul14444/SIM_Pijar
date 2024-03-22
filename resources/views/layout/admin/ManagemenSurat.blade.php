@@ -50,9 +50,13 @@
                                         <i class="fa-solid  fa-download"></i>
                                     </button>
                                 </form>
-                                <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
+                                <form method="POST" action="/surat/edit/{{$dt->uuid}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                </form>
                                 <form method="POST" action="/surat/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')

@@ -11,7 +11,7 @@ class UserRepository{
         ->where(['role'=>'anggota','flag_aktif'=>1]);
    }
    public function getPengurus(){
-        return User::select('*')
+        return User::select('user.*','j.jabatan')
         ->join('jabatan as j','j.id_user','user.id')
         ->where(['user.role'=>'admin','user.flag_aktif'=>1]);
    }
@@ -22,6 +22,12 @@ class UserRepository{
    public function create($data)
    {
        return User::insert($data);
+   }
+   public function findPengurusByUuid($uuid){
+    return User:: from('user as pengurus')
+        ->select('jabatan.jabatan','pengurus.nama','pengurus.alamat','pengurus.uuid','pengurus.nomor_telepon')
+        ->join('jabatan', 'pengurus.id','jabatan.id_user')
+        ->where(['pengurus.uuid' => $uuid, 'pengurus.flag_aktif' => true])->first();
    }
   public function updateByUuid($data, $uuid)
    {
