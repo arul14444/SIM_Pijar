@@ -24,8 +24,8 @@ class AnakRepository{
             ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
             ->where(['anak.flag_aktif'=>1])
             ->where(function ($query) {
-                $query->whereNotIn('abd_kanan.jenis', ['Tidak Punya'])
-                      ->orWhereNotIn('abd_kiri.jenis', ['Tidak Punya']);
+                $query->whereNotIn('abd_kanan.jenis', ['Belum Punya'])
+                      ->orWhereNotIn('abd_kiri.jenis', ['Belum Punya']);
             })
             ->count();
     }

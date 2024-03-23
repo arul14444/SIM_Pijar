@@ -79,13 +79,16 @@
                 <td style="width: 350px; text-align: center;">{{$data->tempat_dibuat}}, {{$data->tgl_dibuat}}</td>
             </tr>
             <tr>
-                <td></td>
-                <td style="text-align: center;">{{$data->jabatan_pemberi}}</td>
+                <br>
             </tr>
             <tr>
                 <td></td>
-                <td style="text-align: center;"> PiJAR Mutiara Bangsa </td>
+                <td style="text-align: center;">{{$data->jabatan_pemberi}} </td>
             </tr>
+            {{-- <tr>
+                <td></td>
+                <td style="text-align: center;"> PiJAR Mutiara Bangsa </td>
+            </tr> --}}
         </table>
     </div>
     <div>

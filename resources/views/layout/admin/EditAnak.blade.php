@@ -115,7 +115,7 @@
                 <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
             <div class="mt-4 mb-0">
-                <button type="submit" class="btn btn-primary btn-block" onclick="return editData()">Simpan</button>
+                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan perubahan data ini?')">Simpan</button>
             </div>
         </div>
     </form>

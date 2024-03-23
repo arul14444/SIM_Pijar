@@ -6,6 +6,7 @@ use App\Repositories\AbdRepository;
 use App\Repositories\AnakRepository;
 use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
+use App\Repositories\DonaturRepository;
 use App\Repositories\gangguanRepository;
 use App\Repositories\JabatanRepository;
 use App\Repositories\KegiatanRepository;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 
 class EditController extends Controller
 {
-    protected $userRepository,$statusAsetRepository, $abdRepository, $jabatanRepository, $sumberDanaRepository,
+    protected $userRepository,$statusAsetRepository, $abdRepository, $jabatanRepository, $donaturRepository, $sumberDanaRepository,
     $arsipRepository,$kegiatanRepository,$asetRepository, $suratRepository, $anakRepository, $gangguanRepository;
 
     public function __construct(
@@ -33,6 +34,7 @@ class EditController extends Controller
         SuratRepository $suratRepository,
         AnakRepository $anakRepository,
         gangguanRepository $gangguanRepository,
+        DonaturRepository $donaturRepository
         
         ) {
             $this->userRepository = $userRepository;
@@ -46,6 +48,7 @@ class EditController extends Controller
             $this->suratRepository = $suratRepository;
             $this->anakRepository = $anakRepository;
             $this->gangguanRepository = $gangguanRepository;
+            $this->donaturRepository=$donaturRepository;
         }
 
         // Ambil Data
@@ -65,21 +68,41 @@ class EditController extends Controller
             $data = $this->userRepository->findByUuid($uuid);
             return  view('layout.admin.EditAnggota')->with('data', $data);
         } 
-        public function detailAset(){
-            $listStatus = $this->statusAsetRepository->getStatus();
-            return  view('layout.admin.EditAset')->with('listStatus', $listStatus);
+        public function detailDonatur($uuid){
+            $data = $this->donaturRepository->findByUuid($uuid);
+            return  view('layout.admin.EditDonatur')->with('data', $data);
+        } 
+        public function detailArsip($uuid){
+            $data = $this->arsipRepository->findByUuid($uuid);
+            return  view('layout.admin.EditArsip')->with('data', $data);
+        } 
+        public function detailAset($uuid){
+            $detail = $this->asetRepository->findByUuid($uuid);
+            $status = $this->statusAsetRepository->getStatus();
+            $data=[
+                'detail'=>$detail,
+                'status'=>$status
+            ];
+            return  view('layout.admin.EditAset')->with('data', $data);
         }
-        public function listSumberDana(){
-            $data = $this->sumberDanaRepository->getSumber();
+        public function detailKegiatan($uuid){
+            $sumber = $this->sumberDanaRepository->getSumber();
+            $detail = $this->kegiatanRepository->findByUuid($uuid);
+            $data=[
+                'sumber'=>$sumber,
+                'detail'=>$detail
+            ];
             return  view('layout.admin.EditKegiatan')->with('data', $data);
         }
-        public function listPengurus(){
+        public function detailSurat($uuid){
             $data = [
                 'pengurusInti'=>$this->jabatanRepository->getJabatan()->get(),
-                'pengurus'=>$this->userRepository->getAnggota()->get()
+                'pengurus'=>$this->userRepository->getAnggota()->get(),
+                'detail'=>$this->suratRepository->findByUuid($uuid)
             ];
             return  view('layout.admin.EditSurat')->with('data', $data);
         }
+
         // edit
         public function editAnggota(Request $request, $uuid){
             try{
@@ -91,8 +114,9 @@ class EditController extends Controller
                     ];
                     $this->userRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                    return redirect('/managemen/anggota')->with('success', 'Data anak berhasil diubah');
+                    return redirect('/managemen/anggota')->with('success', 'Data anggota berhasil diubah');
             } catch (\Exception $e) {
+                DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal mengubah data anggota: ' . $e->getMessage()]);
             }
         }
@@ -106,11 +130,13 @@ class EditController extends Controller
                     ];
                     $this->userRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                    return redirect('/managemen/pengurus')->with('success', 'Data anak berhasil diubah');
+                    return redirect('/managemen/pengurus')->with('success', 'Data pengurus berhasil diubah');
             } catch (\Exception $e) {
-                return response()->json(['success' => false, 'message' => 'Gagal mengubah data anggota: ' . $e->getMessage()]);
+                DB::rollBack();
+                return response()->json(['success' => false, 'message' => 'Gagal mengubah data pengurus: ' . $e->getMessage()]);
             }
         }
+
         public function editAnakbyAdmin(Request $request,$uuid){
             try{
                 DB::beginTransaction();
@@ -145,70 +171,187 @@ class EditController extends Controller
                 DB::commit();
                     return redirect('/managemen/anak')->with('success', 'Data anak berhasil diubah');
             } catch (\Exception $e) {
+                DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal mengubah data anak: ' . $e->getMessage()]);
             }
         }
-        public function editDonatur(Request $request){
+
+        public function editDonatur(Request $request,$uuid){
             try{
                 DB::beginTransaction();
-                
+                $setData=[
+                        'nama'=> $request->nama,
+                        'nomor_telepon'=> $request->nomor_telepon,
+                        'alamat'=>$request->alamat
+                ];
+                $this->donaturRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                return response()->json(['success' => true, 'message' => 'Data donatur berhasil ditambahkan']);
+                return redirect('/managemen/donatur')->with('success', 'Data donatur berhasil diubah');
             } catch (\Exception $e) {
+                DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal menambahkan data donatur: ' . $e->getMessage()]);
             }
         }
-        public function editAset(Request $request){
+
+        public function editAset(Request $request, $uuid){
             try{
-                $request->validate([
-                    'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
-                ]);
-    
                 DB::beginTransaction();
-                
-                DB::commit();
-                return response()->json(['success' => true, 'message' => 'Data aset berhasil ditambahkan']);
+                if ($request->hasFile('lampiran')) {
+                    $request->validate([
+                    'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
+                    ]);
+                    $lampiranNames = [];
+                    $pathLampiran = [];
+                    $lampiranFiles = $request->file('lampiran');
+                    foreach ($lampiranFiles as $lampiran) {
+                        $lampiranNames[] = $lampiran->getClientOriginalName();
+                        $lampiran->move('dokumen/aset', $lampiran->getClientOriginalName());
+                        $pathLampiran[] = 'dokumen/aset/' . $lampiran->getClientOriginalName();
+                }
+                    $lampiran = implode('; ', $lampiranNames);
+                    $path = implode('; ', $pathLampiran);
+                    $aset = $this->statusAsetRepository->findByUuid($request->uuid_status_aset);
+                    $setData = [
+                        'nama_barang' => $request->nama_barang,
+                        'kode_barang' => $request->kode,
+                        'id_status_aset' => $aset->id,
+                        'deskripsi_barang' => $request->deskripsi,
+                        'nama_foto_barang' => $lampiran,
+                        'path_foto_barang' => $path 
+                    ];
+                    $this->asetRepository->updateByUuid($setData,$uuid);
+                    DB::commit();
+                    return redirect('/managemen/aset')->with('success', 'Data aset berhasil diubah');
+                }else{
+                    $aset = $this->statusAsetRepository->findByUuid($request->uuid_status_aset);
+                    $setData = [
+                        'nama_barang' => $request->nama_barang,
+                        'kode_barang' => $request->kode,
+                        'id_status_aset' => $aset->id,
+                        'deskripsi_barang' => $request->deskripsi,
+                    ];
+                    $this->asetRepository->updateByUuid($setData,$uuid);
+                    DB::commit();
+                    return redirect('/managemen/aset')->with('success', 'Data aset berhasil diubah');
+                }
             } catch (\Exception $e) {
+                DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Data aset gagal ditambahkan' . $e->getMessage()]);
             }
         }
-        public function editSurat(Request $request){
+
+        public function editSurat(Request $request, $uuid){
             try {
                 DB::beginTransaction();
-                
+                $pemberi = $this->jabatanRepository->findByUuid($request->uuid_jabatan_pemberi);
+                $penerima = $this->userRepository->findByUuid($request->uuid_penerima);
+                $setData = [
+                        'id_jabatan_pemberi' => $pemberi->id,
+                        'id_user_penerima'=> $penerima->id,
+                        'jabatan_penerima' => $request->jabatan_penerima,
+                        'nomor_surat' => $request->nomor_surat,
+                        'keperluan' => $request->keperluan,
+                        'tempat_dibuat'=> $request->tempat_dibuat,
+                        'tgl_dibuat' => $request->tgl_dibuat,
+                    ];
+                $this->suratRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                return response()->json(['success' => true, 'message' => 'Surat berhasil dibuat']);
-                
+                return redirect('/managemen/surat')->with('success', 'Data surat berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Gagal membuat surat: ' . $e->getMessage()]);
+                return response()->json(['success' => false, 'message' => 'Data surat gagal ditambahkan' . $e->getMessage()]);
             } 
         }
-        public function editKegiatan(Request $request){
+        public function editKegiatan(Request $request,$uuid){
             try {
-                $request->validate([
+                DB::beginTransaction();
+                if ($request->hasFile('lampiran')) {
+                    $request->validate([
                     'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
                 ]);
-                DB::beginTransaction();
-               
-                DB::commit();
-                return response()->json(['success' => true, 'message' => 'Data kegiatan berhasil ditambahkan']);
-                
+                    $sumber = $this->sumberDanaRepository->findByUuid($request->sumber_dana);
+                    $lampiranNames = [];
+                    $pathLampiran = [];
+                    
+                    if (is_array($request->file('lampiran')) || is_object($request->file('lampiran'))) {
+                        $lampiranFiles = $request->file('lampiran');
+                        foreach ($lampiranFiles as $lampiran) {
+                            $lampiranNames[] = $lampiran->getClientOriginalName();
+                            $lampiran->move('dokumen/kegiatan', $lampiran->getClientOriginalName());
+                            $pathLampiran[] = 'dokumen/kegiatan/' . $lampiran->getClientOriginalName();
+                        }
+                    }
+                    $lampiran = implode(';', $lampiranNames);
+                    $path = implode(';', $pathLampiran);
+                    $setData = [
+                        'nama_kegiatan' => $request->nama_kegiatan,
+                        'deskripsi_kegiatan' => $request->deskripsi,
+                        'lokasi' => $request->lokasi,
+                        'id_sumber_dana' => $sumber->id,
+                        'tgl_kegiatan' => $request->tanggal,
+                        'nama_foto_kegiatan' => $lampiran,
+                        'path_foto_kegiatan' => $path 
+                    ];
+                    $this->kegiatanRepository->updateByUuid($setData,$uuid);
+                    DB::commit();
+                    return redirect('/managemen/kegiatan')->with('success', 'Data kegiatan berhasil diubah');
+                }else{
+                    $sumber = $this->sumberDanaRepository->findByUuid($request->sumber_dana);
+                    $setData = [
+                        'nama_kegiatan' => $request->nama_kegiatan,
+                        'deskripsi_kegiatan' => $request->deskripsi,
+                        'lokasi' => $request->lokasi,
+                        'id_sumber_dana' => $sumber->id,
+                        'tgl_kegiatan' => $request->tanggal,
+                    ];
+                    $this->kegiatanRepository->updateByUuid($setData,$uuid);
+                    DB::commit();
+                    return redirect('/managemen/kegiatan')->with('success', 'Data kegiatan berhasil diubah');
+                }
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: ' . $e->getMessage()]);
-            } 
+                return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan' . $e->getMessage()]);
+            }
+            
         }
-        public function editArsip(Request $request){
+        public function editArsip(Request $request,$uuid){
             try {
-                $request->validate([
-                    'lampiran.*' => 'mimes:pdf|max:4096',
-                ]);
-                DB::beginTransaction();
+                if ($request->hasFile('lampiran')) {
+                    $request->validate([
+                        'lampiran.*' => 'mimes:pdf|max:4096',
+                    ]);
+                    $lampiranNames = [];
+                    $pathLampiran = [];
+                    if (is_array($request->file('lampiran')) || is_object($request->file('lampiran'))) {
+                        $lampiranFiles = $request->file('lampiran');
+                        foreach ($lampiranFiles as $lampiran) {
+                            $lampiranNames[] = $lampiran->getClientOriginalName();
+                            $lampiran->move('dokumen/kegiatan', $lampiran->getClientOriginalName());
+                            $pathLampiran[] = 'dokumen/kegiatan/' . $lampiran->getClientOriginalName();
+                        }
+                    }
+                    $lampiran = implode(';', $lampiranNames);
+                    $path = implode(';', $pathLampiran);
+                    $setData = [
+                        'nama_dokumen' => $request->nama_dokumen,
+                        'deskripsi_dokumen' => $request->deskripsi,
+                        'kode_dokumen' => $request->kode,
+                        'nama_file_dokumen' => $lampiran,
+                        'path_file_dokumen' => $path 
+                    ];
+                    $this->arsipRepository->updateByUuid($setData,$uuid);
+                    DB::commit();
+                    return redirect('/managemen/arsip')->with('success', 'Data kegiatan berhasil diubah');
+                }else{
+                    $setData = [
+                        'nama_dokumen' => $request->nama_dokumen,
+                        'deskripsi_dokumen' => $request->deskripsi,
+                        'kode_dokumen' => $request->kode];
+                    $this->arsipRepository->updateByUuid($setData,$uuid);
                 
                 DB::commit();
-                return response()->json(['success' => true, 'message' => 'Data kegiatan berhasil ditambahkan']);
-                
+                return redirect('/managemen/arsip')->with('success', 'Data arsip berhasil diubah');
+                }
             } catch (\Exception $e) {
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: ' . $e->getMessage()]);

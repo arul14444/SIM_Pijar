@@ -44,12 +44,11 @@
                         <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <form method="POST" action="/donatur/edit/{{$dt->uuid}}">                                    @csrf
-                                    @method('PUT')
-                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <a href="/donatur/edit/{{$dt->uuid}}">                                    
+                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
-                                </form>
+                                </a>
                                 <form method="POST" action="/donatur/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')

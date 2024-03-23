@@ -23,6 +23,7 @@ class KegiatanRepository{
         return Kegiatan::select(DB::raw('DATE_FORMAT(tgl_kegiatan, "%m-%Y") as bulan'), DB::raw('COUNT(*) as total'))
         ->groupBy('bulan')
         ->orderByRaw('MIN(tgl_kegiatan)') // Urutkan berdasarkan tanggal terkecil di setiap kelompok bulan-tahun
+        ->where('flag_aktif',true)
         ->get();
     }
    public function create($data)
@@ -35,7 +36,9 @@ class KegiatanRepository{
    }
    public function findByUuid($uuid)
    {
-       return Kegiatan::from('anak as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
+        return Kegiatan::select('kegiatan.*','sumber_dana.sumber')
+         ->join('sumber_dana','sumber_dana.id','kegiatan.id_sumber_dana')
+         ->where(['kegiatan.uuid' => $uuid, 'kegiatan.flag_aktif' => true])->first();
    }
    public function delete($uuid)
    {

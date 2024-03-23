@@ -13,6 +13,7 @@ class SuratRepository{
         ->join('jabatan as j','j.id','s.id_jabatan_pemberi')
         ->join('user as u1','u1.id','j.id_user')
         ->join('user as u2','u2.id','s.id_user_penerima')
+        ->orderBy('tgl_dibuat','desc')
         ->where('s.flag_aktif',true);
 
    }
@@ -27,7 +28,7 @@ class SuratRepository{
    public function findByUuid($uuid)
    {
        return Surat::from('surat as s')
-       ->select('s.nomor_surat','u1.nama as pemberi','j.jabatan as jabatan_pemberi','u1.alamat as alamat_pemberi','u2.nama as penerima','s.jabatan_penerima','u2.alamat as alamat_penerima','s.keperluan','s.tempat_dibuat','s.tgl_dibuat')
+       ->select('s.nomor_surat','u1.nama as pemberi','j.jabatan as jabatan_pemberi','u1.alamat as alamat_pemberi','u2.nama as penerima','s.jabatan_penerima','u2.alamat as alamat_penerima','s.keperluan','s.tempat_dibuat','s.tgl_dibuat','s.uuid')
        ->join('jabatan as j','j.id','s.id_jabatan_pemberi')
        ->join('user as u1','u1.id','j.id_user')
        ->join('user as u2','u2.id','s.id_user_penerima')

@@ -77,7 +77,7 @@ Route::get('/managemen/aset', function () {
 Route::get('/managemen/aset',[DataController::class,'dataAset']);
 Route::post('/aset/print-pdf', [PrintController::class, 'printPdfAset']);
 Route::put('/aset/delete/{uuid}', [DeleteController::class, 'deleteAset']);
-Route::get('/aset/edit/{uuid}', [EditController::class, 'detaileAset']);
+Route::get('/aset/edit/{uuid}', [EditController::class, 'detailAset']);
 Route::put('/aset/edit/{uuid}', [EditController::class, 'editAset']);
 
 //managemen kegiatan

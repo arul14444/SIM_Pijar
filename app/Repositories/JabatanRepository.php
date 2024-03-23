@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class JabatanRepository{
    public function getJabatan(){
-        return Jabatan::select('jabatan.jabatan','pengurus.nama','pengurus.alamat','user.uuid',)
+        return Jabatan::select('jabatan.jabatan','pengurus.nama','pengurus.alamat','jabatan.uuid',)
         ->join('user as pengurus', 'pengurus.id','jabatan.id_user')
         ->where('jabatan.flag_aktif',true);
    }
@@ -22,7 +22,7 @@ class JabatanRepository{
    }
    public function findByUuid($uuid)
    {
-       return Jabatan::from('jabatan')->where(['uuid'=>$uuid,'flag_aktif'=>true]);
+       return Jabatan::from('jabatan')->where(['uuid'=>$uuid,'flag_aktif'=>true])->first();
    }
    public function delete($uuid)
    {

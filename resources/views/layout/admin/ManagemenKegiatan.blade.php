@@ -61,13 +61,11 @@
                     </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <form method="POST" action="/kegiatan/edit/{{$dt->uuid}}">
-                                @csrf
-                                @method('PUT')
+                           <a href="/kegiatan/edit/{{$dt->uuid}}">
                                 <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
-                            </form>
+                            </a>
                             <form method="POST" action="/kegiatan/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')

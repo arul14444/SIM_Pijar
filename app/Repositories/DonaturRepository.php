@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class DonaturRepository{
    public function getDonatur(){
-        return Donatur::select('*');
+        return Donatur::select('*')->where('flag_aktif',true);
    }
    public function create($data)
    {

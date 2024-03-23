@@ -26,7 +26,9 @@ class AsetRepository{
    }
    public function findByUuid($uuid)
    {
-       return Aset::from('aset as a')->where(['a.uuid' => $uuid, 'flag_aktif' => true])->first();
+    return Aset::select('aset.*','sa.status')
+         ->join('status_aset as sa','sa.id','aset.id_status_aset')
+         ->where(['aset.uuid' => $uuid, 'aset.flag_aktif' => true])->first();
    }
    public function delete($uuid)
    {

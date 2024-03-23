@@ -50,13 +50,11 @@
                                         <i class="fa-solid  fa-download"></i>
                                     </button>
                                 </form>
-                                <form method="POST" action="/surat/edit/{{$dt->uuid}}">
-                                    @csrf
-                                    @method('PUT')
+                                <a href="/surat/edit/{{$dt->uuid}}">
                                     <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
-                                </form>
+                                </a>
                                 <form method="POST" action="/surat/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')
