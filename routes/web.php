@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 
-
+//admin atau pengurus inti
 //dashboard
 Route::get('/dashboard/admin', function () {
     return view('layout/admin/Dashboard');
@@ -163,5 +163,17 @@ Route::get('/print/surat',[TambahDataController::class,'dataSurat']);
 
 
 
-
-
+//anggota
+Route::get('/dashboard/anggota', function () {
+    return view('layout/anggota/Dashboard');
+});
+Route::get('/managemen/hasil-pemeriksaan', function () {
+    return view('layout/anggota/ManagemenHasilPemeriksaan');
+});
+Route::get('/tambah/hasil-pemeriksaan', function () {
+    return view('layout/anggota/TambahHasilPemeriksaan');
+});
+Route::get('/kegiatan/anggota', function () {
+    return view('layout/anggota/Kegiatan');
+});
+Route::get('/kegiatan/anggota',[DataController::class,'dataKegiatanAnggota']);

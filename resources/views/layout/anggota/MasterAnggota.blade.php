@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Static Navigation - SB Admin</title>
-    <link href="{{ asset('template/css/styles.css') }}" rel="stylesheet" />
+    <title>@yield('title')</title>
+    <link href="{{ asset('resources/css/app.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    
 </head>
 <body>
    {{-- nav --}}
@@ -19,13 +22,20 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">@yield('judul')</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Static Navigation</li>
-                    </ol>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="mt-4">@yield('title')</h1>
+                            <ol class="breadcrumb mb-4">
+                                @yield('route')
+                            </ol>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 mt-4 p-3" id="responseMessage"></div>
+                        </div>
+                    </div>
                     <div class="card mb-4">
                         <div class="card-body">
+                            @stack('script')
                             @yield('content')
                         </div>
                     </div>
@@ -36,6 +46,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src= {{ asset("template/js/scripts.js")}}></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src= {{ asset('resources/js/script.js')}}></script>
 </body>
 </html>

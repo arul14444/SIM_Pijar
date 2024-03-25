@@ -55,12 +55,38 @@ class DataController extends Controller
         return view('layout.admin.ManagemenPengurus')->with('data', $data->get());
     }
     
+    public function dataKegiatanAnggota(){
+        $data = $this->kegiatanRepository->getKegiatan()->get();
+        foreach ($data as $dt){
+            // Ubah format tanggal dibuat
+            $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);
+            $bulanIndonesia = [
+                1 => 'Januari',
+                2 => 'Februari',
+                3 => 'Maret',
+                4 => 'April',
+                5 => 'Mei',
+                6 => 'Juni',
+                7 => 'Juli',
+                8 => 'Agustus',
+                9 => 'September',
+                10 => 'Oktober',
+                11 => 'November',
+                12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_kegiatan->month];
+            $formatted_tgl_dibuat = $tgl_kegiatan->day . ' ' . $namaBulan . ' ' . $tgl_kegiatan->year;
+            $dt->tgl_kegiatan= $formatted_tgl_dibuat;
+        
+            // Pisahkan nama foto dan path foto kegiatan
+            $dt->nama_foto_kegiatan = explode(';', $dt->nama_foto_kegiatan);
+            $dt->path_foto_kegiatan = explode(';', $dt->path_foto_kegiatan);
+        }
+        return view('layout.anggota.Kegiatan')->with('data', $data);
+    }
 
     public function dataKegiatan(){
         $data = $this->kegiatanRepository->getKegiatan()->get();
-
-
-    
         foreach ($data as $dt){
             // Ubah format tanggal dibuat
             $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);

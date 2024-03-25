@@ -37,7 +37,7 @@
                     <td>{{ $dt->deskripsi_kegiatan }}</td>
                     <td>{{ $dt->tgl_kegiatan }}</td>
                     <td>{{ $dt->lokasi }}</td>
-                    <td>{{ $dt->sumber_dana }}</td>
+                    <td>{{ $dt->sumber }}</td>
                 </tr>
                 @endforeach
             </tbody>
