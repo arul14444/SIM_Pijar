@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\DonaturRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahDonaturService{
     protected  $donaturRepository;
@@ -20,6 +21,7 @@ class TambahDonaturService{
                 'nama' => $data->nama,
                 'nomor_telepon' => $data->nomor_telepon,
                 'alamat' => $data->alamat,
+                'user_update' => Auth::user()->nama
             ];
            return $this->donaturRepository->create($setData);
          

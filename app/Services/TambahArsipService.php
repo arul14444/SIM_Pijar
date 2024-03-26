@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use App\Repositories\ArsipRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahArsipService{
     protected $arsipRepository;
@@ -34,7 +35,8 @@ class TambahArsipService{
             'deskripsi_dokumen' => $data->deskripsi,
             'kode_dokumen' => $data->kode,
             'nama_file_dokumen' => $lampiran,
-            'path_file_dokumen' => $path 
+            'path_file_dokumen' => $path,
+            'user_update' => Auth::user()->nama
         ];
     
         return $this->arsipRepository->create($setData);

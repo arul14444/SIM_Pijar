@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Repositories\KegiatanRepository;
 use App\Repositories\SumberDanaRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahKegiatanService{
     protected $kegiatanRepository, $sumberDanaRepository;
@@ -41,7 +42,8 @@ class TambahKegiatanService{
             'id_sumber_dana' => $sumber->id,
             'tgl_kegiatan' => $data->tanggal,
             'nama_foto_kegiatan' => $lampiran,
-            'path_foto_kegiatan' => $path 
+            'path_foto_kegiatan' => $path,
+            'user_update' => Auth::user()->nama
         ];
     
         return $this->kegiatanRepository->create($setData);

@@ -159,7 +159,7 @@ class TambahDataController extends Controller
     public function tambahArsip(Request $request){
         try {
             $request->validate([
-                'lampiran.*' => 'mimes:pdf|max:4096',
+                'lampiran.*' => 'mimes:pdf|max:2048',
             ]);
             DB::beginTransaction();
             $this->tambahArsipService->setData($request);

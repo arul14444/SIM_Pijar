@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\JabatanRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahSuratService{
     protected  $suratRepository, $jabatanRepository, $userRepository;
@@ -31,6 +32,7 @@ class TambahSuratService{
                 'keperluan' => $data->keperluan,
                 'tempat_dibuat'=> $data->tempat_dibuat,
                 'tgl_dibuat' => $data->tgl_dibuat,
+                'user_update' => Auth::user()->nama
             ];
            return $this->suratRepository->create($setData);
     }

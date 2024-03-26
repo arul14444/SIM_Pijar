@@ -15,6 +15,7 @@ use App\Repositories\SumberDanaRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EditController extends Controller
@@ -110,7 +111,8 @@ class EditController extends Controller
                     $setData =[
                         'nama'=> $request->nama,
                         'nomor_telepon'=> $request->nomor_telepon,
-                        'alamat'=>$request->alamat
+                        'alamat'=>$request->alamat,
+                        'user_update' => Auth::user()->nama
                     ];
                     $this->userRepository->updateByUuid($setData,$uuid);
                 DB::commit();
@@ -126,7 +128,8 @@ class EditController extends Controller
                 DB::beginTransaction();
                     $setData =[
                         'nomor_telepon'=> $request->nomor_telepon,
-                        'alamat'=>$request->alamat
+                        'alamat'=>$request->alamat,
+                        'user_update' => Auth::user()->nama
                     ];
                     $this->userRepository->updateByUuid($setData,$uuid);
                 DB::commit();
@@ -156,7 +159,8 @@ class EditController extends Controller
                         'kemampuan_binaural'=>$request->kemampuan_telinga_binaural,
                         'penyakit_penyerta'=>$request->penyakit_penyerta,
                         'id_user'=> $ortu->id,
-                        'bpjs'=> $request->bpjs
+                        'bpjs'=> $request->bpjs,
+                        'user_update' => Auth::user()->nama
                     ];
                     $this->anakRepository->updateBy($setData,$uuid);
 
@@ -166,6 +170,7 @@ class EditController extends Controller
                         'kemampuan_kiri'=> $request->kemampuan_telinga_kiri,
                         'kemampuan_kanan'=> $request->kemampuan_telinga_kanan,
                         'kemampuan_binaural'=>$request->kemampuan_telinga_binaural,
+                        'user_update' => Auth::user()->nama
                     ];
                     $this->gangguanRepository->updateBy($setGangguan,$gangguan->uuid);
                 DB::commit();
@@ -182,7 +187,8 @@ class EditController extends Controller
                 $setData=[
                         'nama'=> $request->nama,
                         'nomor_telepon'=> $request->nomor_telepon,
-                        'alamat'=>$request->alamat
+                        'alamat'=>$request->alamat,
+                        'user_update' => Auth::user()->nama
                 ];
                 $this->donaturRepository->updateByUuid($setData,$uuid);
                 DB::commit();
@@ -217,7 +223,8 @@ class EditController extends Controller
                         'id_status_aset' => $aset->id,
                         'deskripsi_barang' => $request->deskripsi,
                         'nama_foto_barang' => $lampiran,
-                        'path_foto_barang' => $path 
+                        'path_foto_barang' => $path,
+                        'user_update' => Auth::user()->nama 
                     ];
                     $this->asetRepository->updateByUuid($setData,$uuid);
                     DB::commit();
@@ -229,6 +236,7 @@ class EditController extends Controller
                         'kode_barang' => $request->kode,
                         'id_status_aset' => $aset->id,
                         'deskripsi_barang' => $request->deskripsi,
+                        'user_update' => Auth::user()->nama
                     ];
                     $this->asetRepository->updateByUuid($setData,$uuid);
                     DB::commit();
@@ -253,6 +261,7 @@ class EditController extends Controller
                         'keperluan' => $request->keperluan,
                         'tempat_dibuat'=> $request->tempat_dibuat,
                         'tgl_dibuat' => $request->tgl_dibuat,
+                        'user_update' => Auth::user()->nama
                     ];
                 $this->suratRepository->updateByUuid($setData,$uuid);
                 DB::commit();
@@ -290,7 +299,8 @@ class EditController extends Controller
                         'id_sumber_dana' => $sumber->id,
                         'tgl_kegiatan' => $request->tanggal,
                         'nama_foto_kegiatan' => $lampiran,
-                        'path_foto_kegiatan' => $path 
+                        'path_foto_kegiatan' => $path,
+                        'user_update' => Auth::user()->nama 
                     ];
                     $this->kegiatanRepository->updateByUuid($setData,$uuid);
                     DB::commit();
@@ -303,6 +313,7 @@ class EditController extends Controller
                         'lokasi' => $request->lokasi,
                         'id_sumber_dana' => $sumber->id,
                         'tgl_kegiatan' => $request->tanggal,
+                        'user_update' => Auth::user()->nama
                     ];
                     $this->kegiatanRepository->updateByUuid($setData,$uuid);
                     DB::commit();
@@ -318,7 +329,7 @@ class EditController extends Controller
             try {
                 if ($request->hasFile('lampiran')) {
                     $request->validate([
-                        'lampiran.*' => 'mimes:pdf|max:4096',
+                        'lampiran.*' => 'mimes:pdf|max:2048',
                     ]);
                     $lampiranNames = [];
                     $pathLampiran = [];
@@ -337,7 +348,8 @@ class EditController extends Controller
                         'deskripsi_dokumen' => $request->deskripsi,
                         'kode_dokumen' => $request->kode,
                         'nama_file_dokumen' => $lampiran,
-                        'path_file_dokumen' => $path 
+                        'path_file_dokumen' => $path,
+                        'user_update' => Auth::user()->nama 
                     ];
                     $this->arsipRepository->updateByUuid($setData,$uuid);
                     DB::commit();

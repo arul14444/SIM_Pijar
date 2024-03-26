@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahAnggotaService{
     protected  $userRepository;
@@ -21,7 +22,8 @@ class TambahAnggotaService{
                 'username' => $data->username,
                 'alamat' => $data->alamat,
                 'role' => config('pijar.role.anggota.kode'),
-                'password' => $password
+                'password' => $password,
+                'user_update' => Auth::user()->nama
             ];
             $this->userRepository->create($setData);
             return ;

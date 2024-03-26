@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Repositories\AsetRepository;
 use App\Repositories\StatusAsetRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahAsetService{
     protected  $asetRepository,$statusAsetRepository;
@@ -52,7 +53,8 @@ class TambahAsetService{
             'id_status_aset' => $aset->id,
             'deskripsi_barang' => $data->deskripsi,
             'nama_foto_barang' => $lampiran,
-            'path_foto_barang' => $path 
+            'path_foto_barang' => $path,
+            'user_update' => Auth::user()->nama 
         ];
     
         return $this->asetRepository->create($setData);

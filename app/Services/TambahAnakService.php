@@ -6,6 +6,7 @@ use App\Repositories\AbdRepository;
 use App\Repositories\AnakRepository;
 use App\Repositories\gangguanRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TambahAnakService{
     protected  $anakRepository,$userRepository,$abdRepository, $gangguanRepository;
@@ -39,7 +40,8 @@ class TambahAnakService{
             'kemampuan_binaural'=>$data->kemampuan_telinga_binaural,
             'penyakit_penyerta'=>$data->penyakit_penyerta,
             'id_user'=> $ortu->id,
-            'bpjs'=> $data->bpjs
+            'bpjs'=> $data->bpjs,
+            'user_update' => Auth::user()->nama
         ];
         $this->anakRepository->create($setData);
 
@@ -47,7 +49,8 @@ class TambahAnakService{
         $setGangguan = [
             'kemampuan_kiri'=> $data->kemampuan_telinga_kiri,
             'kemampuan_kanan'=> $data->kemampuan_telinga_kanan,
-            'id_anak'=> $getAnak->id
+            'id_anak'=> $getAnak->id,
+            'user_update' => Auth::user()->nama
         ];
 
         return $this->gangguanRepository->create($setGangguan);

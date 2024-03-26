@@ -20,6 +20,9 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
     
         if(Auth::attempt($credentials)){
+            if(Auth::user()->flag_aktif == false){
+                return redirect('/logout');
+            }
             if(Auth::user()->role == 'admin'){
                 return redirect('/dashboard/admin');
             }elseif(Auth::user()->role == 'anggota'){
