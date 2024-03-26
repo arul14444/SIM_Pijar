@@ -38,11 +38,11 @@
                                             @csrf
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="username" name="username" type="text" placeholder="username" value="{{old('username')}}" />
-                                                <label for="inputEmail">username</label>
+                                                <label for="username">username</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Password</label>
+                                                <label for="password">Password</label>
                                             </div>
                                             
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">

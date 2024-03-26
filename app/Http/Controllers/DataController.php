@@ -11,6 +11,7 @@ use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataController extends Controller
 {
