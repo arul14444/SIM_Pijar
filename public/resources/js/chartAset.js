@@ -5,6 +5,13 @@ var tidakTersedia = canvas.getAttribute('data-tidakTersedia');
 var rusak = canvas.getAttribute('data-rusak');
 var perbaikan = canvas.getAttribute('data-perbaikan');
 
+const apiUrl = 'http://127.0.0.1:8000/get/aset';
+var kd_status= '';
+
+document.addEventListener('DOMContentLoaded', () => {
+    getDataAset();
+})
+
 var data = {
     labels: ['Tersedia', 'Tidak Tersedia', 'Rusak', 'Perbaikan'],
     datasets: [{
@@ -31,6 +38,12 @@ var options = {
     maintainAspectRatio: false,
     legend: {
         position: 'bottom'
+    },
+    onClick:async function(event,element){
+        const labels = this.data.labels[element[0].index]
+        getDataAset(labels);
+        this.kd_status = await setKodeStatus(labels);
+        console.log(this.kd_status, 'KD STATUS');
     }
 };
 
@@ -42,46 +55,64 @@ var myPieChart = new Chart(ctx, {
     options: options
 });
 
-// Menambahkan event listener untuk menangani klik pada bagian chart
-// canvas.addEventListener('click', function(event) {
-//     var activeElement = myPieChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true)[0];
-//     if (activeElement) {
-//         var kd_status;
-//         switch (activeElement._index) {
-//             case 0:
-//                 kd_status = 'TER';
-//                 break;
-//             case 1:
-//                 kd_status = 'TDK';
-//                 break;
-//             case 2:
-//                 kd_status = 'RSK';
-//                 break;
-//             case 3:
-//                 kd_status = 'DPR';
-//                 break;
-//             default:
-//                 kd_status = null;
-//                 break;
-//         }
-//         if (kd_status) {
-//             // Lakukan permintaan HTTP ke endpoint dengan parameter kd_status
-//             var xhr = new XMLHttpRequest();
-//             xhr.open('GET', '/dashboard/admin?kd_status=' + kd_status, true);
-//             xhr.onload = function() {
-//                 if (xhr.status >= 200 && xhr.status < 300) {
-//                     // Respons sukses
-//                     var data = JSON.parse(xhr.responseText);
-//                     console.log(data); // Lakukan sesuatu dengan data yang diterima
-//                 } else {
-//                     // Respons gagal
-//                     console.error('Permintaan gagal. Status: ' + xhr.status);
-//                 }
-//             };
-//             xhr.onerror = function() {
-//                 console.error('Terjadi kesalahan saat melakukan permintaan.');
-//             };
-//             xhr.send();
-//         }
-//     }
-// });
+
+ function  setKodeStatus(kode){
+    switch (kode) {
+        case 'Tersedia':
+            return 'TER';
+            break;
+        case 'Rusak':
+            return 'RSK';
+            break;
+        case 'Tidak Tersedia':
+            return 'TDK';
+            break;
+        case 'Perbaikan':
+            return 'DPR';
+            break;
+    
+        default:
+            return '';
+            break;
+    }
+}
+
+function reset() {
+    this.kd_status = '';
+    getDataAset();
+}
+
+// Fetch data from the API endpoint with query parameters
+async function getDataAset(labels){
+    this.kd_status = await setKodeStatus(labels);
+    const queryParams = new URLSearchParams();
+    queryParams.set('kd_status',this.kd_status || '' );
+    let fullUrl = `${apiUrl}?${queryParams}`;
+    fetch(fullUrl)
+    .then(response => response.json())
+    .then(data => {
+    console.log(data);
+
+    const tableBody = document.querySelector('#tabelAset tbody');
+    tableBody.innerHTML = ''
+
+    data.forEach((user, index) => {
+     
+      const row = tableBody.insertRow();
+
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+      const cell4 = row.insertCell(3);
+
+      cell1.textContent =  index+1,
+      cell2.textContent = user.nama_barang;
+      cell3.textContent = user.kode_barang;
+      cell4.textContent = user.status;
+    });
+
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+}

@@ -131,6 +131,7 @@ Route::middleware(['auth'])->group(function(){
         });
         Route::get('/tambah/anak',[TambahDataController::class,'listDataTambahAnak']);
         Route::post('/tambah/anak',[TambahDataController::class,'tambahAnakbyAdmin']);
+        Route::get('/get/pendengaran/anak/{{uuid}}',[DataController::class,'getDataPendengaran']);
 
         //tambah donatur
         Route::get('/tambah/donatur', function () {
@@ -143,6 +144,8 @@ Route::middleware(['auth'])->group(function(){
         });
         Route::post('/tambah/aset',[TambahDataController::class,'tambahAset']);
         Route::get('/tambah/aset',[TambahDataController::class,'listStatusAset']);
+        Route::get('/get/aset',[DataController::class,'getDataAset']);
+
 
         //tambah kegiatan
         Route::get('/tambah/kegiatan', function () {
@@ -187,13 +190,4 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/kegiatan/anggota',[DataController::class,'dataKegiatanAnggota']);
         });        
     });
-
-//admin atau pengurus inti
-
-
-
-
-//anggota
-
-
 

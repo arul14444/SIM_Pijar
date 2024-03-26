@@ -26,6 +26,12 @@ class gangguanRepository{
             ->orderBy('created_at', 'ASC')
             ->first();
     }
+    public function dataPendengaran($uuid){
+        return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan')
+        ->where(['uuid'=>$uuid, 'flag_aktif'=>true])
+        ->orderBy('tgl_pemeriksaan', 'ASC')
+        ->get();
+    }
     public function findByUuid($uuid)
     {
         return Gangguan::select('*')

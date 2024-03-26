@@ -180,11 +180,24 @@
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                Kemampuan Dengar Anak
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-chart-bar me-1"></i>
+                        Riwayat Kemampuan Dengar Anak
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select" id="inputAnak" name="uuid_anak" onclick="grafikAnak()">
+                            <option selected disabled>Pilih Nama Anak</option>
+                            @foreach ($data['dataAnak'] as $dt)    
+                                <option value="{{$dt->uuid}}">{{$dt->nama}}</option>
+                            @endforeach
+                        </select>               
+                    </div>
+                </div>
+                
             </div>
             <div class="card-body">
-                <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="350"></canvas>
+                <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="330px"></canvas>
             </div>
         </div>
     </div>
@@ -204,11 +217,14 @@
     </div>
     <div class="col-md-6">
         <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
+            <div class="card-header d-flex justify-content-between align-items-center">
                 Data Aset
+                
+                <a class="btn btn-primary float-right" onclick="reset()">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </a>
             </div>
-            <div class="card-body" style="overflow-y: auto; max-height: 335px;">
+            <div class="card-body" style="overflow-y: auto; max-height: 368px;">
                 <table id="tabelAset" class="table table-striped table-bordered" width="100%">
                     <thead>
                         <tr class="text-center">
@@ -219,14 +235,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['listAset'] as $index => $dt)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $dt->nama_barang }}</td>
-                            <td>{{ $dt->kode_barang }}</td>
-                            <td>{{ $dt->status }}</td>
-                        </tr> 
-                        @endforeach
+
                     </tbody>
                 </table>
             </div>

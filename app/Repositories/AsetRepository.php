@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AsetRepository{
    public function getAset(){
-        return Aset::select('aset.*','sa.status')
+        return Aset::select('aset.*','sa.status','sa.kd_status')
         ->join('status_aset as sa','sa.id','aset.id_status_aset')
+        ->orderBy('sa.order')
         ->where(['aset.flag_aktif'=>1]);
    }
    public function getAsetStatus($kdStatus){
