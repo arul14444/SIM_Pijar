@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\Gangguan;
 use Illuminate\Database\Eloquent\Collection;
 
-class gangguanRepository{
+class GangguanRepository{
     public function getAnak(){
             return Gangguan::select('')
             ->where(['anak.flag_aktif'=>1]);
@@ -26,9 +26,9 @@ class gangguanRepository{
             ->orderBy('created_at', 'ASC')
             ->first();
     }
-    public function dataPendengaran($uuid){
+    public function dataPendengaran($id_anak){
         return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan')
-        ->where(['uuid'=>$uuid, 'flag_aktif'=>true])
+        ->where(['id_anak'=>$id_anak, 'flag_aktif'=>true])
         ->orderBy('tgl_pemeriksaan', 'ASC')
         ->get();
     }

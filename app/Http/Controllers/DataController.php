@@ -6,6 +6,7 @@ use App\Repositories\AnakRepository;
 use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
+use App\Repositories\GangguanRepository;
 use App\Repositories\KegiatanRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DataController extends Controller
 {
-    protected  $suratRepository,$donaturRepository,$userRepository,$kegiatanRepository,$asetRepository,$arsipRepository,$anakRepository;
+    protected  $gangguanRepository,$suratRepository,$donaturRepository,$userRepository,$kegiatanRepository,$asetRepository,$arsipRepository,$anakRepository;
     public function __construct(
         DonaturRepository $donaturRepository,
         UserRepository $userRepository,
@@ -23,7 +24,8 @@ class DataController extends Controller
         AsetRepository $asetRepository,
         ArsipRepository $arsipRepository,
         AnakRepository $anakRepository,
-        SuratRepository $suratRepository
+        SuratRepository $suratRepository,
+        GangguanRepository $gangguanRepository,
 
     ) {
         $this->donaturRepository = $donaturRepository;
@@ -33,6 +35,7 @@ class DataController extends Controller
         $this->arsipRepository = $arsipRepository;
         $this->anakRepository = $anakRepository;
         $this->suratRepository = $suratRepository;
+        $this->gangguanRepository = $gangguanRepository;
     }
 
     
@@ -218,8 +221,9 @@ class DataController extends Controller
     }
     
     public function getDataPendengaran($uuid){
-        $pendengaran = $this->anakRepository->findByUuid($uuid);
-        
+        $id_anak = $this->anakRepository->findByUuid($uuid)->id;
+        $data = $this->gangguanRepository->dataPendengaran($id_anak);
+        return response()->json($data);
 
     }
 } 

@@ -186,18 +186,17 @@
                         Riwayat Kemampuan Dengar Anak
                     </div>
                     <div class="col-md-6">
-                        <select class="form-select" id="inputAnak" name="uuid_anak" onclick="grafikAnak()">
-                            <option selected disabled>Pilih Nama Anak</option>
+                        <select class="form-select" id="inputAnak" name="uuid_anak">
+                            <option selected disabled value="">Pilih Nama Anak</option>
                             @foreach ($data['dataAnak'] as $dt)    
-                                <option value="{{$dt->uuid}}">{{$dt->nama}}</option>
+                                <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
                             @endforeach
                         </select>               
                     </div>
-                </div>
-                
+                </div>                
             </div>
             <div class="card-body">
-                <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="330px"></canvas>
+                <canvas id="chartPendengaran" width="100%" height="330px"></canvas>
             </div>
         </div>
     </div>
@@ -280,5 +279,6 @@
 <script src="{{ asset('resources/js/chartAset.js') }}"></script>
 <script src="{{ asset('resources/js/chartDana.js') }}"></script>
 <script src="{{ asset('resources/js/chartKegiatan.js') }}"></script>
+<script src="{{ asset('resources/js/chartKemampuanDengar.js') }}"></script>
 @endsection
 

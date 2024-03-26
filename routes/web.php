@@ -41,6 +41,10 @@ Route::middleware(['auth'])->group(function(){
         });
         //dashboard
         Route::get('/dashboard/admin',[DataController::class,'infobox']);
+        Route::get('/get/aset',[DataController::class,'getDataAset']);
+        Route::get('/get/pendengaran-anak/{uuid}',[DataController::class,'getDataPendengaran']);
+        
+
         Route::get('/managemen/anggota', function () {
             return view('layout/admin/ManagemenAnggota');
         });
@@ -131,7 +135,6 @@ Route::middleware(['auth'])->group(function(){
         });
         Route::get('/tambah/anak',[TambahDataController::class,'listDataTambahAnak']);
         Route::post('/tambah/anak',[TambahDataController::class,'tambahAnakbyAdmin']);
-        Route::get('/get/pendengaran/anak/{{uuid}}',[DataController::class,'getDataPendengaran']);
 
         //tambah donatur
         Route::get('/tambah/donatur', function () {
@@ -144,8 +147,6 @@ Route::middleware(['auth'])->group(function(){
         });
         Route::post('/tambah/aset',[TambahDataController::class,'tambahAset']);
         Route::get('/tambah/aset',[TambahDataController::class,'listStatusAset']);
-        Route::get('/get/aset',[DataController::class,'getDataAset']);
-
 
         //tambah kegiatan
         Route::get('/tambah/kegiatan', function () {
