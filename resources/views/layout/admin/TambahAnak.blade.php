@@ -2,7 +2,7 @@
 @section('title','Tambah Anak')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Managemen Anak</a></li>
+        <li class="breadcrumb-item"><a href="index.html">Manajemen Anak</a></li>
         <li class="breadcrumb-item active">Tambah</li>
     </ol>
 @endsection
@@ -85,6 +85,14 @@
                             @endforeach
                         </select>
                         <label for="inputAbdKanan">Jenis ABD Telinga Kanan</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <input class="form-control" id="inputTanggalLahir" name="tgl_pemeriksaan" type="date" placeholder="Enter your last name" />
+                        <label for="inputTanggalLahir">Tanggal Pemeriksaan Terakhir</label>
                     </div>
                 </div>
             </div>

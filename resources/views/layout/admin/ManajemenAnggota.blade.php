@@ -1,64 +1,59 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Surat Tugas')
+@section('title', 'Manajemen Anggota')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Surat Tugas</li>
+    <li class="breadcrumb-item active"> Manajemen Anggota</li>
 @endsection
 
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Surat Tugas</span>
+        <span>Data Anggota</span>
+        <form method="POST" action="/anggota/print-pdf" target="_blank">
+            @csrf
+            <button type="submit" class="btn btn-outline-dark">
+                <i class="fa-solid fa-download me-2"></i>Unduh
+            </button>
+        </form>
     </div>
+
     <div class="card-body">
-        <table id="tabelSurat" class="table">
+        <table id="tabelAnggota" class="table">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
-                    <th>Nomor Surat</th>
-                    <th>Yang Menugaskan</th>
-                    <th>Yang Ditugaskan</th>
-                    <th>Keperluan</th>
-                    <th>Tempat, Tanggal dibuat</th>
+                    <th>Nama</th>
+                    <th>Nomor Telepon</th>
+                    <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>No</th>
-                    <th>Nomor Surat</th>
-                    <th>Yang Menugaskan</th>
-                    <th>Yang Ditugaskan</th>
-                    <th>Keperluan</th>
-                    <th>Tempat, Tanggal dibuat</th>
+                    <th>Nama</th>
+                    <th>Nomor Telepon</th>
+                    <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
-                {{-- Daftar anggota --}}
+                {{-- Daftar Anggota --}}
                 @foreach($data as $index => $dt)
                     <tr>
                         <td>{{$index + 1}}</td>
-                        <td>{{$dt->nomor_surat}}</td>
-                        <td>{{$dt->pemberi}} ({{$dt->jabatan_pemberi}})</td>
-                        <td>{{$dt->penerima}} ({{$dt->jabatan_penerima}})</td>
-                        <td>{{$dt->keperluan}}</td>
-                        <td>{{$dt->tempat_dibuat}}, {{$dt->tgl_dibuat}}</td>
+                        <td>{{$dt->nama}}</td>
+                        <td>0{{$dt->nomor_telepon}}</td>
+                        <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <form method="POST" action="/surat/print-pdf/{{$dt->uuid}}" target="_blank">
-                                    @csrf
-                                    <button type="submit" class="btn btn-dark" style="margin-right: 10px">
-                                        <i class="fa-solid  fa-download"></i>
-                                    </button>
-                                </form>
-                                <a href="/surat/edit/{{$dt->uuid}}">
+                                <a href="{{ route('anggota.edit', $dt->uuid) }}">
                                     <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                 </a>
-                                <form method="POST" action="/surat/delete/{{$dt->uuid}}">
+                                <form method="POST" action="/anggota/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')
-                                    <button id="hapusData" data-name="{{$dt->nomor_surat}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                    <button id="hapusData" data-name="{{$dt->nama}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                         <i class="fas fa-trash"></i>
                                     </button>                                                                 
                                 </form>
@@ -66,11 +61,12 @@
                         </td>
                     </tr>
                 @endforeach
+                
             </tbody>
         </table>
         
     </div>
-    <script src="{{ asset('resources/js/surat.js') }}"></script>
+    <script src="{{ asset('resources/js/anggota.js') }}"></script>
 @endsection
 
 @push('script')
@@ -78,7 +74,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#tabelSurat');
+            new simpleDatatables.DataTable('#tabelAnggota');
         });
     </script>
 @endpush

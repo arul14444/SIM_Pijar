@@ -1,7 +1,7 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Kegiatan')
+@section('title', 'Manajemen Kegiatan')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Kegiatan</li>
+    <li class="breadcrumb-item active"> Manajemen Kegiatan</li>
 @endsection
 
 @section('content')

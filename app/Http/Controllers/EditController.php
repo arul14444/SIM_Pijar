@@ -116,7 +116,7 @@ class EditController extends Controller
                     ];
                     $this->userRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                    return redirect('/managemen/anggota')->with('success', 'Data anggota berhasil diubah');
+                    return redirect('/manajemen/anggota')->with('success', 'Data anggota berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal mengubah data anggota: ' . $e->getMessage()]);
@@ -133,7 +133,7 @@ class EditController extends Controller
                     ];
                     $this->userRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                    return redirect('/managemen/pengurus')->with('success', 'Data pengurus berhasil diubah');
+                    return redirect('/manajemen/pengurus')->with('success', 'Data pengurus berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal mengubah data pengurus: ' . $e->getMessage()]);
@@ -174,7 +174,7 @@ class EditController extends Controller
                     ];
                     $this->gangguanRepository->updateBy($setGangguan,$gangguan->uuid);
                 DB::commit();
-                    return redirect('/managemen/anak')->with('success', 'Data anak berhasil diubah');
+                    return redirect('/manajemen/anak')->with('success', 'Data anak berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal mengubah data anak: ' . $e->getMessage()]);
@@ -192,7 +192,7 @@ class EditController extends Controller
                 ];
                 $this->donaturRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                return redirect('/managemen/donatur')->with('success', 'Data donatur berhasil diubah');
+                return redirect('/manajemen/donatur')->with('success', 'Data donatur berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Gagal menambahkan data donatur: ' . $e->getMessage()]);
@@ -228,7 +228,7 @@ class EditController extends Controller
                     ];
                     $this->asetRepository->updateByUuid($setData,$uuid);
                     DB::commit();
-                    return redirect('/managemen/aset')->with('success', 'Data aset berhasil diubah');
+                    return redirect('/manajemen/aset')->with('success', 'Data aset berhasil diubah');
                 }else{
                     $aset = $this->statusAsetRepository->findByUuid($request->uuid_status_aset);
                     $setData = [
@@ -240,7 +240,7 @@ class EditController extends Controller
                     ];
                     $this->asetRepository->updateByUuid($setData,$uuid);
                     DB::commit();
-                    return redirect('/managemen/aset')->with('success', 'Data aset berhasil diubah');
+                    return redirect('/manajemen/aset')->with('success', 'Data aset berhasil diubah');
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
@@ -265,7 +265,7 @@ class EditController extends Controller
                     ];
                 $this->suratRepository->updateByUuid($setData,$uuid);
                 DB::commit();
-                return redirect('/managemen/surat')->with('success', 'Data surat berhasil diubah');
+                return redirect('/manajemen/surat')->with('success', 'Data surat berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Data surat gagal ditambahkan' . $e->getMessage()]);
@@ -304,7 +304,7 @@ class EditController extends Controller
                     ];
                     $this->kegiatanRepository->updateByUuid($setData,$uuid);
                     DB::commit();
-                    return redirect('/managemen/kegiatan')->with('success', 'Data kegiatan berhasil diubah');
+                    return redirect('/manajemen/kegiatan')->with('success', 'Data kegiatan berhasil diubah');
                 }else{
                     $sumber = $this->sumberDanaRepository->findByUuid($request->sumber_dana);
                     $setData = [
@@ -317,7 +317,7 @@ class EditController extends Controller
                     ];
                     $this->kegiatanRepository->updateByUuid($setData,$uuid);
                     DB::commit();
-                    return redirect('/managemen/kegiatan')->with('success', 'Data kegiatan berhasil diubah');
+                    return redirect('/manajemen/kegiatan')->with('success', 'Data kegiatan berhasil diubah');
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
@@ -353,7 +353,7 @@ class EditController extends Controller
                     ];
                     $this->arsipRepository->updateByUuid($setData,$uuid);
                     DB::commit();
-                    return redirect('/managemen/arsip')->with('success', 'Data kegiatan berhasil diubah');
+                    return redirect('/manajemen/arsip')->with('success', 'Data kegiatan berhasil diubah');
                 }else{
                     $setData = [
                         'nama_dokumen' => $request->nama_dokumen,
@@ -362,7 +362,7 @@ class EditController extends Controller
                     $this->arsipRepository->updateByUuid($setData,$uuid);
                 
                 DB::commit();
-                return redirect('/managemen/arsip')->with('success', 'Data arsip berhasil diubah');
+                return redirect('/manajemen/arsip')->with('success', 'Data arsip berhasil diubah');
                 }
             } catch (\Exception $e) {
                 DB::rollBack();

@@ -1,7 +1,7 @@
 @extends('layout.anggota.MasterAnggota')
 @section('title', 'Tambah Hasil Pemeriksaan')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen</li>
+    <li class="breadcrumb-item active"> Manajemen</li>
     <li class="breadcrumb-item active"> Tambah Hasil Pemeriksaan</li>
 @endsection
 @section('content')

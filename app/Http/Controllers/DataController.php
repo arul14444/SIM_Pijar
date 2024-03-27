@@ -38,54 +38,24 @@ class DataController extends Controller
         $this->gangguanRepository = $gangguanRepository;
     }
 
-    
+ // controller admin   
     public function dataDonatur(){
         $data = $this->donaturRepository->getDonatur();
 
-        return view('layout.admin.ManagemenDonatur')->with('data', $data->get());
+        return view('layout.admin.ManajemenDonatur')->with('data', $data->get());
     }
 
     
     public function dataAnggota(){
         $data = $this->userRepository->getAnggota();
-        return view('layout.admin.ManagemenAnggota')->with('data', $data->get());
+        return view('layout.admin.ManajemenAnggota')->with('data', $data->get());
     }
     
     public function dataPengurus(){
         $data = $this->userRepository->getPengurus();
         
         
-        return view('layout.admin.ManagemenPengurus')->with('data', $data->get());
-    }
-    
-    public function dataKegiatanAnggota(){
-        $data = $this->kegiatanRepository->getKegiatan()->get();
-        foreach ($data as $dt){
-            // Ubah format tanggal dibuat
-            $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);
-            $bulanIndonesia = [
-                1 => 'Januari',
-                2 => 'Februari',
-                3 => 'Maret',
-                4 => 'April',
-                5 => 'Mei',
-                6 => 'Juni',
-                7 => 'Juli',
-                8 => 'Agustus',
-                9 => 'September',
-                10 => 'Oktober',
-                11 => 'November',
-                12 => 'Desember'
-            ];
-            $namaBulan = $bulanIndonesia[$tgl_kegiatan->month];
-            $formatted_tgl_dibuat = $tgl_kegiatan->day . ' ' . $namaBulan . ' ' . $tgl_kegiatan->year;
-            $dt->tgl_kegiatan= $formatted_tgl_dibuat;
-            
-            // Pisahkan nama foto dan path foto kegiatan
-            $dt->nama_foto_kegiatan = explode(';', $dt->nama_foto_kegiatan);
-            $dt->path_foto_kegiatan = explode(';', $dt->path_foto_kegiatan);
-        }
-        return view('layout.anggota.Kegiatan')->with('data', $data);
+        return view('layout.admin.ManajemenPengurus')->with('data', $data->get());
     }
     
     public function dataKegiatan(){
@@ -115,7 +85,7 @@ class DataController extends Controller
             $dt->nama_foto_kegiatan = explode(';', $dt->nama_foto_kegiatan);
             $dt->path_foto_kegiatan = explode(';', $dt->path_foto_kegiatan);
         }
-        return view('layout.admin.ManagemenKegiatan')->with('data', $data);
+        return view('layout.admin.ManajemenKegiatan')->with('data', $data);
     }
     
     public function dataAset(){
@@ -127,7 +97,7 @@ class DataController extends Controller
             $aset->path_foto_barang = explode(';', $aset->path_foto_barang);
         }
         
-        return view('layout.admin.ManagemenAset')->with('data', $data);
+        return view('layout.admin.ManajemenAset')->with('data', $data);
     }
 
     
@@ -140,13 +110,13 @@ class DataController extends Controller
             $aset->nama_file_dokumen = explode(';', $aset->nama_file_dokumen);
             $aset->path_file_dokumen = explode(';', $aset->path_file_dokumen);
         }
-        return view('layout.admin.ManagemenArsip')->with('data', $data);
+        return view('layout.admin.ManajemenArsip')->with('data', $data);
     }
     public function dataAnak(){
         $data = $this->anakRepository->getAnak();
         
         
-        return view('layout.admin.ManagemenAnak')->with('data', $data->get());
+        return view('layout.admin.ManajemenAnak')->with('data', $data->get());
     }
     public function dataSurat(){
         $data = $this->suratRepository->getSurat()->get();
@@ -171,7 +141,7 @@ class DataController extends Controller
             $formatted_tgl_dibuat = $tgl_dibuat->day . ' ' . $namaBulan . ' ' . $tgl_dibuat->year;
             $dt->tgl_dibuat = $formatted_tgl_dibuat;
         }
-        return view('layout.admin.ManagemenSurat')->with('data', $data);
+        return view('layout.admin.ManajemenSurat')->with('data', $data);
     }
     public function infobox(Request $request){
         $jumlahAnak= $this->anakRepository->getAnak()->count();
@@ -208,7 +178,6 @@ class DataController extends Controller
         return view('layout.admin.Dashboard')->with('data', $data);
     }
 
-
 // fungsi untuk mengambil data yang dinamis
     public function getDataAset(Request $request){
         $kdStatus = $request->input('kd_status');
@@ -226,4 +195,41 @@ class DataController extends Controller
         return response()->json($data);
 
     }
+
+    // controller anggota
+    public function dataKegiatanAnggota(){
+        $data = $this->kegiatanRepository->getKegiatan()->get();
+        foreach ($data as $dt){
+            // Ubah format tanggal dibuat
+            $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);
+            $bulanIndonesia = [
+                1 => 'Januari',
+                2 => 'Februari',
+                3 => 'Maret',
+                4 => 'April',
+                5 => 'Mei',
+                6 => 'Juni',
+                7 => 'Juli',
+                8 => 'Agustus',
+                9 => 'September',
+                10 => 'Oktober',
+                11 => 'November',
+                12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_kegiatan->month];
+            $formatted_tgl_dibuat = $tgl_kegiatan->day . ' ' . $namaBulan . ' ' . $tgl_kegiatan->year;
+            $dt->tgl_kegiatan= $formatted_tgl_dibuat;
+            
+            // Pisahkan nama foto dan path foto kegiatan
+            $dt->nama_foto_kegiatan = explode(';', $dt->nama_foto_kegiatan);
+            $dt->path_foto_kegiatan = explode(';', $dt->path_foto_kegiatan);
+        }
+        return view('layout.anggota.Kegiatan')->with('data', $data);
+    }
+    public function dataDashboard(){
+        $user=Auth::user()->id;
+        $data=$this->anakRepository->getAnakbyIdOrtu($user)->get();
+        return view('layout.anggota.Dashboard')->with('data', $data);
+    }
+
 } 

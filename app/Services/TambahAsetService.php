@@ -40,9 +40,9 @@ class TambahAsetService{
         }
     
         // Menggabungkan nama-nama file menjadi satu string yang dipisahkan oleh titik koma
-        $lampiran = implode('; ', $lampiranNames);
+        $lampiran = implode(';', $lampiranNames);
         // Menggabungkan path lampiran menjadi satu string yang dipisahkan oleh titik koma
-        $path = implode('; ', $pathLampiran);
+        $path = implode(';', $pathLampiran);
     
         $aset = $this->statusAsetRepository->findByUuid($data->uuid_status_aset);
     

@@ -1,13 +1,13 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Anggota')
+@section('title', 'Manajemen Pengurus')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Anggota</li>
+    <li class="breadcrumb-item active"> Manajemen Pengurus</li>
 @endsection
 
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Anggota</span>
-        <form method="POST" action="/anggota/print-pdf" target="_blank">
+        <span>Data Pengurus</span>
+        <form method="POST" action="/pengurus/print-pdf" target="_blank">
             @csrf
             <button type="submit" class="btn btn-outline-dark">
                 <i class="fa-solid fa-download me-2"></i>Unduh
@@ -16,11 +16,12 @@
     </div>
 
     <div class="card-body">
-        <table id="tabelAnggota" class="table">
+        <table id="tabelPengurus" class="table">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Jabatan</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
@@ -30,6 +31,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Jabatan</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
@@ -41,22 +43,16 @@
                     <tr>
                         <td>{{$index + 1}}</td>
                         <td>{{$dt->nama}}</td>
+                        <td>{{$dt->jabatan}}
                         <td>0{{$dt->nomor_telepon}}</td>
                         <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <a href="{{ route('anggota.edit', $dt->uuid) }}">
+                                <a href="/pengurus/edit/{{$dt->uuid}}">
                                     <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                 </a>
-                                <form method="POST" action="/anggota/delete/{{$dt->uuid}}">
-                                    @csrf
-                                    @method('PUT')
-                                    <button id="hapusData" data-name="{{$dt->nama}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>                                                                 
-                                </form>
                             </div>                    
                         </td>
                     </tr>
@@ -66,7 +62,6 @@
         </table>
         
     </div>
-    <script src="{{ asset('resources/js/anggota.js') }}"></script>
 @endsection
 
 @push('script')
@@ -74,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#tabelAnggota');
+            new simpleDatatables.DataTable('#tabelPengurus');
         });
     </script>
 @endpush

@@ -14,6 +14,13 @@ class AnakRepository{
             ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
             ->where(['anak.flag_aktif'=>1]);
     }
+    public function getAnakbyIdOrtu($id_ortu){
+            return Anak::select('anak.*','abd_kiri.jenis as jenis_abd_kiri','abd_kanan.jenis as jenis_abd_kanan','user.nama','user.alamat')
+            ->join('user', 'user.id','anak.id_user')
+            ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
+            ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
+            ->where(['anak.flag_aktif'=>1,'user.id'=>$id_ortu]);
+    }
     public function getFirst(){
     return Anak::orderBy('created_at', 'DESC')->first();
     }

@@ -1,27 +1,25 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Pengurus')
+@section('title', 'Manajemen Donatur')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Pengurus</li>
+    <li class="breadcrumb-item active"> Manajemen Donatur </li>
 @endsection
 
 @section('content')
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Anggota</span>
-        <form method="POST" action="/pengurus/print-pdf" target="_blank">
+        <span>Data Donatur</span>
+        <form method="POST" action="/donatur/print-pdf" target="_blank">
             @csrf
             <button type="submit" class="btn btn-outline-dark">
                 <i class="fa-solid fa-download me-2"></i>Unduh
             </button>
         </form>
     </div>
-
     <div class="card-body">
-        <table id="tabelPengurus" class="table">
+        <table id="tabelDonatur" class="table">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Jabatan</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
@@ -31,37 +29,42 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Jabatan</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
-                {{-- Daftar Anggota --}}
+                {{-- Daftar anggota --}}
                 @foreach($data as $index => $dt)
                     <tr>
                         <td>{{$index + 1}}</td>
                         <td>{{$dt->nama}}</td>
-                        <td>{{$dt->jabatan}}
                         <td>0{{$dt->nomor_telepon}}</td>
                         <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
-                                <a href="/pengurus/edit/{{$dt->uuid}}">
-                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <a href="/donatur/edit/{{$dt->uuid}}">                                    
+                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                 </a>
+                                <form method="POST" action="/donatur/delete/{{$dt->uuid}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button id="hapusData" data-name="{{$dt->nama}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>                                                                 
+                                </form>
                             </div>                    
                         </td>
                     </tr>
                 @endforeach
-                
             </tbody>
         </table>
         
     </div>
+    <script src="{{ asset('resources/js/donatur.js') }}"></script>
 @endsection
 
 @push('script')
@@ -69,7 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#tabelPengurus');
+            new simpleDatatables.DataTable('#tabelDonatur');
         });
     </script>
 @endpush

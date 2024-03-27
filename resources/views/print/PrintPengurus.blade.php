@@ -8,6 +8,7 @@
     <style>
         body {
             font-family: "Times New Roman", Times, serif;
+            font-size: : 10pt;
         }
     </style>
 </head>

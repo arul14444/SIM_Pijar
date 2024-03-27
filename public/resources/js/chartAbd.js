@@ -4,7 +4,7 @@ var punya = canvas.getAttribute('data-punya')
 var tidakPunya = canvas.getAttribute('data-tidakPunya')
 
 var data = {
-    labels: ['Memiliki ABD', 'Tidak Memiliki ABD'],
+    labels: ['Menggunakan ABD', 'Belum Menggunakan ABD'],
     datasets: [{
         data: [punya, tidakPunya],
         backgroundColor: [

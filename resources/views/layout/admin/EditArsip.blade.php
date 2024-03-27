@@ -2,7 +2,7 @@
 @section('title','Edit Arsip')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Managemen Arsip</a></li>
+        <li class="breadcrumb-item"><a href="index.html">Manajemen Arsip</a></li>
         <li class="breadcrumb-item active">Edit</li>
     </ol>
 @endsection

@@ -15,7 +15,7 @@
                 </a>
                 <div class="collapse" id="collapsePengurus" aria-labelledby="headingPengurus" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/pengurus')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/pengurus')}}">Data</a>
                     </nav>
                 </div>
 
@@ -26,7 +26,7 @@
                 </a>
                 <div class="collapse" id="collapseAnggota" aria-labelledby="headingAnggota" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/anggota')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/anggota')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/anggota')}}">Tambah</a>
                     </nav>
                 </div>
@@ -38,7 +38,7 @@
                 </a>
                 <div class="collapse" id="collapseAnak" aria-labelledby="headingAnggota" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/anak')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/anak')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/anak')}}">Tambah</a>
                     </nav>
                 </div>
@@ -50,7 +50,7 @@
                 </a>
                 <div class="collapse" id="collapseDonatur" aria-labelledby="headingDonatur" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/donatur')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/donatur')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/donatur')}}">Tambah</a>
                     </nav>
                 </div>
@@ -62,7 +62,7 @@
                 </a>
                 <div class="collapse" id="collapseAset" aria-labelledby="headingAset" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/aset')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/aset')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/aset')}}">Tambah</a>
                     </nav>
                 </div>
@@ -74,7 +74,7 @@
                 </a>
                 <div class="collapse" id="collapseKegiatan" aria-labelledby="headingKegiatan" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/kegiatan')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/kegiatan')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/kegiatan')}}">Tambah</a>
                     </nav>
                 </div>
@@ -86,7 +86,7 @@
                 </a>
                 <div class="collapse" id="collapseArsip" aria-labelledby="headingArsip" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/arsip')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/arsip')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/arsip')}}">Tambah</a>
                     </nav>
                 </div>
@@ -97,7 +97,7 @@
                 </a>
                 <div class="collapse" id="collapseSurat" aria-labelledby="headingSurat" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('/managemen/surat')}}">Data</a>
+                        <a class="nav-link" href="{{ url('/manajemen/surat')}}">Data</a>
                         <a class="nav-link" href="{{ url('/tambah/surat')}}">Tambah</a>
                     </nav>
                 </div>

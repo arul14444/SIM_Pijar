@@ -7,7 +7,7 @@
 <div class="row">
     {{-- Infobox Pengurus --}}
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/pengurus')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/pengurus')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-warning shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -26,7 +26,7 @@
     </div>
     <!-- Infobox anggota -->
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/anggota')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/anggota')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-success shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -44,7 +44,7 @@
             
     <!-- infobox donatur -->
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/donatur')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/donatur')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-success shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -64,7 +64,7 @@
     
     <!-- Infobox aset -->
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/aset')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/aset')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-info shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -88,7 +88,7 @@
 
     <!-- Infobox Arsip -->
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/arsip')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/arsip')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-warning shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -107,7 +107,7 @@
     </div>
     <!-- Infobox kegiatan -->
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/kegiatan')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/kegiatan')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-warning shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -126,7 +126,7 @@
     </div>
     {{-- Infobox anak --}}
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/anak')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/anak')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-warning shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -145,7 +145,7 @@
     </div>
     {{-- Infobox Surat --}}
     <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/managemen/surat')}}" style='text-decoration: none; color: inherit;'>
+        <a href="{{url('/manajemen/surat')}}" style='text-decoration: none; color: inherit;'>
             <div class="card border-left-warning shadow h-100 py-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -163,7 +163,8 @@
         </div>
     </div>
 </div>
-{{-- Dashboard --}}
+
+{{-- Grafik --}}
 <div class="row">
     <div class="col-md-6">
         <div class="card mb-4">
@@ -219,7 +220,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 Data Aset
                 
-                <a class="btn btn-primary float-right" onclick="reset()">
+                <a class="btn btn-outline-dark float-right" onclick="reset()">
                     <i class="fa-solid fa-arrows-rotate"></i>
                 </a>
             </div>
@@ -274,7 +275,6 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ asset('resources/js/dashboard.js') }}"></script>
 <script src="{{ asset('resources/js/chartAbd.js') }}"></script>
 <script src="{{ asset('resources/js/chartAset.js') }}"></script>
 <script src="{{ asset('resources/js/chartDana.js') }}"></script>

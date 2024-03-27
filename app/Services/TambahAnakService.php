@@ -49,6 +49,8 @@ class TambahAnakService{
         $setGangguan = [
             'kemampuan_kiri'=> $data->kemampuan_telinga_kiri,
             'kemampuan_kanan'=> $data->kemampuan_telinga_kanan,
+            'kemampuan_binaural'=> $data->kemampuan_telinga_binaural,
+            'tgl_pemeriksaan'=>$data->tgl_pemeriksaan,
             'id_anak'=> $getAnak->id,
             'user_update' => Auth::user()->nama
         ];
@@ -57,7 +59,41 @@ class TambahAnakService{
         ;
     }
 
+    public function setData($data){
+        $ortu = $this->userRepository->findByUuid($data->uuid_orang_tua);
+        $abdKiri = $this->abdRepository->findByUuid($data->uuid_abd_kiri);
+        $abdKanan = $this->abdRepository->findByUuid($data->uuid_abd_kanan);
+        $setData = [
+            'id_abd_kiri'=> $abdKiri->id,
+            'id_abd_kanan'=>$abdKanan->id,
+            'nama_lengkap'=> $data->nama_lengkap,
+            'nama_panggilan'=> $data->nama_panggilan,
+            'tempat_lahir'=> $data->tempat_lahir,
+            'tgl_lahir'=> $data->tgl_lahir,
+            'nomor_telepon'=>$data->nomor_telepon,
+            'kemampuan_kiri'=> $data->kemampuan_telinga_kiri,
+            'kemampuan_kanan'=> $data->kemampuan_telinga_kanan,
+            'kemampuan_binaural'=>$data->kemampuan_telinga_binaural,
+            'penyakit_penyerta'=>$data->penyakit_penyerta,
+            'id_user'=> $ortu->id,
+            'bpjs'=> $data->bpjs,
+            'user_update' => Auth::user()->nama
+        ];
+        $this->anakRepository->create($setData);
+
+        $getAnak=$this->anakRepository->getFirst();
+        $setGangguan = [
+            'kemampuan_kiri'=> $data->kemampuan_telinga_kiri,
+            'kemampuan_kanan'=> $data->kemampuan_telinga_kanan,
+            'id_anak'=> $getAnak->id,
+            'user_update' => Auth::user()->nama
+        ];
+
+        return $this->gangguanRepository->create($setGangguan);
+        ;
+    }
     public function setHasilTest($data){
+        $anak = $this->anakRepository->findByUuid($data->uuid_anak);
         $nilaiTelingaKanan=[
             $data->kanan_nilai1,
             $data->kanan_nilai2,
@@ -72,7 +108,29 @@ class TambahAnakService{
             $data->kiri_nilai4,
             $data->kiri_nilai5,
         ];
-        $gangguanTelingaKanan=collect($nilaiTelingaKanan)->avg();
-        $gangguanTelingaKiri=collect($nilaiTelingaKiri)->avg(); 
+        $nilaiTelingaBinaural=[
+            $data->binaural_nilai1,
+            $data->binaural_nilai2,
+            $data->binaural_nilai3,
+            $data->binaural_nilai4,
+            $data->binaural_nilai5,
+        ];
+
+        $kemampuanTelingaKanan=collect($nilaiTelingaKanan)->avg();
+        $kemampuanTelingaKiri=collect($nilaiTelingaKiri)->avg(); 
+        $kemampuanBinaural=collect($nilaiTelingaBinaural)->avg();
+        $setData = [
+            'kemampuan_kiri'=> $kemampuanTelingaKiri,
+            'kemampuan_kanan'=> $kemampuanTelingaKanan,
+            'id_anak'=> $anak->id,
+            'user_update' => Auth::user()->nama
+        ];
+        $this->gangguanRepository->create($setData);
+        $setUpdate = [
+            'kemampuan_kiri'=> $kemampuanTelingaKiri,
+            'kemampuan_kanan'=> $kemampuanTelingaKanan,
+            'kemampuan_binaural'=>$kemampuanBinaural,
+        ]; 
+        return $this->gangguanRepository->updateBy($setUpdate,$data->uuid_anak);
     }
 }

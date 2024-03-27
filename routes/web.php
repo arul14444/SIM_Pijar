@@ -34,6 +34,7 @@ Route::get('/home',function(){
 Route::middleware(['auth'])->group(function(){
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::post('/kegiatan/print-pdf', [PrintController::class, 'printPdfKegiatan']);
+    Route::get('/get/pendengaran-anak/{uuid}',[DataController::class,'getDataPendengaran']);
     
     Route::middleware('userAkses:admin')->group(function () {
         Route::get('/dashboard/admin', function () {
@@ -42,82 +43,80 @@ Route::middleware(['auth'])->group(function(){
         //dashboard
         Route::get('/dashboard/admin',[DataController::class,'infobox']);
         Route::get('/get/aset',[DataController::class,'getDataAset']);
-        Route::get('/get/pendengaran-anak/{uuid}',[DataController::class,'getDataPendengaran']);
-        
 
-        Route::get('/managemen/anggota', function () {
-            return view('layout/admin/ManagemenAnggota');
+        Route::get('/manajemen/anggota', function () {
+            return view('layout/admin/manajemenAnggota');
         });
-        Route::get('/managemen/anggota',[DataController::class,'dataAnggota']);
+        Route::get('/manajemen/anggota',[DataController::class,'dataAnggota']);
         Route::post('/anggota/print-pdf', [PrintController::class, 'printPdfAnggota']);
         Route::put('/anggota/delete/{uuid}', [DeleteController::class, 'deleteAnggota']);
         Route::get('/anggota/edit/{uuid}', [EditController::class, 'detailAnggota'])->name('anggota.edit');
         Route::put('/anggota/edit/{uuid}', [EditController::class, 'editAnggota'])->name('anggota.edit');
 
-        //managemen pengurus
-        Route::get('/managemen/pengurus', function () {
-            return view('layout/admin/ManagemenAnggota');
+        //manajemen pengurus
+        Route::get('/manajemen/pengurus', function () {
+            return view('layout/admin/manajemenAnggota');
         });
-        Route::get('/managemen/pengurus',[DataController::class,'dataPengurus']);
+        Route::get('/manajemen/pengurus',[DataController::class,'dataPengurus']);
         Route::post('/pengurus/print-pdf', [PrintController::class, 'printPdfPengurus']);
         Route::get('/pengurus/edit/{uuid}', [EditController::class, 'detailPengurus']);
         Route::put('/pengurus/edit/{uuid}', [EditController::class, 'editPengurus']);
 
 
-        //managemen anak
-        Route::get('/managemen/anak', function () {
-            return view('layout/admin/ManagemenAnak');
+        //manajemen anak
+        Route::get('/manajemen/anak', function () {
+            return view('layout/admin/manajemenAnak');
         });
-        Route::get('/managemen/anak',[DataController::class,'dataAnak']);
+        Route::get('/manajemen/anak',[DataController::class,'dataAnak']);
         Route::post('/anak/print-pdf', [PrintController::class, 'printPdfAnak']);
         Route::put('/anak/delete/{uuid}', [DeleteController::class, 'deleteAnak']);
         Route::get('/anak/edit/{uuid}', [EditController::class, 'detailAnak'])->name('anak.edit');
         Route::put('/anak/edit/{uuid}', [EditController::class, 'editAnakbyAdmin'])->name('anak.edit');
 
-        //managemen donatur
-        Route::get('/managemen/donatur', function () {
-            return view('layout/admin/ManagemenDonatur');
+        //manajemen donatur
+        Route::get('/manajemen/donatur', function () {
+            return view('layout/admin/manajemenDonatur');
         });
-        Route::get('/managemen/donatur',[DataController::class,'dataDonatur']);
+        Route::get('/manajemen/donatur',[DataController::class,'dataDonatur']);
         Route::post('/donatur/print-pdf', [PrintController::class, 'printPdfDonatur']);
         Route::put('/donatur/delete/{uuid}', [DeleteController::class, 'deleteDonatur']);
         Route::get('/donatur/edit/{uuid}', [EditController::class, 'detailDonatur']);
         Route::put('/donatur/edit/{uuid}', [EditController::class, 'editDonatur']);
 
-        //managemen aset
-        Route::get('/managemen/aset', function () {
-            return view('layout/admin/ManagemenAset');
+        //manajemen aset
+        Route::get('/manajemen/aset', function () {
+            return view('layout/admin/manajemenAset');
         });
-        Route::get('/managemen/aset',[DataController::class,'dataAset']);
+        Route::get('/manajemen/aset',[DataController::class,'dataAset']);
         Route::post('/aset/print-pdf', [PrintController::class, 'printPdfAset']);
         Route::put('/aset/delete/{uuid}', [DeleteController::class, 'deleteAset']);
         Route::get('/aset/edit/{uuid}', [EditController::class, 'detailAset']);
         Route::put('/aset/edit/{uuid}', [EditController::class, 'editAset']);
 
-        //managemen kegiatan
-        Route::get('/managemen/kegiatan', function () {
-            return view('layout/admin/ManagemenKegiatan');
+        //manajemen kegiatan
+        Route::get('/manajemen/kegiatan', function () {
+            return view('layout/admin/manajemenKegiatan');
         });
-        Route::get('/managemen/kegiatan',[DataController::class,'dataKegiatan']);
+        Route::get('/manajemen/kegiatan',[DataController::class,'dataKegiatan']);
         Route::put('/kegiatan/delete/{uuid}', [DeleteController::class, 'deleteKegiatan']);
         Route::get('/kegiatan/edit/{uuid}', [EditController::class, 'detailKegiatan']);
         Route::put('/kegiatan/edit/{uuid}', [EditController::class, 'editKegiatan']);
 
-        //managemen arsip
-        Route::get('/managemen/arsip', function () {
-            return view('layout/admin/ManagemenArsip');
+        //manajemen arsip
+        Route::get('/manajemen/arsip', function () {
+            return view('layout/admin/manajemenArsip');
         });
-        Route::get('/managemen/arsip',[DataController::class,'dataArsip']);
+        Route::get('/manajemen/arsip',[DataController::class,'dataArsip']);
         Route::post('/arsip/print-pdf', [PrintController::class, 'printPdfArsip']);
         Route::put('/arsip/delete/{uuid}', [DeleteController::class, 'deleteArsip']);
         Route::get('/arsip/edit/{uuid}', [EditController::class, 'detailArsip']);
         Route::put('/arsip/edit/{uuid}', [EditController::class, 'editArsip']);
 
-        //managemen Surat
-        Route::get('/managemen/surat', function () {
-            return view('layout/admin/ManagemenSurat');
+        //manajemen Surat
+        Route::get('/manajemen/surat', function () {
+            return view('layout/admin/manajemenSurat');
         });
-        Route::get('/managemen/surat',[DataController::class,'dataSurat']);
+        Route::get('/manajemen/surat',[DataController::class,'dataSurat']);
         Route::post('/surat/print-pdf/{uuid}', [PrintController::class, 'printPdfSurat']);
         Route::put('/surat/delete/{uuid}', [DeleteController::class, 'deleteSurat']);
         Route::get('/surat/edit/{uuid}', [EditController::class, 'detailSurat']);
@@ -176,15 +175,21 @@ Route::middleware(['auth'])->group(function(){
         });
             
     Route::middleware('userAkses:anggota')->group(function () {
+        //dashboard
         Route::get('/dashboard/anggota', function () {
             return view('layout/anggota/Dashboard');
         });
-        Route::get('/managemen/hasil-pemeriksaan', function () {
-            return view('layout/anggota/ManagemenHasilPemeriksaan');
+        Route::get('/dashboard/anggota',[DataController::class,'dataDashboard']);
+
+        Route::get('/manajemen/hasil-pemeriksaan', function () {
+            return view('layout/anggota/manajemenHasilPemeriksaan');
         });
+
         Route::get('/tambah/hasil-pemeriksaan', function () {
             return view('layout/anggota/TambahHasilPemeriksaan');
         });
+        Route::get('/kegiatan/anggota',[DataController::class,'dataKegiatanAnggota']);
+
         Route::get('/kegiatan/anggota', function () {
             return view('layout/anggota/Kegiatan');
         });

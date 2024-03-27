@@ -1,28 +1,29 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Managemen Aset')
+@section('title', 'Manajemen Arsip')
 @section('route')
-    <li class="breadcrumb-item active"> Managemen Aset</li>
+    <li class="breadcrumb-item active"> Manajemen Arsip </li>
 @endsection
 
 @section('content')
+    
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Aset</span>
-        <form method="POST" action="/aset/print-pdf" target="_blank">
+        <span>Data Arsip</span>
+        <form method="POST" action="/arsip/print-pdf" target="_blank">
             @csrf
             <button type="submit" class="btn btn-outline-dark">
                 <i class="fa-solid  fa-download me-2"></i>Unduh
             </button>
         </form>
     </div>
+
     <div class="card-body">
-        <table id="tabelAset" class="table">
+        <table id="tabelArsip" class="table">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
-                    <th>Barang</th>
+                    <th>Dokumen</th>
                     <th>Deskripsi</th>
                     <th>Kode</th>
-                    <th>Status</th>
                     <th>Foto</th>
                     <th>Aksi</th>
                 </tr>
@@ -30,43 +31,41 @@
             <tfoot>
                 <tr>
                     <th>No</th>
-                    <th>Barang</th>
+                    <th>Dokumen</th>
                     <th>Deskripsi</th>
                     <th>Kode</th>
-                    <th>Status</th>
                     <th>Foto</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach ($data as $index => $dt)
+                {{-- Daftar Aset --}}
+                @foreach ($data as $index => $dt )
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $dt->nama_barang }}</td>
-                    <td>{{ $dt->deskripsi_barang }}</td>
-                    <td>{{ $dt->kode_barang }}</td>
-                    <td>{{ $dt->status }}</td>
-                    <td>
+                    <td>{{ $dt->nama_dokumen }}</td>
+                    <td>{{ $dt->deskripsi_dokumen }}</td>
+                    <td>{{ $dt->kode_dokumen }}</td>
+                    <td> 
                         <ul>
-                            @foreach($dt->path_foto_barang as $path_foto)
+                            @foreach($dt->path_file_dokumen as $path_file)
                             <li>
-                                <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                                <a href="{{(config('app.url').'/'.$path_file)}}" target="_blank">{{ basename($path_file) }}</a>
                             </li>
-                            @endforeach
+                             @endforeach
                         </ul>
-                        
                     </td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="/aset/edit/{{$dt->uuid}}">
+                            <a href="/arsip/edit/{{$dt->uuid}}">
                                 <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                             </a>
-                            <form method="POST" action="/aset/delete/{{$dt->uuid}}">
+                            <form method="POST" action="/arsip/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')
-                                <button id="hapusData" data-name="{{$dt->nama_barang}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                <button id="hapusData" data-name="{{$dt->nama_dokumen}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                     <i class="fas fa-trash"></i>
                                 </button>                                                                 
                             </form>
@@ -74,11 +73,11 @@
                     </td>
                 </tr> 
                 @endforeach
+    
             </tbody>
         </table>
-        
     </div>
-    <script src="{{ asset('resources/js/aset.js') }}"></script>
+    <script src="{{ asset('resources/js/arsip.js') }}"></script>
 @endsection
 
 @push('script')
@@ -86,7 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#tabelAset');
+            new simpleDatatables.DataTable('#tabelArsip');
         });
     </script>
 @endpush

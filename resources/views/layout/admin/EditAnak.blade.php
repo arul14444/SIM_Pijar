@@ -2,7 +2,7 @@
 @section('title','Edit Anak')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Managemen Anak</a></li>
+        <li class="breadcrumb-item"><a href="index.html">Manajemen Anak</a></li>
         <li class="breadcrumb-item active">Edit</li>
     </ol>
 @endsection
