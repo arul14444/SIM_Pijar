@@ -92,8 +92,23 @@ class TambahAnakService{
         return $this->gangguanRepository->create($setGangguan);
         ;
     }
+
+
     public function setHasilTest($data){
         $anak = $this->anakRepository->findByUuid($data->uuid_anak);
+        $lampiranNames = [];
+        $pathLampiran = [];
+        if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
+            $lampiranFiles = $data->file('lampiran');
+            foreach ($lampiranFiles as $lampiran) {
+                $lampiranNames[] = $lampiran->getClientOriginalName();
+                $lampiran->move('dokumen/hasilTest', $lampiran->getClientOriginalName());
+                $pathLampiran[] = 'dokumen/hasilTest/' .$anak->nama_panggilan.$lampiran->getClientOriginalName();
+            }
+        }
+        $lampiran = implode(';', $lampiranNames);
+        $path = implode(';', $pathLampiran);
+
         $nilaiTelingaKanan=[
             $data->kanan_nilai1,
             $data->kanan_nilai2,
@@ -122,7 +137,11 @@ class TambahAnakService{
         $setData = [
             'kemampuan_kiri'=> $kemampuanTelingaKiri,
             'kemampuan_kanan'=> $kemampuanTelingaKanan,
+            'kemampuan_binaural'=>$kemampuanBinaural,
             'id_anak'=> $anak->id,
+            'path_file_hasil_test'=>$path,
+            'nama_file_hasil_test'=>$lampiran,
+            'tgl_pemeriksaan'=>$data->tgl_pemeriksaan,
             'user_update' => Auth::user()->nama
         ];
         $this->gangguanRepository->create($setData);
@@ -130,7 +149,8 @@ class TambahAnakService{
             'kemampuan_kiri'=> $kemampuanTelingaKiri,
             'kemampuan_kanan'=> $kemampuanTelingaKanan,
             'kemampuan_binaural'=>$kemampuanBinaural,
+
         ]; 
-        return $this->gangguanRepository->updateBy($setUpdate,$data->uuid_anak);
+        return $this->anakRepository->updateBy($setUpdate,$data->uuid_anak);
     }
 }

@@ -14,6 +14,7 @@ use App\Repositories\StatusAsetRepository;
 use App\Repositories\SumberDanaRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
+use App\Services\ValidateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 class EditController extends Controller
 {
     protected $userRepository,$statusAsetRepository, $abdRepository, $jabatanRepository, $donaturRepository, $sumberDanaRepository,
-    $arsipRepository,$kegiatanRepository,$asetRepository, $suratRepository, $anakRepository, $gangguanRepository;
+    $arsipRepository,$kegiatanRepository,$asetRepository, $suratRepository, $anakRepository, $gangguanRepository, $validateService;
 
     public function __construct(
         UserRepository $userRepository,
@@ -35,7 +36,8 @@ class EditController extends Controller
         SuratRepository $suratRepository,
         AnakRepository $anakRepository,
         gangguanRepository $gangguanRepository,
-        DonaturRepository $donaturRepository
+        DonaturRepository $donaturRepository,
+        ValidateService $validateService
         
         ) {
             $this->userRepository = $userRepository;
@@ -49,7 +51,8 @@ class EditController extends Controller
             $this->suratRepository = $suratRepository;
             $this->anakRepository = $anakRepository;
             $this->gangguanRepository = $gangguanRepository;
-            $this->donaturRepository=$donaturRepository;
+            $this->donaturRepository = $donaturRepository;
+            $this->validateService = $validateService;
         }
 
         // Ambil Data
@@ -201,11 +204,13 @@ class EditController extends Controller
 
         public function editAset(Request $request, $uuid){
             try{
-                DB::beginTransaction();
+                DB::beginTransaction(); 
                 if ($request->hasFile('lampiran')) {
-                    $request->validate([
-                    'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
-                    ]);
+                    $validasi = $this->validateService->valAset($request);
+                    if ($validasi->fails()) {
+                        $msg = $validasi->errors()->all();
+                        return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
+                    }  
                     $lampiranNames = [];
                     $pathLampiran = [];
                     $lampiranFiles = $request->file('lampiran');
@@ -273,11 +278,13 @@ class EditController extends Controller
         }
         public function editKegiatan(Request $request,$uuid){
             try {
-                DB::beginTransaction();
                 if ($request->hasFile('lampiran')) {
-                    $request->validate([
-                    'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
-                ]);
+                    $validasi = $this->validateService->valKegiatan($request);
+                    if ($validasi->fails()) {
+                        $msg = $validasi->errors()->all();
+                        return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
+                    }  
+                    DB::beginTransaction();
                     $sumber = $this->sumberDanaRepository->findByUuid($request->sumber_dana);
                     $lampiranNames = [];
                     $pathLampiran = [];
@@ -321,16 +328,18 @@ class EditController extends Controller
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan' . $e->getMessage()]);
+                return response()->alert(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan' . $e->getMessage()]);
             }
             
         }
         public function editArsip(Request $request,$uuid){
             try {
                 if ($request->hasFile('lampiran')) {
-                    $request->validate([
-                        'lampiran.*' => 'mimes:pdf|max:2048',
-                    ]);
+                    $validasi = $this->validateService->valArsip($request);
+                    if ($validasi->fails()) {
+                        $msg = $validasi->errors()->all();
+                        return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
+                    }  
                     $lampiranNames = [];
                     $pathLampiran = [];
                     if (is_array($request->file('lampiran')) || is_object($request->file('lampiran'))) {

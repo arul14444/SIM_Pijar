@@ -121,7 +121,7 @@
                 <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
             <div class="mt-4 mb-0">
-                <button type="submit" class="btn btn-primary btn-block" onclick="return tambahData()">Tambah</button>
+                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
             </div>
         </div>
     </form>

@@ -5,16 +5,26 @@
     <li class="breadcrumb-item active"> Tambah Hasil Pemeriksaan</li>
 @endsection
 @section('content')
-    <form action="">  
+    <form id="tambahHasilPemeriksaan" method="POST" action="/tambah/hasil-pemeriksaan" enctype="multipart/form-data">
+        @csrf
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating ">
                     <select class="form-select" id="inputNamaAnak" name="uuid_anak">
                         <option selected disabled>Pilih Nama Anak</option>
-                        <option value=""> Test</option>
-                        <option value=""> Test</option>
+                        @foreach ($data as $dt)    
+                            <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
+                        @endforeach
                     </select>
                     <label for="inputNamaAnak">Nama Anak</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating ">
+                    <input class="form-control" id="tgl_periksa" name="tgl_pemeriksaan" type="date" placeholder="Enter your first name" />
+                    <label for="tgl_periksa">Tanggal Pemeriksaan</label>
                 </div>
             </div>
         </div>
@@ -131,6 +141,10 @@
                 <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
             </div>
         </div>
+        <div class="mt-4 mb-0">
+            <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
+        </div>
     </form>
+    <script src="{{ asset('resources/js/hasilPemeriksaan.js') }}"></script>
 
 @endsection

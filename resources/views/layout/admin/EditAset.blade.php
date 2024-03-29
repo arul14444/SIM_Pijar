@@ -37,7 +37,7 @@
         <label for="inputDeskripsi">Deskripsi</label>
     </div>
     <div>
-        <label for="formFileMultiple" class="form-label">Lampiran</label>
+        <label for="formFileMultiple" class="form-label">Lampiran<span style="color: red;">*</span></label>
         <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
     </div>
     
@@ -45,5 +45,9 @@
         <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan perubahan data ini?')">Simpan</button></div>
     </div>
 </form>
+
+<div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
+    <div class="mr-auto"> <span style="color: red;">*</span>File berjenis gambar (jpeg, png, jpg, gif) ukuran maksimal 4096kb</div>
+</div>
 <script src="{{ asset('resources/js/aset.js') }}"></script>
 @endsection

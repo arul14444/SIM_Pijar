@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\AbdRepository;
+use App\Repositories\AnakRepository;
 use App\Repositories\JabatanRepository;
 use App\Repositories\StatusAsetRepository;
 use App\Repositories\SumberDanaRepository;
@@ -15,16 +16,17 @@ use App\Services\TambahAsetService;
 use App\Services\TambahDonaturService;
 use App\Services\TambahKegiatanService;
 use App\Services\TambahSuratService;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use App\Services\ValidateService;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TambahDataController extends Controller
 {
     protected $userRepository, $tambahAnggotaService, $tambahAnakService, $tambahDonaturService, 
     $tambahArsipService,$tambahAsetService, $tambahKegiatanService,$statusAsetRepository, $abdRepository, 
-    $tambahSuratService, $jabatanRepository, $sumberDanaRepository;
+    $tambahSuratService, $jabatanRepository, $sumberDanaRepository, $anakRepository, $validateService;
 
     public function __construct(
         TambahAnggotaService $tambahAnggotaService,
@@ -38,7 +40,9 @@ class TambahDataController extends Controller
         JabatanRepository $jabatanRepository,
         TambahKegiatanService $tambahKegiatanService,
         TambahArsipService $tambahArsipService,
-        SumberDanaRepository $sumberDanaRepository
+        SumberDanaRepository $sumberDanaRepository,
+        AnakRepository $anakRepository,
+        ValidateService $validateService
 
         
         ) {
@@ -54,6 +58,8 @@ class TambahDataController extends Controller
             $this->tambahKegiatanService = $tambahKegiatanService;
             $this->tambahArsipService = $tambahArsipService;
             $this->sumberDanaRepository = $sumberDanaRepository;
+            $this->anakRepository = $anakRepository;
+            $this->validateService = $validateService;
         }
 
         // Ambil Data
@@ -117,9 +123,11 @@ class TambahDataController extends Controller
     }
     public function tambahAset(Request $request){
         try{
-            $request->validate([
-                'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
-            ]);
+            $validasi = $this->validateService->valAset($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: '.$msg[0] ]);
+            }  
 
             DB::beginTransaction();
             $this->tambahAsetService->setData($request);
@@ -143,9 +151,12 @@ class TambahDataController extends Controller
     }
     public function tambahKegiatan(Request $request){
         try {
-            $request->validate([
-                'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
-            ]);
+            $validasi = $this->validateService->valKegiatan($request);
+
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: '.$msg[0] ]);
+            }   
             DB::beginTransaction();
             $this->tambahKegiatanService->setData($request);
             DB::commit();
@@ -157,23 +168,31 @@ class TambahDataController extends Controller
         } 
     }
     public function tambahArsip(Request $request){
-        try {
-            $request->validate([
-                'lampiran.*' => 'mimes:pdf|max:2048',
-            ]);
+        try { 
+            $validasi = $this->validateService->valArsip($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
+            }           
             DB::beginTransaction();
             $this->tambahArsipService->setData($request);
             DB::commit();
-            return response()->json(['success' => true, 'message' => 'Data kegiatan berhasil ditambahkan']);
+            return response()->json(['success' => true, 'message' => 'Data arsip berhasil ditambahkan']);
             
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: ' . $e->getMessage()]);
+            return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: ' . $e->getMessage()]);
         } 
     }
 
-    public function tambahAnakbyAnggota(Request $request){
+    public function tambahHasilPemeriksaan(Request $request){
         try{
+            // dd($request->hasFile('lampiran'));
+            $validasi = $this->validateService->valHasilPemeriksaan($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data gagal ditambahkan: '.$msg[0] ]);
+            }  
             DB::beginTransaction();
             $this->tambahAnakService->setHasilTest($request);
             DB::commit();
@@ -181,5 +200,11 @@ class TambahDataController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menambahkan data anak: ' . $e->getMessage()]);
         }
+    }
+
+    public function listAnak(){
+        $user=Auth::user()->id;
+        $data=$this->anakRepository->getAnakbyIdOrtu($user)->get();
+        return view('layout.anggota.TambahHasilPemeriksaan')->with('data', $data);
     }
 }

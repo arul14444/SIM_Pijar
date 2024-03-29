@@ -184,11 +184,12 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/manajemen/hasil-pemeriksaan', function () {
             return view('layout/anggota/manajemenHasilPemeriksaan');
         });
-
         Route::get('/tambah/hasil-pemeriksaan', function () {
             return view('layout/anggota/TambahHasilPemeriksaan');
         });
-        Route::get('/kegiatan/anggota',[DataController::class,'dataKegiatanAnggota']);
+        Route::get('/tambah/hasil-pemeriksaan',[TambahDataController::class,'listAnak']);
+        Route::post('/tambah/hasil-pemeriksaan',[TambahDataController::class,'tambahHasilpemeriksaan']);
+        
 
         Route::get('/kegiatan/anggota', function () {
             return view('layout/anggota/Kegiatan');

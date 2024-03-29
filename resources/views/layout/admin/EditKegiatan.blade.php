@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<form method="POST" action="/kegiatan/edit/{{$data['detail']->uuid}}" enctype="multipart/form-data">
+<form id="editKegiatan" method="POST" action="/kegiatan/edit/{{$data['detail']->uuid}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-floating mb-3">
@@ -45,12 +45,16 @@
         </div>
     </div>
     <div>
-        <label for="formFileMultiple" class="form-label">Lampiran</label>
+        <label for="formFileMultiple" class="form-label">Lampiran<span style="color: red">*</span></label>
         <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
     </div>
     <div class="mt-4 mb-0">
         <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan perubahan data ini?')">Simpan</button></div>
     </div>
 </form>
-<script src="{{ asset('resources/js/kegiatan.js') }}"></script>
+
+<div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
+    <div class="mr-auto"> <span style="color: red;">*</span>File berjenis gambar (jpeg, png, jpg, gif) ukuran maksimal 4096kb</div>
+</div>
+
 @endsection
