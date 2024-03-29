@@ -101,10 +101,12 @@ class TambahAnakService{
         if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
             $lampiranFiles = $data->file('lampiran');
             foreach ($lampiranFiles as $lampiran) {
-                $lampiranNames[] = $lampiran->getClientOriginalName();
-                $lampiran->move('dokumen/hasilTest', $lampiran->getClientOriginalName());
-                $pathLampiran[] = 'dokumen/hasilTest/' .$anak->nama_panggilan.$lampiran->getClientOriginalName();
+                $namaLampiranBaru = $anak->nama_lengkap . '_' . $lampiran->getClientOriginalName();
+                $lampiranNames[] = $namaLampiranBaru;
+                $lampiran->move('dokumen/hasilTest', $namaLampiranBaru);
+                $pathLampiran[] = 'dokumen/hasilTest/' . $namaLampiranBaru;
             }
+            
         }
         $lampiran = implode(';', $lampiranNames);
         $path = implode(';', $pathLampiran);
