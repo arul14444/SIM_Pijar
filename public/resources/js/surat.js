@@ -32,8 +32,8 @@ function tambahSurat(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus surat '+name+'?')) {
+
+    if (confirm('Apakah Anda yakin ingin menghapus surat?')) {
         fetch(`/surat/delete/${uuid}`, {
             method: 'PUT',
             headers: {

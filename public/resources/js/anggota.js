@@ -32,8 +32,8 @@ function tambahAnggota(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus data anggota '+name+'?')) {
+
+    if (confirm('Apakah Anda yakin ingin menghapus data anggota?')) {
         fetch(`/anggota/delete/${uuid}`, {
             method: 'PUT',
             headers: {

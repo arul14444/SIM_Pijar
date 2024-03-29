@@ -32,8 +32,8 @@ function tambahArsip(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus dokumen '+name+'?')) {
+
+    if (confirm('Apakah Anda yakin ingin menghapus dokumen?')) {
         fetch(`/arsip/delete/${uuid}`, {
             method: 'PUT',
             headers: {

@@ -32,8 +32,8 @@ function tambahAset(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus aset '+name+'?')) {
+
+    if (confirm('Apakah Anda yakin ingin menghapus aset?')) {
         fetch(`/aset/delete/${uuid}`, {
             method: 'PUT',
             headers: {

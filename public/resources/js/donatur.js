@@ -32,8 +32,8 @@ function tambahDonatur(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus data donatur '+name+'?')) {
+
+    if (confirm('Apakah Anda yakin ingin menghapus data donatur?')) {
         fetch(`/donatur/delete/${uuid}`, {
             method: 'PUT',
             headers: {

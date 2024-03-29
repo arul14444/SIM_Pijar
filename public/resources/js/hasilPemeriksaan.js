@@ -32,8 +32,8 @@ function tambahKegiatan(formData) {
 
 
 function confirmDelete(uuid) {
-    var name = document.getElementById('hapusData').getAttribute('data-name');
-    if (confirm('Apakah Anda yakin ingin menghapus data kegiatan '+name+'?')) {
+
+    if (confirm('Apakah Anda yakin ingin menghapus data kegiatan?')) {
         fetch(`/hasil-pemeriksaan/delete/${uuid}`, {
             method: 'PUT',
             headers: {
