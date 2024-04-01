@@ -25,6 +25,9 @@ Route::middleware(['guest'])->group(function(){
         return view('layout/Login');
     });
     Route::post('/',[LoginController::class,'masuk']);
+    Route::post('/test', function(){
+        return view('print/PrintSurat');
+    });
 });
 
 Route::get('/home',function(){
@@ -184,6 +187,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/manajemen/hasil-pemeriksaan', function () {
             return view('layout/anggota/manajemenHasilPemeriksaan');
         });
+        Route::get('/manajemen/hasil-pemeriksaan',[DataController::class,'hasilPemeriksaan']);
         Route::get('/tambah/hasil-pemeriksaan', function () {
             return view('layout/anggota/TambahHasilPemeriksaan');
         });

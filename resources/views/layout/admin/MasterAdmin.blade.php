@@ -24,7 +24,7 @@
                 <div class="container-fluid px-4">
                     <div class="row">
                         <div class="col-md-8">
-                            <h1 class="mt-4">@yield('title')</h1>
+                            <h2 class="mt-4">@yield('title')</h2>
                             <ol class="breadcrumb mb-4">
                                 @yield('route')
                             </ol>

@@ -232,4 +232,10 @@ class DataController extends Controller
         return view('layout.anggota.Dashboard')->with('data', $data);
     }
 
+    public function hasilPemeriksaan(){
+        $user=Auth::user()->id;
+        $data=$this->anakRepository->getAnakbyIdOrtu($user)->get();
+        return view('layout.anggota.ManajemenHasilPemeriksaan')->with('data', $data);
+    }
+
 } 

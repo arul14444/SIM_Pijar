@@ -30,11 +30,11 @@ class ValidateService{
     }
     public function valAset($request){
         $validator = Validator::make($request->all(), [
-            'lampiran' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096', 
+            'lampiran.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096', 
         ], [
-            'lampiran.required' => 'lampiran harus diunggah',
-            'lampiran.image' => 'lampiran harus berupa gambar',
-            'lampiran.max' => 'maksimal ukuran lampiran adalah 4 MB'
+            'lampiran.*.required' => 'lampiran harus diunggah',
+            'lampiran.*.image' => 'lampiran harus berupa gambar',
+            'lampiran.*.max' => 'maksimal ukuran lampiran adalah 4 MB'
         ]);
         
         return $validator;

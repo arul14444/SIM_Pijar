@@ -1,8 +1,11 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" >
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="height: 80px" >
+    {{-- <a href="">
+        <i class="fa-solid fa-angle-left" style="padding-left: 15px"></i>
+    </a> --}}
     <button class="btn ps-4 btn-link btn-sm order-1 order-lg-0 " id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <div class="col-3">
         <a class="navbar-brand ps-3  mb-0" href="" >
-            <img src="{{ asset('asset/logo yayasan.png') }}" alt="Logo Yayasan Pijar" width="10%" height="10%" class="me-2 "> 
+            <img src="{{ asset('asset/logo yayasan.png') }}" alt="Logo Yayasan Pijar" width="15%" height="15%" class="me-2 "> 
             SIM Pijar
             <!-- Sidebar Toggle-->
         </a> 

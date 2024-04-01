@@ -19,61 +19,82 @@
             align-items: center; 
             width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            width: 100%;
+            height: 100%;
+            filter: blur(8px);
+            background-image: url('{{ asset('asset/kegiatan.jpeg') }}');
+              /* Add the blur effect */
+            -webkit-filter: blur(6px);
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;  
         }
 
         #layoutAuthentication_content {
-            margin-top: 100px; 
+            padding: 10%;
+            transform: translate(0%, -120%)
+
         }
+        
     </style>
 </head>
 <body class="--bs-greay-bg">
     <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">                
-            <main>
-                <div class="row">
-                    <div class="kiri col-sm d-flex justify-content-center align-items-center">
-                        <img src="{{asset('asset/logo yayasan2.png')}}" class="img-fluid" alt="..." style="max-width: 80%;">
-                    </div>
-                    <div class="kanan col-sm">
-                        <div class="container">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $item)
-                                            <li>{{$item}}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endif
-                                <div class="card-body">
-                                    <form action="" method="POST">
-                                        @csrf
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="username" name="username" type="text" placeholder="username" value="{{old('username')}}" />
-                                            <label for="username">username</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
-                                            <label for="password">Password</label>
-                                        </div>
-                                        
-                                        <div class="d-flex align-items-center justify-content-end mt-4 mb-0">
-                                            {{-- <a class="small" href="password.html">Lupa Password?</a> --}}
-                                            <button name="submit" type="submit" class="btn btn-primary">Login</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-center py-3">
-                                    <div class="small">Yayasan Pijar Mutiara Bangsa</div>
-                                </div>
+        
+    </div>
+    <div id="layoutAuthentication_content">                
+        <main>
+            <div class="row">
+                <div class="kiri col-sm d-flex justify-content-center align-items-center">
+                    <img src="{{asset('asset/logo yayasan2.png')}}" class="img-fluid" alt="..." style="max-width: 80%;">
+                </div>
+                <div class="kanan col-sm">
+                    <div class="container">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $item)
+                                        <li>{{$item}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                            <div class="card-body">
+                                <form action="" method="POST">
+                                    @csrf
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="username" name="username" type="text" placeholder="username" value="{{old('username')}}" />
+                                        <label for="username">username</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
+                                        <label for="password">Password</label>
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center justify-content-end mt-4 mb-0">
+                                        {{-- <a class="small" href="password.html">Lupa Password?</a> --}}
+                                        <button name="submit" type="submit" class="btn btn-primary">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center py-3">
+                                <div class="small">Yayasan Pijar Mutiara Bangsa</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
