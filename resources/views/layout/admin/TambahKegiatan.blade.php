@@ -2,8 +2,8 @@
 @section('title','Tambah Kegiatan')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Manajemen</a></li>
-        <li class="breadcrumb-item active">Tambah</li>
+        <li class="breadcrumb-item"><a href="{{url('manajemen/kegiatan')}}">Manajemen Kegiatan</a></li>
+        <li class="breadcrumb-item active">Tambah Kegiatan</li>
     </ol>
 @endsection
 

@@ -1,20 +1,23 @@
 @extends('layout.admin.MasterAdmin')
-@section('title', 'Manajemen Pengurus')
+@section('title', 'Manajemen Pengurus Inti')
 @section('route')
-    <li class="breadcrumb-item active"> Manajemen Pengurus</li>
+    <li class="breadcrumb-item active"> Manajemen Pengurus Inti</li>
 @endsection
 
 @section('content')
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Pengurus</span>
-        <form method="POST" action="/pengurus/print-pdf" target="_blank">
-            @csrf
-            <button type="submit" class="btn btn-outline-dark">
-                <i class="fa-solid fa-download me-2"></i>Unduh
-            </button>
-        </form>
+    <div class="row card-header d-flex justify-content-between align-items-center">
+        <div class="col-md-8">
+            <span>Data Pengurus Inti</span>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <form method="POST" action="/pengurus/print-pdf" target="_blank">
+                @csrf
+                <button type="submit" class="btn btn-outline-dark" style="width: 110px; height: 35px;">
+                    <i class="fa-solid fa-download me-2"></i>Unduh
+                </button>
+            </form>
+        </div>
     </div>
-
     <div class="card-body">
         <table id="tabelPengurus" class="table">
             <thead>

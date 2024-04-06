@@ -25,7 +25,7 @@
             width: 100%;
             height: 100%;
             filter: blur(8px);
-            background-image: url('{{ asset('asset/kegiatan.jpeg') }}');
+            background-image: url('{{ asset('asset/kegiatan.jpg') }}');
               /* Add the blur effect */
             -webkit-filter: blur(6px);
 

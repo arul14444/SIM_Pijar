@@ -5,15 +5,29 @@
 @endsection
 
 @section('content')
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Anak</span>
-        <form method="POST" action="/anak/print-pdf" target="_blank">
-            @csrf
-            <button type="submit" class="btn btn-outline-dark">
-                <i class="fa-solid fa-download me-2"></i>Unduh
-            </button>
-        </form>
+    <div class="row card-header d-flex justify-content-between align-items-center">
+        <div class="col-md-8">
+            <span>Data Anak</span>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="{{ url('/tambah/anak')}}" class="btn btn-outline-success" style="width: 110px; height: 35px;"> 
+                        <i class="fa-solid fa-add me-2"></i> Tambah
+                    </a>     
+                </div>
+                <div class="col-md-6 text-end">
+                    <form method="POST" action="/anak/print-pdf" target="_blank">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-dark" style="width: 110px; height: 35px;">
+                            <i class="fa-solid fa-download me-2"></i> Unduh
+                        </button>
+                    </form>
+                </div>
+            </div>            
+        </div>
     </div>
+
     <div class="card-body">
         <table id="tabelAnak" class="table">
             <thead>

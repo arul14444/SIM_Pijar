@@ -5,8 +5,15 @@
 @endsection
 
 @section('content')
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Data Surat Tugas</span>
+    <div class="row card-header d-flex justify-content-between align-items-center">
+        <div class="col-md-8">
+            <span>Data Surat Tugas</span>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <a href="{{ url('/tambah/surat')}}" class="btn btn-outline-success" style="width: 110px; height: 35px;"> 
+                <i class="fa-solid fa-add me-2"></i> Tambah
+            </a> 
+        </div>
     </div>
     <div class="card-body">
         <table id="tabelSurat" class="table">

@@ -4,206 +4,203 @@
     <li class="breadcrumb-item active"> Dashboard</li>
 @endsection
 @section('content')
-<div class="row">
-    {{-- Infobox Pengurus --}}
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/pengurus')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-warning shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Pengurus Inti</div>
-                            <div class="text-xs mb-1">{{$data['pengurus']}} orang</div>
+    <div class="row">
+        {{-- Infobox Pengurus --}}
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/pengurus')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-warning shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">
+                                    Pengurus Inti</div>
+                                <div class="text-xs mb-1">{{$data['pengurus']}} orang</div>
+                            </div>
+                            <div class="col-auto"> 
+                                <i class="fa-solid fa-sitemap fa-2x"></i>
+                            </div>
                         </div>
-                        <div class="col-auto"> 
-                            <i class="fa-solid fa-sitemap fa-2x"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Infobox anggota -->
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/anggota')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-success shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">Anggota</div>
+                                <div class="text-xs mb-1"> {{$data['anggota']}} Orang</div>                            </div>
+                            <div class="col-auto">
+                            <i class="fa-solid fa-users fa-2x text-primary"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-    </div>
-    <!-- Infobox anggota -->
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/anggota')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-success shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">Anggota</div>
-                            <div class="text-xs mb-1"> {{$data['anggota']}} Orang</div>                            </div>
-                        <div class="col-auto">
-                           <i class="fa-solid fa-users fa-2x text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-            
-    <!-- infobox donatur -->
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/donatur')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-success shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Donatur</div>
-                            <div class="text-xs mb-1">{{$data['donatur']}} Orang</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-circle-dollar-to-slot fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-    
-    <!-- Infobox aset -->
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/aset')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-info shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">Aset
+        {{-- Infobox anak --}}
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/anak')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-warning shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">
+                                    Anak</div>
+                                <div class="text-xs mb-1">{{$data['anak']}} orang</div>
                             </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="text-xs mb-1">{{$data['aset']}} Barang</div>
+                            <div class="col-auto"> 
+                                <i class="fa-solid fa-children fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div> 
+        <!-- infobox donatur -->
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/donatur')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-success shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">
+                                    Donatur</div>
+                                <div class="text-xs mb-1">{{$data['donatur']}} Orang</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-circle-dollar-to-slot fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{-- Infobox Surat --}}
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/surat')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-warning shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">
+                                    Surat</div>
+                                <div class="text-xs mb-1">{{$data['surat']}} Surat</div>
+                            </div>
+                            <div class="col-auto"> 
+                                <i class="fa-solid fa-envelope fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+         <!-- Infobox kegiatan -->
+         <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/kegiatan')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-warning shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">
+                                    Kegiatan</div>
+                                <div class="text-xs mb-1">{{$data['kegiatan']}} Kegiatan</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-list-check fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Infobox Arsip -->
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/arsip')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-warning shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">
+                                    Arsip</div>
+                                <div class="text-xs mb-1">{{$data['arsip']}} Dokumen</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-book-open fa-2x text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Infobox aset -->
+        <div class="col-xl-3 col-md-4 mb-4">
+            <a href="{{url('/manajemen/aset')}}" style='text-decoration: none; color: inherit;'>
+                <div class="card border-left-info shadow h-100 py-3">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-3">
+                                <div class="h5 mb-0 text-uppercase">Aset
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="text-xs mb-1">{{$data['aset']}} Barang</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-boxes-stacked fa-2x text-info"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Infobox Arsip -->
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/arsip')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-warning shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Arsip</div>
-                            <div class="text-xs mb-1">{{$data['arsip']}} Dokumen</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-book-open fa-2x text-danger"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <!-- Infobox kegiatan -->
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/kegiatan')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-warning shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Kegiatan</div>
-                            <div class="text-xs mb-1">{{$data['kegiatan']}} Kegiatan</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-list-check fa-2x text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-    {{-- Infobox anak --}}
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/anak')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-warning shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Anak</div>
-                            <div class="text-xs mb-1">{{$data['anak']}} orang</div>
-                        </div>
-                        <div class="col-auto"> 
-                            <i class="fa-solid fa-children fa-2x text-primary"></i>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-boxes-stacked fa-2x text-info"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-    {{-- Infobox Surat --}}
-    <div class="col-xl-3 col-md-4 mb-4">
-        <a href="{{url('/manajemen/surat')}}" style='text-decoration: none; color: inherit;'>
-            <div class="card border-left-warning shadow h-100 py-3">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="h5 mb-0 text-uppercase">
-                                Surat</div>
-                            <div class="text-xs mb-1">{{$data['surat']}} Surat</div>
-                        </div>
-                        <div class="col-auto"> 
-                            <i class="fa-solid fa-envelope fa-2x text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-
-{{-- Grafik --}}
-<div class="row">
-    <div class="col-md-6">
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                Grafik Kepemilikan ABD
-            </div>
-            <div class="card-body">
-                <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="350"></canvas>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-6">
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-chart-bar me-1"></i>
-                        Riwayat Kemampuan Dengar Anak
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-select" id="inputAnak" name="uuid_anak">
-                            <option selected disabled value="">Pilih Nama Anak</option>
-                            @foreach ($data['dataAnak'] as $dt)    
-                                <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
-                            @endforeach
-                        </select>               
-                    </div>
+    {{-- Grafik --}}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header d-flex align-items-center" style="height: 50px;">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    <span class="me-auto">Grafik Kepemilikan ABD</span>
                 </div>                
+                <div class="card-body">
+                    <canvas id="chartKepemilikan" data-punya="{{$data['dataAbd']['kepemilikan']}}" data-tidakPunya="{{$data['dataAbd']['tidak_punya']}}" width="100%" height="375"></canvas>
+                </div>
             </div>
-            <div class="card-body">
-                <canvas id="chartPendengaran" width="100%" height="330px"></canvas>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header" style="height: 50px;">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Riwayat Kemampuan Dengar Anak
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select" id="inputAnak" name="uuid_anak">
+                                <option selected disabled value="">Pilih Nama Anak</option>
+                                @foreach ($data['dataAnak'] as $dt)    
+                                    <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
+                                @endforeach
+                            </select>               
+                        </div>
+                    </div>                
+                </div>
+                <div class="card-body">
+                    <canvas id="chartPendengaran" width="100%" height="330px"></canvas>
+                </div>
+                <div class="mr-auto p-2"> <span style="color: red;">*</span>Semakin meningkat maka kemampuan pendengaran semakin membaik</div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-6">
          <div class="card mb-4">
             <div class="card-header">
@@ -242,9 +239,9 @@
             
         </div>
     </div>
-</div>
+</div> --}}
 
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-header">
@@ -263,7 +260,7 @@
             <div  class="card-body"><canvas id="chartSumberDana" width="100%" height="350"></canvas></div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 <script>
