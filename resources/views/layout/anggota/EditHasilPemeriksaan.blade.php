@@ -11,10 +11,10 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating ">
-                    <select class="form-select" id="inputNamaAnak" name="uuid_anak">
+                    <select class="form-select" id="inputNamaAnak" name="uuid_anak" disabled>
                         <option selected disabled>Pilih Nama Anak</option>
                         @foreach ($data['anak'] as $dt)    
-                            <option value="{{$dt->uuid}}" @if ($dt->nama_lengkap == $data['detail']->nama_lengkap) selected @endif>{{$dt->nama_lengkap}}</option>
+                             @if ($dt->nama_lengkap == $data['detail']->nama_lengkap) <option value="{{$dt->uuid}}" selected @endif>{{$dt->nama_lengkap}}</option>
                         @endforeach
                     </select>
                     <label for="inputNamaAnak">Nama Anak</label>
