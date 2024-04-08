@@ -103,7 +103,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/manajemen/kegiatan',[DataController::class,'dataKegiatan']);
         Route::put('/kegiatan/delete/{uuid}', [DeleteController::class, 'deleteKegiatan']);
         Route::get('/kegiatan/edit/{uuid}', [EditController::class, 'detailKegiatan']);
-        Route::put('/kegiatan/edit/{uuid}', [EditController::class, 'editKegiatan']);
+        Route::put('/edit/kegiatan/{uuid}', [EditController::class, 'editKegiatan']);
 
         //manajemen arsip
         Route::get('/manajemen/arsip', function () {

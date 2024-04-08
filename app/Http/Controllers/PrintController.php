@@ -43,11 +43,28 @@ class PrintController extends Controller
         // Bootstrap 4 CSS dari CDN
         $bootstrap_css = file_get_contents('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
     
-        // Tambahkan Bootstrap CSS secara inline
-        $html_with_bootstrap = '<style>' . $bootstrap_css . '</style>' . $html;
+        // Path ke gambar
+        $path_to_image = public_path('asset/header.png');
     
-        return $html_with_bootstrap;
+        // Encode gambar menjadi base64
+        $image_data = base64_encode(file_get_contents($path_to_image));
+    
+        // Buat CSS inline untuk gambar
+        $image_css = "
+            .logo-yayasan {
+                background-image: url('data:image/png;base64,{$image_data}');
+                width: 15%;
+                height: 15%;
+                background-size: cover;
+            }
+        ";
+    
+        // Tambahkan Bootstrap CSS dan gambar CSS secara inline
+        $html_with_bootstrap_and_image = '<style>' . $bootstrap_css . $image_css . '</style>' . $html;
+    
+        return $html_with_bootstrap_and_image;
     }
+    
 
     public function printPdfAnggota()
     {
@@ -65,6 +82,7 @@ class PrintController extends Controller
         $tanggal = date('Y-m-d');
         $nama_file = 'Data_Anggota_' . $tanggal . '.pdf';
 
+        // return $html_with_bootstrap;
         return $dompdf->stream($nama_file);
     }
     

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Aset;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class AsetRepository{
    public function getAset(){
@@ -33,6 +34,6 @@ class AsetRepository{
    }
    public function delete($uuid)
    {
-       return Aset::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+       return Aset::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
    }
 }

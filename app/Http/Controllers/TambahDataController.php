@@ -187,7 +187,6 @@ class TambahDataController extends Controller
 
     public function tambahHasilPemeriksaan(Request $request){
         try{
-            // dd($request->hasFile('lampiran'));
             $validasi = $this->validateService->valHasilPemeriksaan($request);
             if ($validasi->fails()) {
                 $msg = $validasi->errors()->all();

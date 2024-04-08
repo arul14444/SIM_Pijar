@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Jabatan;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class JabatanRepository{
@@ -26,6 +27,6 @@ class JabatanRepository{
    }
    public function delete($uuid)
    {
-       return Jabatan::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+       return Jabatan::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
    }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Kegiatan;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class KegiatanRepository{
@@ -42,6 +43,6 @@ class KegiatanRepository{
    }
    public function delete($uuid)
    {
-       return Kegiatan::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+       return Kegiatan::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
    }
 }

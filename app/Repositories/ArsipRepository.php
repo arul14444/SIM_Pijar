@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Arsip;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class ArsipRepository{
    public function getArsip(){
@@ -24,6 +25,6 @@ class ArsipRepository{
     }
     public function delete($uuid)
     {
-        return Arsip::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+        return Arsip::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
     }
 }

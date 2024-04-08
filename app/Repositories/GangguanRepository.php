@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Gangguan;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class GangguanRepository{
     public function getAnak(){
@@ -39,7 +40,7 @@ class GangguanRepository{
     }
     public function delete($uuid)
     {
-        return Gangguan::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+        return Gangguan::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Anak;
 use App\Models\Gangguan;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class AnakRepository{
     public function getAnak(){
@@ -56,6 +57,6 @@ class AnakRepository{
     }
     public function delete($uuid)
     {
-        return Anak::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+        return Anak::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository{
    public function getAnggota(){
@@ -39,6 +40,6 @@ class UserRepository{
    }
    public function delete($uuid)
    {
-       return User::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+       return User::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
    }
 }

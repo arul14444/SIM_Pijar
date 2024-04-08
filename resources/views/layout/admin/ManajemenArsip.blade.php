@@ -77,7 +77,7 @@
                             <form method="POST" action="/arsip/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')
-                                <button id="hapusData" data-name="{{$dt->nama_dokumen}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                <button id="hapusData" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                     <i class="fas fa-trash"></i>
                                 </button>                                                                 
                             </form>

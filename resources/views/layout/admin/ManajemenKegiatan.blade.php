@@ -83,7 +83,7 @@
                             <form method="POST" action="/kegiatan/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')
-                                <button id="hapusData" data-name="{{$dt->nama_kegiatan}}" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                <button id="hapusData" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                     <i class="fas fa-trash"></i>
                                 </button>                                                                 
                             </form>

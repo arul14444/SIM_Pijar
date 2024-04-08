@@ -288,7 +288,7 @@ class EditController extends Controller
                     $validasi = $this->validateService->valKegiatan($request);
                     if ($validasi->fails()) {
                         $msg = $validasi->errors()->all();
-                        return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
+                        return redirect('kegiatan/edit/'.$uuid)->with('alert', 'Data arsip gagal ditambahkan: '.$msg[0] );;
                     }  
                     DB::beginTransaction();
                     $sumber = $this->sumberDanaRepository->findByUuid($request->sumber_dana);
@@ -334,7 +334,7 @@ class EditController extends Controller
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->alert(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan' . $e->getMessage()]);
+                return redirect('/manajemen/kegiatan')->alert(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan' . $e->getMessage()]);
             }
             
         }

@@ -7,6 +7,11 @@
     </ol>
 @endsection
 @section('content')
+@if(session('alert'))
+    <div class="alert alert-danger">
+        {{ session('alert') }}
+    </div>
+@endif
     <form id="editAnak" method="POST" action="/anak/edit/{{$data['detail']->uuid}}">
         @csrf
         @method('PUT')
@@ -121,14 +126,4 @@
     </form>
     <script src="{{ asset('resources/js/anak.js') }}"></script>
 
-    {{-- <script>
-        document.getElementById('editAnak').addEventListener('submit', function(event) {  
-            var uuid = {{ $data['detail']->uuid }};
-            document.getElementById('editAnak').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-                editData(uuid, formData);
-            });
-        });
-    </script> --}}
 @endsection

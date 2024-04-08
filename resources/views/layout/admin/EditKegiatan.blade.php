@@ -2,13 +2,19 @@
 @section('title','Edit Kegiatan')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/Manajemen/kegiatan">Manajemen Kegiatan</a></li>
+        <li class="breadcrumb-item"><a href="/manajemen/kegiatan">Manajemen Kegiatan</a></li>
         <li class="breadcrumb-item active">Edit</li>
     </ol>
 @endsection
 
 @section('content')
-<form id="editKegiatan" method="POST" action="/kegiatan/edit/{{$data['detail']->uuid}}" enctype="multipart/form-data">
+@if(session('alert'))
+    <div class="alert alert-danger">
+        {{ session('alert') }}
+    </div>
+@endif
+
+<form method="POST" action="/edit/kegiatan/{{$data['detail']->uuid}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-floating mb-3">
@@ -49,12 +55,11 @@
         <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
     </div>
     <div class="mt-4 mb-0">
-        <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan perubahan data ini?')">Simpan</button></div>
+        <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="confirmEdit('{{$data['detail']->uuid}}')">Simpan</button></div>
     </div>
 </form>
 
 <div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
     <div class="mr-auto"> <span style="color: red;">*</span>File berjenis gambar (jpeg, png, jpg, gif) ukuran maksimal 4096kb</div>
 </div>
-
 @endsection

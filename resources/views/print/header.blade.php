@@ -1,5 +1,8 @@
 <div class="row text-center">
-    <div class="col-md-6" style="padding-top: 20px">
+    <div class="col-md-2 d-flex justify-content-end align-items-center">
+        <img src="{{ asset('asset/logo yayasan.jpg') }}"  width="10%" height="auto" class="me-2">
+    </div>    
+    <div class="col-md-9">
         <div class="mx-auto" style="font-size: 16px;"><b>YAYASAN PEDULI JUANG ANAK TUNA RUNGU (PiJAR) MUTIARA BANGSA</b></div>
         <div class="mx-auto" style="font-size: 14px;"><b>Akta Notaris Widi Astuti, SH. No. 04 - 11 Juni 2022</b></div>
         <div class="mx-auto" style="font-size: 10px;">
@@ -9,5 +12,6 @@
         <div class="mx-auto" style="font-size: 14px;"><b>SK. Kemenkumham: No. AHU-00165542.AH.01.04 Tahun 2022</b></div>
         <div class="mx-auto" style="font-size: 10px;"><b>NPWP : 60.987.276.7-525.000</b></div>
     </div>
-    <hr style="margin-top: 10px; margin-bottom: 10px; border: 1px solid;">
+    <div class="col-md-1"></div>
 </div>
+<hr style="margin-top: 10px; margin-bottom: 10px; border: 1px solid;">

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Donatur;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DonaturRepository{
@@ -24,6 +25,6 @@ class DonaturRepository{
    }
    public function delete($uuid)
    {
-       return Donatur::where('uuid', $uuid)->update(['flag_aktif' => 0]);
+       return Donatur::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
    }
 }

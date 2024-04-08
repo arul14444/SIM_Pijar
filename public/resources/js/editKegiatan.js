@@ -1,70 +1,23 @@
-document.getElementById('editKegiatan').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    tambahKegiatan(formData);
-});
-
-function tambahKegiatan(formData) {
-    fetch('/kegiatan/edit/', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        let responseMessage = document.getElementById('responseMessage');
-        responseMessage.innerText = data.message;
-        responseMessage.style.color = 'white';
-
-        if (data.success) {
-            document.getElementById('tambahKegiatan').reset();
-            document.getElementById('responseMessage').style.backgroundColor = 'green';
-        } else {
-            document.getElementById('responseMessage').style.backgroundColor = 'red';
-        }
-    
-        setTimeout(function() {
-            responseMessage.innerText = '';
-            document.getElementById('responseMessage').style.backgroundColor = 'white';
-        }, 2000);
-    });
-}
-
-
-
-function confirmDelete(uuid) {
-
-    if (confirm('Apakah Anda yakin ingin menghapus data kegiatan?')) {
-        fetch(`/kegiatan/delete/${uuid}`, {
+function confirmEdit(uuid) {
+    if (confirm('Apakah Anda yakin ingin menyimpan perubahan data kegiatan?')) {
+        fetch(`/edit/kegiatan/${uuid}`, {
             method: 'PUT',
             headers: {
+                'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
+            },
+            body: JSON.stringify({
+                nama_kegiatan: document.getElementById('inputNamaKegiatan').value,
+                deskripsi: document.getElementById('inputDeskripsi').value,
+                lokasi: document.getElementById('inputLokasi').value,
+                tanggal: document.getElementById('inputTanggal').value,
+                sumber_dana: document.getElementById('sumber_dana').value
+            })
         })
         .then(response => response.json())
-        .then(data => {
-            let responseMessage = document.getElementById('responseMessage');
-            responseMessage.innerText = data.message;
-            responseMessage.style.color = 'white';
-    
-            if (data.success) {
-                responseMessage.style.backgroundColor = 'green';
-            } else {
-                responseMessage.style.backgroundColor = 'red';
-            }
-    
-            setTimeout(function() {
-                responseMessage.innerText = '';
-                responseMessage.style.backgroundColor = 'white';
-                location.reload(); 
-            }, 2000);
-            
-        })
         .catch(error => {
             console.error('Terjadi kesalahan:', error);
             alert('Terjadi kesalahan: ' + error.message);
         });
     }
 }
-
-
-
