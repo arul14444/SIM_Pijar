@@ -35,19 +35,26 @@ async function processDataForTable(data){
     const tableBody = document.querySelector('#tabelRiwayat tbody');
     tableBody.innerHTML = '';
     data.forEach((user, index) => {
-     
         const row = tableBody.insertRow();
       
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
         const cell3 = row.insertCell(2);
         const cell4 = row.insertCell(3);
-        const cell5 = row.insertCell(4); // Tambahkan sel untuk tombol aksi
+        const cell5 = row.insertCell(4); // Tambahkan sel untuk tautan file
+        const cell6 = row.insertCell(5); // Tambahkan sel untuk tombol aksi
       
         cell1.textContent = user.tgl_pemeriksaan;
-        cell2.textContent = user.kemampuan_kanan
+        cell2.textContent = user.kemampuan_kanan;
         cell3.textContent = user.kemampuan_kiri;
         cell4.textContent = user.kemampuan_binaural;
+
+        // Tampilkan tautan file hasil test
+        const fileLink = document.createElement('a');
+        fileLink.href = 'http://127.0.0.1:8000/' + user.path_file_hasil_test; // Menggunakan appUrl yang telah ditetapkan sebelumnya
+        fileLink.target = "_blank"; // Buka tautan di tab baru
+        fileLink.textContent = user.nama_file_hasil_test; // Menampilkan tautan
+        cell5.appendChild(fileLink);
         
         // Buat tombol edit
         const editButton = document.createElement('button');
@@ -66,11 +73,12 @@ async function processDataForTable(data){
         spacer.textContent = ' ';
         
         // Masukkan tombol dan elemen spasi ke dalam sel
-        cell5.appendChild(editButton);
-        cell5.appendChild(spacer); // Tambahkan elemen spasi
-        cell5.appendChild(deleteButton);
-      });
+        cell6.appendChild(editButton);
+        cell6.appendChild(deleteButton);
+    });
 }
+
+
 
 
 
@@ -85,15 +93,38 @@ function confirmDelete(uuid) {
     // Fungsi konfirmasi penghapusan
     if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
         // Jika user menekan OK, lakukan penghapusan dengan mengirimkan permintaan HTTP DELETE
-        fetch(`/delete/${uuid}`, {
-            method: 'DELETE',
+        fetch(`/hasil-pemeriksaan/delete/${uuid}`, {
+            method: 'PUT',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
         })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Gagal menghapus data');
             }
-            // Jika berhasil, refresh data
-            getData();
+            // Jika berhasil, tampilkan respons JSON
+            return response.json();
+        })
+        .then(data => {
+            let responseMessage = document.getElementById('responseMessage');
+            responseMessage.innerText = data.message;
+            responseMessage.style.color = 'white';
+    
+            if (data.success) {
+                document.getElementById('responseMessage').style.backgroundColor = '#d1e7de';
+                responseMessage.style.color = '#135435';
+            } else {
+                responseMessage.style.color = '#842129';
+                document.getElementById('responseMessage').style.backgroundColor = '#f8d7db';
+            }
+    
+            setTimeout(function() {
+                responseMessage.innerText = '';
+                responseMessage.style.backgroundColor = 'white';
+                location.reload(); 
+            }, 2000);
+            
         })
         .catch(error => {
             console.error('Error:', error);
@@ -102,5 +133,6 @@ function confirmDelete(uuid) {
         });
     }
 }
+
 
 

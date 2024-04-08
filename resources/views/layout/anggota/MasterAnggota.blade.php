@@ -30,7 +30,13 @@
                             </ol>
                         </div>
                         <div class="col-md-4">
-                            <div class="card border-0 mt-4 p-3" id="responseMessage"></div>
+                            <div class="card border-0 mt-4 p-3" id="responseMessage">
+                                @if(session('alert'))
+                                <div class="alert alert-danger">
+                                    {{ session('alert') }}
+                                </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <div class="card mb-4">

@@ -61,7 +61,7 @@ function confirmDelete(uuid) {
                 responseMessage.innerText = '';
                 responseMessage.style.backgroundColor = 'white';
                 location.reload(); 
-            }, 3000);
+            }, 2000);
             
         })
         .catch(error => {

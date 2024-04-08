@@ -28,15 +28,16 @@ class GangguanRepository{
             ->first();
     }
     public function dataPendengaran($id_anak){
-        return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan','uuid')
+        return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan','uuid','path_file_hasil_test','nama_file_hasil_test')
         ->where(['id_anak'=>$id_anak, 'flag_aktif'=>true])
         ->orderBy('tgl_pemeriksaan', 'ASC')
         ->get();
     }
     public function findByUuid($uuid)
     {
-        return Gangguan::select('*')
-            ->where(['uuid' => $uuid, 'flag_aktif' => true])->first();
+        return Gangguan::select('gangguan.*','anak.nama_lengkap','anak.uuid as uuid_anak')
+            ->join('anak','anak.id','gangguan.id_anak')
+            ->where(['gangguan.uuid' => $uuid, 'gangguan.flag_aktif' => true])->first();
     }
     public function delete($uuid)
     {

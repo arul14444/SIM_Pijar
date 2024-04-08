@@ -7,11 +7,6 @@
     </ol>
 @endsection
 @section('content')
-@if(session('alert'))
-    <div class="alert alert-danger">
-        {{ session('alert') }}
-    </div>
-@endif
     <form id="editAnak" method="POST" action="/anak/edit/{{$data['detail']->uuid}}">
         @csrf
         @method('PUT')

@@ -195,9 +195,9 @@ class TambahDataController extends Controller
             DB::beginTransaction();
             $this->tambahAnakService->setHasilTest($request);
             DB::commit();
-            return response()->json(['success' => true, 'message' => 'Data anak berhasil ditambahkan']);
+            return response()->json(['success' => true, 'message' => 'Data hasil pemeriksaan berhasil ditambahkan']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Gagal menambahkan data anak: ' . $e->getMessage()]);
+            return response()->json(['success' => false, 'message' => 'Gagal menambahkan data hasil pemeriksaan: ' . $e->getMessage()]);
         }
     }
 

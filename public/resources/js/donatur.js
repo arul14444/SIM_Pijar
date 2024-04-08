@@ -27,7 +27,7 @@ function tambahDonatur(formData) {
         setTimeout(function() {
             responseMessage.innerText = '';
             document.getElementById('responseMessage').style.backgroundColor = 'white';
-        }, 3000);
+        }, 2000);
     });
 }
 

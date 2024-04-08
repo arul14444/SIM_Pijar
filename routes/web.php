@@ -194,6 +194,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/tambah/hasil-pemeriksaan',[TambahDataController::class,'listAnak']);
         Route::post('/tambah/hasil-pemeriksaan',[TambahDataController::class,'tambahHasilpemeriksaan']);
         Route::get('/hasil-pemeriksaan/edit/{uuid}', [EditController::class, 'detailHasil']);
+        Route::put('/hasil-pemeriksaan/delete/{uuid}', [DeleteController::class, 'deleteHasilPemeriksaan']);
+        Route::put('/hasil-pemeriksaan/edit/{uuid}', [EditController::class, 'editHasilPemeriksaan']);
+
         
 
         Route::get('/kegiatan/anggota', function () {

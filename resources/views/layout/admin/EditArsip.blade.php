@@ -35,5 +35,5 @@
     <div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
         <div class="mr-auto"> <span style="color: red;">*</span>File berjenis PDF ukuran maksimal 2048kb</div>
     </div>
-    <script src="{{ asset('resources/js/arsip.js') }}"></script>
+    {{-- <script src="{{ asset('resources/js/arsip.js') }}"></script> --}}
 @endsection

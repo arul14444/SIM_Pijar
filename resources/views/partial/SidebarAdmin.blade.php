@@ -26,12 +26,12 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></i></div>
                     Donatur
                 </a>
-                
-                <a class="nav-link collapsed" href="{{url('manajemen/aset')}}">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></i></div>
-                    Aset
-                </a>
 
+                <a class="nav-link collapsed" href="{{url('manajemen/surat')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-envelope"></i></div>
+                    Surat
+                </a>
+                 
                 <a class="nav-link collapsed" href="{{url('manajemen/kegiatan')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
                     Kegiatan
@@ -40,9 +40,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Arsip
                 </a>
-                <a class="nav-link collapsed" href="{{url('manajemen/surat')}}">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-envelope"></i></div>
-                    Surat
+                
+                <a class="nav-link collapsed" href="{{url('manajemen/aset')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></i></div>
+                    Aset
                 </a>
            </div>
         </div>

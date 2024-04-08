@@ -1,19 +1,20 @@
 @extends('layout.anggota.MasterAnggota')
 @section('title', 'Edit Hasil Pemeriksaan')
 @section('route')
-    <li class="breadcrumb-item active"> Manajemen</li>
+    <li class="breadcrumb-item"> <a href="{{url('manajemen/hasil-pemeriksaan')}}">Manajemen Hasil Pemeriksaan</a></li>
     <li class="breadcrumb-item active"> Edit Hasil Pemeriksaan</li>
 @endsection
 @section('content')
-    <form id="tambahHasilPemeriksaan" method="POST" action="/tambah/hasil-pemeriksaan" enctype="multipart/form-data">
+    <form method="POST" action="/hasil-pemeriksaan/edit/{{$data['detail']->uuid}}" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating ">
                     <select class="form-select" id="inputNamaAnak" name="uuid_anak">
                         <option selected disabled>Pilih Nama Anak</option>
-                        @foreach ($data as $dt)    
-                            <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
+                        @foreach ($data['anak'] as $dt)    
+                            <option value="{{$dt->uuid}}" @if ($dt->nama_lengkap == $data['detail']->nama_lengkap) selected @endif>{{$dt->nama_lengkap}}</option>
                         @endforeach
                     </select>
                     <label for="inputNamaAnak">Nama Anak</label>
@@ -23,7 +24,7 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating ">
-                    <input class="form-control" id="tgl_periksa" name="tgl_pemeriksaan" type="date" placeholder="Enter your first name" />
+                    <input class="form-control" id="tgl_periksa" name="tgl_pemeriksaan" type="date" value="{{$data['detail']->tgl_pemeriksaan}}" />
                     <label for="tgl_periksa">Tanggal Pemeriksaan</label>
                 </div>
             </div>
@@ -99,7 +100,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-md-2 mb-3" style="display: flex; justify-content: center; align-items: center;font-size: 14px;">
                 Hasil pemeriksaan Pendengaran Binaural:
@@ -142,9 +142,9 @@
             </div>
         </div>
         <div class="mt-4 mb-0">
-            <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
+            <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Simpan</button></div>
         </div>
     </form>
-    <script src="{{ asset('resources/js/hasilPemeriksaan.js') }}"></script>
+    {{-- <script src="{{ asset('resources/js/hasilPemeriksaan.js') }}"></script> --}}
 
 @endsection

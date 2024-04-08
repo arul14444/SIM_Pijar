@@ -6,6 +6,7 @@ use App\Repositories\AnakRepository;
 use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
+use App\Repositories\GangguanRepository;
 use App\Repositories\KegiatanRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
@@ -13,7 +14,7 @@ use Illuminate\Http\Request;
 
 class DeleteController extends Controller
 {
-    protected $suratRepository, $donaturRepository, $userRepository, $kegiatanRepository, $asetRepository, $arsipRepository, $anakRepository;
+    protected $suratRepository, $donaturRepository, $userRepository, $kegiatanRepository, $asetRepository, $arsipRepository, $anakRepository, $gangguanRepository;
 
     public function __construct(
         DonaturRepository $donaturRepository,
@@ -22,7 +23,8 @@ class DeleteController extends Controller
         AsetRepository $asetRepository,
         ArsipRepository $arsipRepository,
         AnakRepository $anakRepository,
-        SuratRepository $suratRepository
+        SuratRepository $suratRepository,
+        GangguanRepository $gangguanRepository
     ) {
         $this->donaturRepository = $donaturRepository;
         $this->userRepository = $userRepository;
@@ -31,6 +33,7 @@ class DeleteController extends Controller
         $this->arsipRepository = $arsipRepository;
         $this->anakRepository = $anakRepository;
         $this->suratRepository = $suratRepository;
+        $this->gangguanRepository = $gangguanRepository;
     }
 
     public function deleteAnggota($uuid)
@@ -100,6 +103,15 @@ class DeleteController extends Controller
             return response()->json(['success' => true, 'message' => 'Berhasil menghapus data surat']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menghapus data surat: ' . $e->getMessage()]);
+        }
+    }
+    public function deleteHasilPemeriksaan($uuid)
+    {
+        try {
+            $this->gangguanRepository->delete($uuid);
+            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data hasil pemeriksaan']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data hasil pemeriksaan: ' . $e->getMessage()]);
         }
     }
 }
