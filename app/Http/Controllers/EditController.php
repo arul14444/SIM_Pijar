@@ -128,7 +128,7 @@ class EditController extends Controller
                     return redirect('/manajemen/anggota')->with('success', 'Data anggota berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Gagal mengubah data anggota: ' . $e->getMessage()]);
+                return redirect('anggota/edit/'.$uuid)->with('alert', 'Data anggota gagal diubah: ' . $e->getMessage() );
             }
         }
 
@@ -145,7 +145,7 @@ class EditController extends Controller
                     return redirect('/manajemen/pengurus')->with('success', 'Data pengurus berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Gagal mengubah data pengurus: ' . $e->getMessage()]);
+                return redirect('pengurus/edit/'.$uuid)->with('alert', 'Data pengurus gagal diubah: ' . $e->getMessage() );
             }
         }
 
@@ -186,7 +186,7 @@ class EditController extends Controller
                     return redirect('/manajemen/anak')->with('success', 'Data anak berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Gagal mengubah data anak: ' . $e->getMessage()]);
+                return redirect('anak/edit/'.$uuid)->with('alert', 'Data anak gagal diubah: ' . $e->getMessage() );
             }
         }
 
@@ -204,7 +204,7 @@ class EditController extends Controller
                 return redirect('/manajemen/donatur')->with('success', 'Data donatur berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Gagal menambahkan data donatur: ' . $e->getMessage()]);
+                return redirect('donatur/edit/'.$uuid)->with('alert', 'Data anak gagal diubah: ' . $e->getMessage() );
             }
         }
 
@@ -215,7 +215,7 @@ class EditController extends Controller
                     $validasi = $this->validateService->valAset($request);
                     if ($validasi->fails()) {
                         $msg = $validasi->errors()->all();
-                        return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
+                        return redirect('aset/edit/'.$uuid)->with('alert', 'Data aset gagal diubah: '.$msg[0] );
                     }  
                     $lampiranNames = [];
                     $pathLampiran = [];
@@ -255,7 +255,7 @@ class EditController extends Controller
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Data aset gagal ditambahkan' . $e->getMessage()]);
+                return redirect('aset/edit/'.$uuid)->with('alert', 'Data aset gagal diubah: ' . $e->getMessage() );
             }
         }
 
@@ -279,7 +279,7 @@ class EditController extends Controller
                 return redirect('/manajemen/surat')->with('success', 'Data surat berhasil diubah');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Data surat gagal ditambahkan' . $e->getMessage()]);
+                return redirect('surat/edit/'.$uuid)->with('alert', 'Data surat gagal diubah: ' . $e->getMessage() );
             } 
         }
         public function editKegiatan(Request $request,$uuid){
@@ -288,7 +288,7 @@ class EditController extends Controller
                     $validasi = $this->validateService->valKegiatan($request);
                     if ($validasi->fails()) {
                         $msg = $validasi->errors()->all();
-                        return redirect('kegiatan/edit/'.$uuid)->with('alert', 'Data arsip gagal ditambahkan: '.$msg[0] );;
+                        return redirect('kegiatan/edit/'.$uuid)->with('alert', 'Data kegiatan gagal ditambahkan: '.$msg[0] );
                     }  
                     DB::beginTransaction();
                     $sumber = $this->sumberDanaRepository->findByUuid($request->sumber_dana);
@@ -334,7 +334,7 @@ class EditController extends Controller
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
-                return redirect('/manajemen/kegiatan')->alert(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan' . $e->getMessage()]);
+                return redirect('kegiatan/edit/'.$uuid)->with('alert', 'Data kegiatan gagal diubah: ' . $e->getMessage() );
             }
             
         }
@@ -344,8 +344,8 @@ class EditController extends Controller
                     $validasi = $this->validateService->valArsip($request);
                     if ($validasi->fails()) {
                         $msg = $validasi->errors()->all();
-                        return response()->json(['success' => false, 'message' => 'Data arsip gagal ditambahkan: '.$msg[0] ]);
-                    }  
+                        return redirect('arsip/edit/'.$uuid)->with('alert', 'Data arsip gagal diubah: '.$msg[0] );
+                    }   
                     $lampiranNames = [];
                     $pathLampiran = [];
                     if (is_array($request->file('lampiran')) || is_object($request->file('lampiran'))) {
@@ -381,7 +381,7 @@ class EditController extends Controller
                 }
             } catch (\Exception $e) {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Data kegiatan gagal ditambahkan: ' . $e->getMessage()]);
+                redirect('arsip/edit/'.$uuid)->with('alert', 'Data arsip gagal diubah: ' . $e->getMessage() );
             } 
         }
 }

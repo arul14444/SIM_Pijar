@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Validator;
 class ValidateService{
     public function valArsip($request){
         $validator = Validator::make($request->all(), [
-            "lampiran" => "required|file|mimes:pdf|max:2048"
+            "lampiran.*" => "required|file|mimes:pdf|max:2048"
         ], [
-            'lampiran.required' => 'berkas harus diunggah',
-            'lampiran.mimes' => 'berkas harus pdf',
-            'lampiran.max' => 'max berkas diunggah adalah 2 mb'
+            'lampiran.*.required' => 'Lampiran harus diunggah',
+            'lampiran.*.mimes' => 'Lampiran harus pdf',
+            'lampiran.*.max' => 'Maksimal lampirab diunggah adalah 2 mb'
         ]);
         return $validator;
     }
@@ -32,9 +32,9 @@ class ValidateService{
         $validator = Validator::make($request->all(), [
             'lampiran.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096', 
         ], [
-            'lampiran.*.required' => 'lampiran harus diunggah',
-            'lampiran.*.image' => 'lampiran harus berupa gambar',
-            'lampiran.*.max' => 'maksimal ukuran lampiran adalah 4 MB'
+            'lampiran.*.required' => 'Lampiran harus diunggah',
+            'lampiran.*.image' => 'Lampiran harus berupa gambar',
+            'lampiran.*.max' => 'Maksimal ukuran lampiran adalah 4 MB'
         ]);
         
         return $validator;
@@ -43,9 +43,9 @@ class ValidateService{
         $validator = Validator::make($request->all(), [
             "lampiran.*" => "required|file|mimes:pdf|max:2048"
         ], [
-            'lampiran.*.required' => 'berkas harus diunggah',
-            'lampiran.*.mimes' => 'berkas harus pdf',
-            'lampiran.*.max' => 'max berkas diunggah adalah 2 mb'
+            'lampiran.*.required' => 'Lampiran harus diunggah',
+            'lampiran.*.mimes' => 'Lampiran harus pdf',
+            'lampiran.*.max' => 'Maksimal lampiran diunggah adalah 2 mb'
         ]);
         return $validator;
     }

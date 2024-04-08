@@ -10,4 +10,19 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 });
 
+// Mendapatkan elemen dengan ID "responseMessage"
+var responseMessage = document.getElementById("responseMessage");
+
+// Mengatur warna teks menjadi putih
+responseMessage.style.color = 'white';
+
+// Mengatur penundaan selama 2 detik sebelum mengubah kembali pesan
+setTimeout(function() {
+    // Menghapus teks pesan
+    responseMessage.innerText = '';
+    // Mengatur warna latar belakang kembali ke putih
+    responseMessage.style.backgroundColor = 'white';
+}, 3000);
+
+
 

@@ -25,7 +25,7 @@ function tambahKegiatan(formData) {
         setTimeout(function() {
             responseMessage.innerText = '';
             document.getElementById('responseMessage').style.backgroundColor = 'white';
-        }, 2000);
+        }, 3000);
     });
 }
 
@@ -56,7 +56,7 @@ function confirmDelete(uuid) {
                 responseMessage.innerText = '';
                 responseMessage.style.backgroundColor = 'white';
                 location.reload(); 
-            }, 2000);
+            }, 3000);
             
         })
         .catch(error => {

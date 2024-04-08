@@ -5,7 +5,7 @@
 
 @endsection
 @section('content')
-<form method="POST" action="/surat/edit/{{$data['detail']->uuid}}">
+    <form method="POST" action="/surat/edit/{{$data['detail']->uuid}}">
         @csrf
         @method('PUT')
         <div style="margin: 0 auto;">
