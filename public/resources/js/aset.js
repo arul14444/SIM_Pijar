@@ -13,13 +13,14 @@ function tambahAset(formData) {
     .then(data => {
         let responseMessage = document.getElementById('responseMessage');
         responseMessage.innerText = data.message;
-        responseMessage.style.color = 'white';
-
+        
         if (data.success) {
             document.getElementById('tambahAset').reset();
-            document.getElementById('responseMessage').style.backgroundColor = 'green';
+            document.getElementById('responseMessage').style.backgroundColor = '#d1e7de';
+            responseMessage.style.color = '#135435';
         } else {
-            document.getElementById('responseMessage').style.backgroundColor = 'red';
+            responseMessage.style.color = '#842129';
+            document.getElementById('responseMessage').style.backgroundColor = '#f8d7db';
         }
     
         setTimeout(function() {
@@ -47,9 +48,11 @@ function confirmDelete(uuid) {
             responseMessage.style.color = 'white';
     
             if (data.success) {
-                responseMessage.style.backgroundColor = 'green';
+                document.getElementById('responseMessage').style.backgroundColor = '#d1e7de';
+                responseMessage.style.color = '#135435';
             } else {
-                responseMessage.style.backgroundColor = 'red';
+                responseMessage.style.color = '#842129';
+                document.getElementById('responseMessage').style.backgroundColor = '#f8d7db';
             }
     
             setTimeout(function() {
