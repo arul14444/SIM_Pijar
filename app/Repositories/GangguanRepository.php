@@ -27,7 +27,7 @@ class GangguanRepository{
             ->first();
     }
     public function dataPendengaran($id_anak){
-        return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan')
+        return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan','uuid')
         ->where(['id_anak'=>$id_anak, 'flag_aktif'=>true])
         ->orderBy('tgl_pemeriksaan', 'ASC')
         ->get();

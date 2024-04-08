@@ -106,6 +106,12 @@ class EditController extends Controller
             ];
             return  view('layout.admin.EditSurat')->with('data', $data);
         }
+        public function detailHasil($uuid){
+            $data = [
+                'detail'=>$this->gangguanRepository->findByUuid($uuid)
+            ];
+            return  view('layout.anggota.EditHasilPemeriksaan')->with('data', $data);
+        }
 
         // edit
         public function editAnggota(Request $request, $uuid){

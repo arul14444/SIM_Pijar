@@ -54,7 +54,7 @@
         <main>
             <div class="row">
                 <div class="kiri col-sm d-flex justify-content-center align-items-center">
-                    <img src="{{asset('asset/logo yayasan2.png')}}" class="img-fluid" alt="..." style="max-width: 80%;">
+                    <img src="{{asset('asset/LogoYayasan.png')}}" class="img-fluid" alt="..." style="max-width: 150%; ">
                 </div>
                 <div class="kanan col-sm">
                     <div class="container">

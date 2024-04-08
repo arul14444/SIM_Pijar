@@ -183,7 +183,7 @@ Route::middleware(['auth'])->group(function(){
             return view('layout/anggota/Dashboard');
         });
         Route::get('/dashboard/anggota',[DataController::class,'dataDashboard']);
-
+        //hasilPemeriksaan
         Route::get('/manajemen/hasil-pemeriksaan', function () {
             return view('layout/anggota/manajemenHasilPemeriksaan');
         });
@@ -193,6 +193,7 @@ Route::middleware(['auth'])->group(function(){
         });
         Route::get('/tambah/hasil-pemeriksaan',[TambahDataController::class,'listAnak']);
         Route::post('/tambah/hasil-pemeriksaan',[TambahDataController::class,'tambahHasilpemeriksaan']);
+        Route::get('/hasil-pemeriksaan/edit/{uuid}', [EditController::class, 'detailHasil']);
         
 
         Route::get('/kegiatan/anggota', function () {
