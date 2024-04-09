@@ -238,4 +238,9 @@ class DataController extends Controller
         return view('layout.anggota.ManajemenHasilPemeriksaan')->with('data', $data);
     }
 
+    public function hasilPemeriksaanbyAdmin(){
+        $data=$this->anakRepository->getAnak()->get();
+        return view('layout.admin.ManajemenHasil')->with('data', $data);
+    }
+
 } 

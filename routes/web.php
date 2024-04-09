@@ -125,6 +125,12 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/surat/edit/{uuid}', [EditController::class, 'detailSurat']);
         Route::put('/surat/edit/{uuid}', [EditController::class, 'editSurat']);
 
+        //manajemen kemampuan dengar
+        Route::get('/manajemen/kemampuan-dengar', function () {
+            return view('layout/admin/manajemenHasil');
+        });
+        Route::get('/manajemen/kemampuan-dengar',[DataController::class,'hasilPemeriksaanbyAdmin']);
+
         //tambah anggota
         Route::get('/tambah/anggota', function () {
             return view('layout/admin/TambahAnggota');
@@ -169,8 +175,16 @@ Route::middleware(['auth'])->group(function(){
         });
         Route::get('/tambah/surat',[TambahDataController::class,'listPengurus']);
         Route::post('/tambah/surat',[TambahDataController::class,'tambahSurat']);
-
-
+        //tambah hasilmpemeriksaan
+        Route::get('/tambah/hasil-pemeriksaan-pendengaran', function () {
+            return view('layout/admin/TambahHasil');
+        });
+        Route::get('/tambah/hasil-pemeriksaan-pendengaran',[TambahDataController::class,'listAnakAll']);
+        Route::post('/tambah/hasil-pemeriksaan-pendengaran',[TambahDataController::class,'tambahHasilPemeriksaanbyAdmin']);
+        Route::get('/hasil-pemeriksaan-pendengaran/edit/{uuid}', [EditController::class, 'detailHasilbyAdmin']);
+        Route::put('/hasil-pemeriksaan-pendengaran/delete/{uuid}', [DeleteController::class, 'deleteHasilPemeriksaan']);
+        Route::put('/hasil-pemeriksaan-pendengaran/edit/{uuid}', [EditController::class, 'editHasilPemeriksaanbyAdmin']);
+        
         Route::get('/print/surat', function () {
             return view('print/PrintSurat');
         });
@@ -192,7 +206,7 @@ Route::middleware(['auth'])->group(function(){
             return view('layout/anggota/TambahHasilPemeriksaan');
         });
         Route::get('/tambah/hasil-pemeriksaan',[TambahDataController::class,'listAnak']);
-        Route::post('/tambah/hasil-pemeriksaan',[TambahDataController::class,'tambahHasilpemeriksaan']);
+        Route::post('/tambah/hasil-pemeriksaan',[TambahDataController::class,'tambahHasilPemeriksaan']);
         Route::get('/hasil-pemeriksaan/edit/{uuid}', [EditController::class, 'detailHasil']);
         Route::put('/hasil-pemeriksaan/delete/{uuid}', [DeleteController::class, 'deleteHasilPemeriksaan']);
         Route::put('/hasil-pemeriksaan/edit/{uuid}', [EditController::class, 'editHasilPemeriksaan']);

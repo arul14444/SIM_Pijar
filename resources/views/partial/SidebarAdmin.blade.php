@@ -7,7 +7,6 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-
                 <a class="nav-link" href="{{ url('/manajemen/pengurus')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
                     Pengurus Inti
@@ -17,10 +16,21 @@
                     Anggota
                 </a>
 
-                <a class="nav-link collapsed" href="{{url('manajemen/anak')}}" >
+                <a class="nav-link" href="{{url('manajemen/anak')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-children"></i></div>
                     Anak
                 </a>
+                    <nav class="sb-sidenav-menu-nested nav">
+                        {{-- <ul> --}}
+                            <a class="nav-link" href="{{ url('/manajemen/kemampuan-dengar')}}"> 
+                                {{-- <li> --}}
+                                {{-- <div class="sb-nav-link-icon"> <i class="fa-solid fa-ear-listen"></i></div> --}}
+                                Pendengaran
+                                {{-- </li> --}}
+                            </a>
+                        {{-- </ul> --}}
+                    </nav>
+                
                 
                 <a class="nav-link collapsed" href="{{url('manajemen/donatur')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></i></div>

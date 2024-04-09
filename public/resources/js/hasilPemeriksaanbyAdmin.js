@@ -5,7 +5,7 @@ document.getElementById('tambahHasilPemeriksaan').addEventListener('submit', fun
 });
 
 function tambahKegiatan(formData) {
-    fetch('/tambah/hasil-pemeriksaan', {
+    fetch('/tambah/hasil-pemeriksaan-pendengaran', {
         method: 'POST',
         body: formData
     })
@@ -36,7 +36,7 @@ function tambahKegiatan(formData) {
 function confirmDelete(uuid) {
 
     if (confirm('Apakah Anda yakin ingin menghapus data kegiatan?')) {
-        fetch(`/hasil-pemeriksaan/delete/${uuid}`, {
+        fetch(`/hasil-pemeriksaan-pendengaran/delete/${uuid}`, {
             method: 'PUT',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')

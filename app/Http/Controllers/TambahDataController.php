@@ -186,6 +186,7 @@ class TambahDataController extends Controller
     }
 
     public function tambahHasilPemeriksaan(Request $request){
+        dd('test');
         try{
             $validasi = $this->validateService->valHasilPemeriksaan($request);
             if ($validasi->fails()) {
@@ -201,6 +202,25 @@ class TambahDataController extends Controller
         }
     }
 
+    public function tambahHasilPemeriksaanbyAdmin(Request $request){
+        try{
+            $validasi = $this->validateService->valHasilPemeriksaan($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data gagal ditambahkan: '.$msg[0] ]);
+            }  
+            DB::beginTransaction();
+            $this->tambahAnakService->setHasilTest($request);
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Data hasil pemeriksaan berhasil ditambahkan']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal menambahkan data hasil pemeriksaan: ' . $e->getMessage()]);
+        }
+    }
+    public function listAnakAll(){
+        $data=$this->anakRepository->getAnak()->get();
+        return view('layout.admin.TambahHasil')->with('data', $data);
+    }
     public function listAnak(){
         $user=Auth::user()->id;
         $data=$this->anakRepository->getAnakbyIdOrtu($user)->get();

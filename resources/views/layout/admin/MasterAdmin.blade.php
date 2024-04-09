@@ -8,6 +8,7 @@
     <meta name="author" content="" />
     <title>@yield('title')</title>
     <link href="{{ asset('resources/css/app.css')}}" rel="stylesheet" />
+    <link rel="icon" href="{{url('asset/logo yayasan.png')}}" type="image/png">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

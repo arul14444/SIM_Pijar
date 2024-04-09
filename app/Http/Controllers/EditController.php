@@ -114,6 +114,14 @@ class EditController extends Controller
             ];
             return  view('layout.anggota.EditHasilPemeriksaan')->with('data', $data);
         }
+        public function detailHasilbyAdmin($uuid){
+            $data = [
+                'anak'=>$this->anakRepository->getAnak()->get(),
+                'detail'=>$this->gangguanRepository->findByUuid($uuid)
+            ];
+            return  view('layout.admin.EditHasil')->with('data', $data);
+        }
+        
 
         // edit
         public function editAnggota(Request $request, $uuid){
@@ -515,5 +523,133 @@ class EditController extends Controller
                
             } catch (\Exception $e) {
                return redirect('hasil-pemeriksaan/edit/'.$uuid)->with('alert', 'Data hasil pemeriksaan gagal diubah: ' . $e->getMessage() );            }
+        }
+        public function editHasilPemeriksaanbyAdmin(Request $data, $uuid){
+            try{
+                if ($data->hasFile('lampiran')) {
+                    $anak = $this->anakRepository->findByUuid($data->uuid_anak);
+                    $lama= $this->gangguanRepository->findByUuid($uuid);
+                    $validasi = $this->validateService->valHasilPemeriksaan($data);
+                    if ($validasi->fails()) {
+                        $msg = $validasi->errors()->all();
+                        return redirect('hasil-pemeriksaan-pendengaran/edit/'.$uuid)->with('alert', 'Data arsip gagal diubah: '.$msg[0] );
+                    }  
+                    DB::beginTransaction();
+                    $lampiranNames = [];
+                    $pathLampiran = [];
+                    if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
+                        $lampiranFiles = $data->file('lampiran');
+                        foreach ($lampiranFiles as $lampiran) {
+                            $namaLampiranBaru = $anak->nama_lengkap . '_' . $lampiran->getClientOriginalName();
+                            $lampiranNames[] = $namaLampiranBaru;
+                            $lampiran->move('dokumen/hasilTest', $namaLampiranBaru);
+                            $pathLampiran[] = 'dokumen/hasilTest/' . $namaLampiranBaru;
+                        }
+                        
+                    }
+                    $lampiran = implode(';', $lampiranNames);
+                    $path = implode(';', $pathLampiran);
+    
+                    $nilaiTelingaKanan=[
+                        $data->kanan_nilai1,
+                        $data->kanan_nilai2,
+                        $data->kanan_nilai3,
+                        $data->kanan_nilai4,
+                        $data->kanan_nilai5,
+                    ];
+                    $nilaiTelingaKiri=[
+                        $data->kiri_nilai1,
+                        $data->kiri_nilai2,
+                        $data->kiri_nilai3,
+                        $data->kiri_nilai4,
+                        $data->kiri_nilai5,
+                    ];
+                    $nilaiTelingaBinaural=[
+                        $data->binaural_nilai1,
+                        $data->binaural_nilai2,
+                        $data->binaural_nilai3,
+                        $data->binaural_nilai4,
+                        $data->binaural_nilai5,
+                    ];
+    
+                    $kemampuanTelingaKanan=collect($nilaiTelingaKanan)->avg();
+                    $kemampuanTelingaKanan=$kemampuanTelingaKanan??$lama->kemampuan_kanan;
+                    $kemampuanTelingaKiri=collect($nilaiTelingaKiri)->avg(); 
+                    $kemampuanTelingaKiri=$kemampuanTelingaKiri??$lama->kemampuan_kiri;
+                    $kemampuanBinaural=collect($nilaiTelingaBinaural)->avg();
+                    $kemampuanBinaural=$kemampuanBinaural??$lama->kemampuan_binaural;
+                    $setData = [
+                        'kemampuan_kiri'=> $kemampuanTelingaKiri,
+                        'kemampuan_kanan'=> $kemampuanTelingaKanan,
+                        'kemampuan_binaural'=>$kemampuanBinaural,
+                        'id_anak'=> $anak->id,
+                        'path_file_hasil_test'=>$path,
+                        'nama_file_hasil_test'=>$lampiran,
+                        'tgl_pemeriksaan'=>$data->tgl_pemeriksaan,
+                        'user_update' => Auth::user()->nama
+                    ];
+                    $this->gangguanRepository->updateBy($setData,$uuid);
+                    $setUpdate = [
+                        'kemampuan_kiri'=> $kemampuanTelingaKiri,
+                        'kemampuan_kanan'=> $kemampuanTelingaKanan,
+                        'kemampuan_binaural'=>$kemampuanBinaural,
+    
+                    ]; 
+                    $this->anakRepository->updateBy($setUpdate,$data->uuid_anak);
+                    DB::commit();
+                    return redirect('/manajemen/kemampuan-dengar')->with('success', 'Data arsip berhasil diubah');
+                }else{
+                    $lama= $this->gangguanRepository->findByUuid($uuid);
+                    $anak = $this->anakRepository->findByUuid($data->uuid_anak);
+                    DB::beginTransaction();
+                    $nilaiTelingaKanan=[
+                        $data->kanan_nilai1,
+                        $data->kanan_nilai2,
+                        $data->kanan_nilai3,
+                        $data->kanan_nilai4,
+                        $data->kanan_nilai5,
+                    ];
+                    $nilaiTelingaKiri=[
+                        $data->kiri_nilai1,
+                        $data->kiri_nilai2,
+                        $data->kiri_nilai3,
+                        $data->kiri_nilai4,
+                        $data->kiri_nilai5,
+                    ];
+                    $nilaiTelingaBinaural=[
+                        $data->binaural_nilai1,
+                        $data->binaural_nilai2,
+                        $data->binaural_nilai3,
+                        $data->binaural_nilai4,
+                        $data->binaural_nilai5,
+                    ];
+                    $kemampuanTelingaKanan=collect($nilaiTelingaKanan)->avg();
+                    $kemampuanTelingaKanan=$kemampuanTelingaKanan??$lama->kemampuan_kanan;
+                    $kemampuanTelingaKiri=collect($nilaiTelingaKiri)->avg(); 
+                    $kemampuanTelingaKiri=$kemampuanTelingaKiri??$lama->kemampuan_kiri;
+                    $kemampuanBinaural=collect($nilaiTelingaBinaural)->avg();
+                    $kemampuanBinaural=$kemampuanBinaural??$lama->kemampuan_binaural;
+                    $setData = [
+                        'kemampuan_kiri'=> $kemampuanTelingaKiri,
+                        'kemampuan_kanan'=> $kemampuanTelingaKanan,
+                        'kemampuan_binaural'=>$kemampuanBinaural,
+                        'id_anak'=> $anak->id,
+                        'tgl_pemeriksaan'=>$data->tgl_pemeriksaan,
+                        'user_update' => Auth::user()->nama
+                    ];
+                    $this->gangguanRepository->updateBy($setData,$uuid);
+                    $setUpdate = [
+                        'kemampuan_kiri'=> $kemampuanTelingaKiri,
+                        'kemampuan_kanan'=> $kemampuanTelingaKanan,
+                        'kemampuan_binaural'=>$kemampuanBinaural,
+    
+                    ]; 
+                    $this->anakRepository->updateBy($setUpdate,$data->uuid_anak);
+                    DB::commit();
+                    return redirect('/manajemen/kemampuan-dengar')->with('success', 'Data hasil pemeriksaan berhasil diubah');
+                }
+               
+            } catch (\Exception $e) {
+               return redirect('hasil-pemeriksaan-pendengaran/edit/'.$uuid)->with('alert', 'Data hasil pemeriksaan gagal diubah: ' . $e->getMessage() );            }
         }
 }
