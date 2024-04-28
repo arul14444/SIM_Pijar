@@ -200,6 +200,54 @@
         </div>
     </div>
 
+    {{-- write code for table kegiantan --}}
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center" style="height: 50px;">
+            <i class="fas fa-table me-1"></i>
+            <span class="me-auto">Tabel Kegiatan</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kegiatan</th>
+                                <th>Deskripsi</th>
+                                <th>Tanggal</th>
+                                <th>Lokasi</th>
+                                <th>Sumber Dana</th>
+                                <th>Dokumentasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($data['dataKegiatan']->take(5) as $index => $dt)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $dt->nama_kegiatan }}</td>
+                                <td>{{ $dt->deskripsi_kegiatan }}</td>
+                                <td>{{ $dt->tgl_kegiatan }}</td>
+                                <td>{{ $dt->lokasi }}</td>
+                                <td>{{ $dt->sumber }}</td>
+                                <td> 
+                                    <ul>
+                                    @foreach($dt->path_foto_kegiatan as $path_foto)
+                                        <li>
+                                            <a href="{{(config('app.url').'/'.$path_foto)}}" target="_blank">{{ basename($path_foto) }}</a>
+                                        </li>
+                                    @endforeach
+                                    <ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>     
+
 {{-- <div class="row">
     <div class="col-md-6">
          <div class="card mb-4">

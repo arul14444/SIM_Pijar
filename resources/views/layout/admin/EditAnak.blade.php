@@ -27,7 +27,9 @@
                     <div class="form-floating">
                         <select class="form-select" id="inputBpjs" name="bpjs">
                             <option value="ya" @if($data['detail']->bpjs == 'ya') selected @endif>Punya</option>
+                            <option value="kis " @if($data['detail']->bpjs == 'kis') selected @endif>KIS</option>
                             <option value="tidak" @if($data['detail']->bpjs == 'tidak') selected @endif>Tidak</option>
+                            
                         </select>
                         <label for="inputBpjs">Kepemilikan BPJS</label>
                     </div>                    

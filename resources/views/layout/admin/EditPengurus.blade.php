@@ -2,8 +2,8 @@
 @section('title','Edit Pengurus')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Manajemen Anggota</a></li>
-        <li class="breadcrumb-item active">Edit</li>
+        <li class="breadcrumb-item"><a href="{{url('/manajemen/pengurus')}}">Manajemen Pengurus Inti</a></li>
+        <li class="breadcrumb-item active">Edit Pengurus Inti</li>
     </ol>
 @endsection
 @section('content')

@@ -26,6 +26,7 @@
                     <div class="form-floating">
                         <select class="form-select" id="inputBpjs" name="bpjs">
                             <option value="ya">Punya</option>
+                            <option value="kis">KIS</option>
                             <option value="tidak">Tidak</option>
                         </select>
                         <label for="inputGangguanTelingaKanan">Kepemilikan BPJS</label>
