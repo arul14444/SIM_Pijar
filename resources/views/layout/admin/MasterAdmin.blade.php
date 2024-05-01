@@ -36,8 +36,11 @@
                                 <div class="alert alert-danger">
                                     {{ session('alert') }}
                                 </div>
-                                @endif
-                            </div>
+                                @elseif(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif  
                         </div>
                     </div>
                     <div class="card mb-4">

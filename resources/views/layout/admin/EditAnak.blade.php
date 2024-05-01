@@ -117,8 +117,7 @@
                 <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
             <div class="mt-4 mb-0">
-                <button type="submit" class="btn btn-primary btn-block" onclick="return confirmEdit({{$data['detail']->uuid}})">Simpan</button>
-            </div>
+                <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan perubahan data ini?')">Simpan</button></div>            </div>
         </div>
     </form>
     <script src="{{ asset('resources/js/anak.js') }}"></script>

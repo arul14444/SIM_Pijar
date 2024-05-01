@@ -24,9 +24,24 @@ class TambahAnakService{
     }
 
     public function setFirstData($data){
+        $lampiranNames = [];
+        $pathLampiran = [];
         $ortu = $this->userRepository->findByUuid($data->uuid_orang_tua);
         $abdKiri = $this->abdRepository->findByUuid($data->uuid_abd_kiri);
         $abdKanan = $this->abdRepository->findByUuid($data->uuid_abd_kanan);
+        if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
+            $lampiranFiles = $data->file('lampiran');
+            foreach ($lampiranFiles as $lampiran) {
+                $namaLampiranBaru = $data->nama_lengkap . '_' . $lampiran->getClientOriginalName();
+                $lampiranNames[] = $namaLampiranBaru;
+                $lampiran->move('dokumen/hasilTest', $namaLampiranBaru);
+                $pathLampiran[] = 'dokumen/hasilTest/' . $namaLampiranBaru;
+            }
+            
+        }
+        $lampiran = implode(';', $lampiranNames);
+        $path = implode(';', $pathLampiran);
+
         $setData = [
             'id_abd_kiri'=> $abdKiri->id,
             'id_abd_kanan'=>$abdKanan->id,
@@ -51,6 +66,8 @@ class TambahAnakService{
             'kemampuan_kanan'=> $data->kemampuan_telinga_kanan,
             'kemampuan_binaural'=> $data->kemampuan_telinga_binaural,
             'tgl_pemeriksaan'=>$data->tgl_pemeriksaan,
+            'path_file_hasil_test'=>$path,
+            'nama_file_hasil_test'=>$lampiran,
             'id_anak'=> $getAnak->id,
             'user_update' => Auth::user()->nama
         ];

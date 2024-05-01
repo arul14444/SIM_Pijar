@@ -1,6 +1,6 @@
 <div class="row text-center">
     <div class="col-md-2 d-flex justify-content-end align-items-center">
-        <img src="{{ asset('asset/logo yayasan.jpg') }}"  width="10%" height="auto" class="me-2">
+        <img src="{{ asset('asset/logo yayasan.png') }}"  width="10%" height="auto" class="me-2">
     </div>    
     <div class="col-md-9">
         <div class="mx-auto" style="font-size: 16px;"><b>YAYASAN PEDULI JUANG ANAK TUNA RUNGU (PiJAR) MUTIARA BANGSA</b></div>

@@ -121,6 +121,12 @@
                 <input class="form-control" id="inputPenyakitPenyerta" name="penyakit_penyerta" type="text" placeholder="Masukan penyakit penyerta" />
                 <label for="inputPenyakitPenyerta">Penyakit Penyerta</label>
             </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="formFileMultiple" class="form-label">Lampiran hasil pemeriksaan</label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
+                </div>
+            </div>
             <div class="mt-4 mb-0">
                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
             </div>

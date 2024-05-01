@@ -8,6 +8,7 @@ use App\Repositories\ArsipRepository;
 use App\Repositories\AsetRepository;
 use App\Repositories\DonaturRepository;
 use App\Repositories\gangguanRepository;
+use App\Repositories\InstansiRepository;
 use App\Repositories\JabatanRepository;
 use App\Repositories\KegiatanRepository;
 use App\Repositories\StatusAsetRepository;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\DB;
 class EditController extends Controller
 {
     protected $userRepository,$statusAsetRepository, $abdRepository, $jabatanRepository, $donaturRepository, $sumberDanaRepository,
-    $arsipRepository,$kegiatanRepository,$asetRepository, $suratRepository, $anakRepository, $gangguanRepository, $validateService;
+    $arsipRepository,$kegiatanRepository,$asetRepository, $suratRepository, $anakRepository, $gangguanRepository, $validateService, $instansiRepository;
 
     public function __construct(
         UserRepository $userRepository,
@@ -37,7 +38,8 @@ class EditController extends Controller
         AnakRepository $anakRepository,
         gangguanRepository $gangguanRepository,
         DonaturRepository $donaturRepository,
-        ValidateService $validateService
+        ValidateService $validateService,
+        InstansiRepository $instansiRepository
         
         ) {
             $this->userRepository = $userRepository;
@@ -53,6 +55,7 @@ class EditController extends Controller
             $this->gangguanRepository = $gangguanRepository;
             $this->donaturRepository = $donaturRepository;
             $this->validateService = $validateService;
+            $this->instansiRepository = $instansiRepository;
         }
 
         // Ambil Data
@@ -73,7 +76,9 @@ class EditController extends Controller
             return  view('layout.admin.EditAnggota')->with('data', $data);
         } 
         public function detailDonatur($uuid){
-            $data = $this->donaturRepository->findByUuid($uuid);
+            $data = [
+                'detail'=>$this->donaturRepository->findByUuid($uuid),
+                'instansi'=>$this->instansiRepository->getInstansi()->get()];
             return  view('layout.admin.EditDonatur')->with('data', $data);
         } 
         public function detailArsip($uuid){
@@ -203,10 +208,12 @@ class EditController extends Controller
         public function editDonatur(Request $request,$uuid){
             try{
                 DB::beginTransaction();
+                $instansi=$this->instansiRepository->findByUuid($request->uuid_instansi);
                 $setData=[
                         'nama'=> $request->nama,
                         'nomor_telepon'=> $request->nomor_telepon,
                         'alamat'=>$request->alamat,
+                        'id_instansi'=>$instansi->id,
                         'user_update' => Auth::user()->nama
                 ];
                 $this->donaturRepository->updateByUuid($setData,$uuid);

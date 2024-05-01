@@ -35,6 +35,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Nomor Telepon</th>
+                    <th>Instansi</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
@@ -44,6 +45,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Nomor Telepon</th>
+                    <th>Instansi</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
@@ -55,6 +57,7 @@
                         <td>{{$index + 1}}</td>
                         <td>{{$dt->nama}}</td>
                         <td>0{{$dt->nomor_telepon}}</td>
+                        <td>{{$dt->instansi}}</td>
                         <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">

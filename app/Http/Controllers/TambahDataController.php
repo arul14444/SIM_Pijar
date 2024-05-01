@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\AbdRepository;
 use App\Repositories\AnakRepository;
+use App\Repositories\InstansiRepository;
 use App\Repositories\JabatanRepository;
 use App\Repositories\StatusAsetRepository;
 use App\Repositories\SumberDanaRepository;
@@ -26,7 +27,7 @@ class TambahDataController extends Controller
 {
     protected $userRepository, $tambahAnggotaService, $tambahAnakService, $tambahDonaturService, 
     $tambahArsipService,$tambahAsetService, $tambahKegiatanService,$statusAsetRepository, $abdRepository, 
-    $tambahSuratService, $jabatanRepository, $sumberDanaRepository, $anakRepository, $validateService;
+    $tambahSuratService, $jabatanRepository, $sumberDanaRepository, $anakRepository, $validateService, $instansiRepository;
 
     public function __construct(
         TambahAnggotaService $tambahAnggotaService,
@@ -42,7 +43,8 @@ class TambahDataController extends Controller
         TambahArsipService $tambahArsipService,
         SumberDanaRepository $sumberDanaRepository,
         AnakRepository $anakRepository,
-        ValidateService $validateService
+        ValidateService $validateService,
+        InstansiRepository $instansiRepository
 
         
         ) {
@@ -60,6 +62,7 @@ class TambahDataController extends Controller
             $this->sumberDanaRepository = $sumberDanaRepository;
             $this->anakRepository = $anakRepository;
             $this->validateService = $validateService;
+            $this->instansiRepository = $instansiRepository;
         }
 
         // Ambil Data
@@ -86,6 +89,13 @@ class TambahDataController extends Controller
             return  view('layout.admin.TambahSurat')->with('data', $data);
         }
 
+        public function listDataTambahDonatur(){
+            $data=[
+                'listInstansi' => $this->instansiRepository->getInstansi()->get(),
+            ];
+            return  view('layout.admin.TambahDonatur')->with('data', $data);
+        }
+
         //=========================== tambah Data =========================== 
     public function tambahAnggota(Request $request){
         try{
@@ -103,6 +113,11 @@ class TambahDataController extends Controller
     }
     public function tambahAnakbyAdmin(Request $request){
         try{
+            $validasi = $this->validateService->valHasilPemeriksaan($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data gagal ditambahkan: '.$msg[0] ]);
+            }  
             DB::beginTransaction();
             $this->tambahAnakService->setFirstData($request);
             DB::commit();
@@ -186,7 +201,6 @@ class TambahDataController extends Controller
     }
 
     public function tambahHasilPemeriksaan(Request $request){
-        dd('test');
         try{
             $validasi = $this->validateService->valHasilPemeriksaan($request);
             if ($validasi->fails()) {

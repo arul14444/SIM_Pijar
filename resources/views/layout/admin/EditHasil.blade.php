@@ -1,4 +1,4 @@
-@extends('layout.anggota.MasterAnggota')
+@extends('layout.admin.MasterAdmin')
 @section('title', 'Edit Hasil Pemeriksaan')
 @section('route')
     <li class="breadcrumb-item"> <a href="{{url('/manajemen/kemampuan-dengar')}}">Manajemen Kemampuan Dengar</a></li>

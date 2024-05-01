@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class DonaturRepository{
    public function getDonatur(){
-        return Donatur::select('*')->where('flag_aktif',true);
+        return Donatur::select('donatur.nama','donatur.alamat','donatur.nomor_telepon','i.instansi','donatur.uuid')
+        ->join('instansi as i','i.id','=','donatur.id_instansi')
+        ->where('donatur.flag_aktif',true);
    }
    public function create($data)
    {
@@ -21,7 +23,10 @@ class DonaturRepository{
    }
    public function findByUuid($uuid)
    {
-       return Donatur::from('donatur as d')->where(['d.uuid' => $uuid, 'flag_aktif' => true])->first();
+       return Donatur::from('donatur as d')
+       ->join('instansi as i','i.id','=','d.id_instansi')
+       ->select('d.nama','d.alamat','d.nomor_telepon','i.instansi','d.uuid')
+       ->where(['d.uuid' => $uuid, 'd.flag_aktif' => true])->first();
    }
    public function delete($uuid)
    {

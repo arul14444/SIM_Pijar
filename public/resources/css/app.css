@@ -139,7 +139,8 @@ body {
 #tabelDonatur th:nth-child(2), #tabelDonatur td:nth-child(2) { width: 20%; }
 #tabelDonatur th:nth-child(3), #tabelDonatur td:nth-child(3) { width: 17%; }
 #tabelDonatur th:nth-child(4), #tabelDonatur td:nth-child(4) { width: 20%; }
-#tabelDonatur th:nth-child(5), #tabelDonatur td:nth-child(5) { width: 15%; }
+#tabelDonatur th:nth-child(5), #tabelDonatur td:nth-child(5) { width: 25%; }
+#tabelDonatur th:nth-child(6), #tabelDonatur td:nth-child(6) { width: 15%; }
 
 #tabelAset th:nth-child(1), #tabelAset td:nth-child(1) { width: 3%; }
 #tabelAset th:nth-child(2), #tabelAset td:nth-child(2) { width: 20%; }

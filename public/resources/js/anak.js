@@ -18,7 +18,7 @@ function tambahAnak(formData) {
         responseMessage.style.color = 'white';
 
         if (data.success) {
-            document.getElementById('tambahAset').reset();
+            document.getElementById('tambahAnak').reset();
             document.getElementById('responseMessage').style.backgroundColor = '#d1e7de';
             responseMessage.style.color = '#135435';
         } else {

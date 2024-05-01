@@ -148,6 +148,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/tambah/donatur', function () {
             return view('layout/admin/TambahDonatur');
         });
+        Route::get('/tambah/donatur',[TambahDataController::class,'listDataTambahDonatur']);
         Route::post('/tambah/donatur',[TambahDataController::class,'tambahDonatur']);
         //tambah aset
         Route::get('/tambah/aset', function () {
