@@ -12,7 +12,7 @@
     <div style="margin: 0 auto; ">
         <div class="form-floating mb-3">
             <input class="form-control" id="inputNama" name="nama" type="text" placeholder="Masukan nama lengkap" />
-            <label for="inputNama">Nama Lengkap</label>
+            <label for="inputNama">Nama Lengkap/Instansi</label>
         </div>
         <div class="row">
             <div class="col-md-6">

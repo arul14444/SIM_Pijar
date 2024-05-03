@@ -17,7 +17,6 @@ class Arsip extends Model
     protected $fillable = [
         'nama_dokumen',
         'deskripsi_dokumen',
-        'kode_dokumen',
         'nama_foto_dokumen',
         'path_foto_dokumen'
     ];

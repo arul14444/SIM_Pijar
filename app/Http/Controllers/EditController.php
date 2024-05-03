@@ -379,7 +379,6 @@ class EditController extends Controller
                     $setData = [
                         'nama_dokumen' => $request->nama_dokumen,
                         'deskripsi_dokumen' => $request->deskripsi,
-                        'kode_dokumen' => $request->kode,
                         'nama_file_dokumen' => $lampiran,
                         'path_file_dokumen' => $path,
                         'user_update' => Auth::user()->nama 
@@ -390,8 +389,7 @@ class EditController extends Controller
                 }else{
                     $setData = [
                         'nama_dokumen' => $request->nama_dokumen,
-                        'deskripsi_dokumen' => $request->deskripsi,
-                        'kode_dokumen' => $request->kode];
+                        'deskripsi_dokumen' => $request->deskripsi];
                     $this->arsipRepository->updateByUuid($setData,$uuid);
                 
                     DB::commit();

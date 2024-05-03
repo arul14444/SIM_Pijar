@@ -99,21 +99,21 @@ class TambahDataController extends Controller
         //=========================== tambah Data =========================== 
     public function tambahAnggota(Request $request){
         try{
-            if($request->password == $request->konfirmasi_password){
-                DB::beginTransaction();
-                $this->tambahAnggotaService->setData($request);
-                DB::commit();
-                return response()->json(['success' => true, 'message' => 'Data anggota berhasil ditambahkan']);}
-            else{
-                return response()->json(['success' => false, 'message' => 'konfirmasi password tidak sesuai' ]);
+            $validasi = $this->validateService->valAnggota($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data anggota gagal ditambahkan: '.$msg[0] ]);
             }
+            DB::beginTransaction();
+            $this->tambahAnggotaService->setData($request);
+            DB::commit();
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menambahkan data anggota: ' . $e->getMessage()]);
         }
     }
     public function tambahAnakbyAdmin(Request $request){
         try{
-            $validasi = $this->validateService->valHasilPemeriksaan($request);
+            $validasi = $this->validateService->valAnak($request);
             if ($validasi->fails()) {
                 $msg = $validasi->errors()->all();
                 return response()->json(['success' => false, 'message' => 'Data gagal ditambahkan: '.$msg[0] ]);
@@ -128,6 +128,11 @@ class TambahDataController extends Controller
     }
     public function tambahDonatur(Request $request){
         try{
+            $validasi = $this->validateService->valDonatur($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Data donatur gagal ditambahkan: '.$msg[0] ]);
+            }
             DB::beginTransaction();
             $this->tambahDonaturService->setData($request);
             DB::commit();
@@ -154,6 +159,12 @@ class TambahDataController extends Controller
     }
     public function tambahSurat(Request $request){
         try {
+            $validasi = $this->validateService->valSurat($request);
+            if ($validasi->fails()) {
+                $msg = $validasi->errors()->all();
+                return response()->json(['success' => false, 'message' => 'Surat gagal dibuat: '.$msg[0] ]);
+            }
+
             DB::beginTransaction();
             $this->tambahSuratService->setData($request);
             DB::commit();

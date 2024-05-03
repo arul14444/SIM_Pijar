@@ -33,6 +33,15 @@ class GangguanRepository{
         ->orderBy('tgl_pemeriksaan', 'ASC')
         ->get();
     }
+
+    public function allDataPendengaran(){
+        return Gangguan::select('*')
+            ->join('anak', 'anak.id', 'gangguan.id_anak')
+            ->where('gangguan.flag_aktif', true)
+            ->orderBy('tgl_pemeriksaan', 'ASC')
+            ->orderBy('anak.nama_lengkap', 'ASC')
+            ->get();
+    }
     public function findByUuid($uuid)
     {
         return Gangguan::select('gangguan.*','anak.nama_lengkap','anak.uuid as uuid_anak')

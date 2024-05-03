@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function getData(){
     const uuid = getUuid(); // Mendapatkan nilai UUID
-    const fullUrlPendengaran = `${apiUrlPendengaran}/${uuid}`; // Membuat URL lengkap dengan UUID
+    const fullUrlPendengaran = uuid ? `${apiUrlPendengaran}/${uuid}` : `${apiUrlPendengaran}`; // Membuat URL lengkap dengan UUID jika uuid tidak null, jika null maka menggunakan apiUrlPendengaran saja
 
     try {
         const response = await fetch(fullUrlPendengaran);
@@ -41,29 +41,34 @@ async function processDataForTable(data){
         const cell2 = row.insertCell(1);
         const cell3 = row.insertCell(2);
         const cell4 = row.insertCell(3);
-        const cell5 = row.insertCell(4); // Tambahkan sel untuk tautan file
-        const cell6 = row.insertCell(5); // Tambahkan sel untuk tombol aksi
-      
-        cell1.textContent = user.tgl_pemeriksaan;
-        cell2.textContent = user.kemampuan_kanan;
-        cell3.textContent = user.kemampuan_kiri;
-        cell4.textContent = user.kemampuan_binaural;
+        const cell5 = row.insertCell(4); 
+        const cell6 = row.insertCell(5); 
+        const cell7 = row.insertCell(6); 
+
+        cell1.textContent = user.nama_lengkap;
+        cell2.textContent = user.tgl_pemeriksaan;
+        cell3.textContent = user.kemampuan_kanan;
+        cell4.textContent = user.kemampuan_kiri;
+        cell5.textContent = user.kemampuan_binaural;
 
         // Tampilkan tautan file hasil test
         const fileLink = document.createElement('a');
         fileLink.href = 'http://127.0.0.1:8000/' + user.path_file_hasil_test; // Menggunakan appUrl yang telah ditetapkan sebelumnya
         fileLink.target = "_blank"; // Buka tautan di tab baru
         fileLink.textContent = user.nama_file_hasil_test; // Menampilkan tautan
-        cell5.appendChild(fileLink);
+        cell6.appendChild(fileLink);
+        cell6.style.display = "table-cell"
         
         // Buat tombol edit
         const editButton = document.createElement('button');
-        editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+
+        editButton.innerHTML = '<i class="fa-regular fa-pen-to-square ml-2"></i>';
         editButton.classList.add('btn', 'btn-primary', 'mr-2');
         editButton.addEventListener('click', () => editRow(user)); // Ganti editRow dengan fungsi yang sesuai
         
         // Buat tombol delete
         const deleteButton = document.createElement('button');
+        deleteButton.style.marginLeft= '5px';
         deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
         deleteButton.classList.add('btn', 'btn-danger');
         deleteButton.addEventListener('click', () => confirmDelete(user.uuid)); // Ganti confirmDelete dengan fungsi yang sesuai
@@ -71,10 +76,24 @@ async function processDataForTable(data){
         // Buat elemen spasi
         const spacer = document.createElement('span');
         spacer.textContent = ' ';
+
+        var actionButton = document.createElement('div');
+            actionButton.classList.add("d-flex");
+            actionButton.classList.add("justify-content-center");
+            actionButton.classList.add("align-items-center");
+
+        console.log(editButton);
+
+        actionButton.appendChild(editButton);
+        actionButton.appendChild(deleteButton);
+
+
+        // console.log(actionButton);
+
         
         // Masukkan tombol dan elemen spasi ke dalam sel
-        cell6.appendChild(editButton);
-        cell6.appendChild(deleteButton);
+        cell7.appendChild(actionButton);
+        // cell7.appendChild(deleteButton);
     });
 }
 

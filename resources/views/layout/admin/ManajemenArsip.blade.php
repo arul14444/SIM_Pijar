@@ -35,8 +35,7 @@
                     <th>No</th>
                     <th>Dokumen</th>
                     <th>Deskripsi</th>
-                    <th>Kode</th>
-                    <th>Foto</th>
+                    <th>Lampiran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -45,8 +44,7 @@
                     <th>No</th>
                     <th>Dokumen</th>
                     <th>Deskripsi</th>
-                    <th>Kode</th>
-                    <th>Foto</th>
+                    <th>Lampiran</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
@@ -57,7 +55,6 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $dt->nama_dokumen }}</td>
                     <td>{{ $dt->deskripsi_dokumen }}</td>
-                    <td>{{ $dt->kode_dokumen }}</td>
                     <td> 
                         <ul>
                             @foreach($dt->path_file_dokumen as $path_file)

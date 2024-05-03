@@ -7,6 +7,7 @@
 
 <div class="mb-3">
     <select class="form-select" id="inputAnak" name="uuid_anak">
+        <option selected value="">Semua</option>
         @foreach ($data as $dt)    
             <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
         @endforeach
@@ -38,6 +39,7 @@
     <table id="tabelRiwayat" class="table table-striped table-bordered">
         <thead>
             <tr class="text-center">
+                <th>Nama</th>
                 <th>Tanggal Periksa</th>
                 <th>Telinga Kiri (hz)</th>
                 <th>Telinga Kanan (hz)</th>

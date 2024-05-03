@@ -92,11 +92,11 @@
   }
 }
 
-#tabelRiwayat td:nth-child(6) {
+/* #tabelRiwayat td:nth-child(7) {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 #tabelRiwayat td:nth-child(6) button {
   margin-right: 5px; /* Tambahkan jarak ke kanan setiap tombol */
 }

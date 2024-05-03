@@ -137,12 +137,15 @@
         </div>             
         <div class="row mb-3">
             <div class="col-md-12">
-                <label for="formFileMultiple" class="form-label">Lampiran</label>
+                <label for="formFileMultiple" class="form-label">Lampiran<span style="color: red;">*</span></label>
                 <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
             </div>
         </div>
         <div class="mt-4 mb-0">
             <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
+            <div class="mr-auto"> <span style="color: red;">*</span>File berjenis , pdf ukuran maksimal 2048kb</div>
         </div>
     </form>
     <script src="{{ asset('resources/js/hasilPemeriksaanbyAdmin.js') }}"></script>

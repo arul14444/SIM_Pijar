@@ -15,11 +15,6 @@
             <input class="form-control" id="inputNamaBarang" name="nama_dokumen" type="text" value="{{$data->nama_dokumen}}" />
             <label for="inputNamaBarang">Nama Dokumen</label>
         </div>
-
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputKode" name="kode" type="text" placeholder="Masukkan kode" value="{{$data->kode_dokumen}}">
-            <label for="inputKode">Kode</label>
-        </div>
         <div class="form-floating mb-3">
             <input class="form-control" id="inputDeskripsi" name="deskripsi" type="text" value="{{$data->deskripsi_dokumen}}" />
             <label for="inputDeskripsi">Deskripsi</label>

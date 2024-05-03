@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::post('/kegiatan/print-pdf', [PrintController::class, 'printPdfKegiatan']);
     Route::get('/get/pendengaran-anak/{uuid}',[DataController::class,'getDataPendengaran']);
+    Route::get('/get/pendengaran-anak/',[DataController::class,'getAllDataPendengaran']);
     
     Route::middleware('userAkses:admin')->group(function () {
         Route::get('/dashboard/admin', function () {

@@ -35,7 +35,6 @@
                 <tr>
                     <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah -->
                     <td>{{ $dt->nama_dokumen }}</td>
-                    <td>{{ $dt->kode_dokumen }}</td>
                     <td>{{ $dt->deskripsi_dokumen }}</td>
                 </tr>
                 @endforeach 

@@ -33,7 +33,6 @@ class TambahArsipService{
         $setData = [
             'nama_dokumen' => $data->nama_dokumen,
             'deskripsi_dokumen' => $data->deskripsi,
-            'kode_dokumen' => $data->kode,
             'nama_file_dokumen' => $lampiran,
             'path_file_dokumen' => $path,
             'user_update' => Auth::user()->nama

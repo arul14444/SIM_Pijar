@@ -217,7 +217,11 @@ class DataController extends Controller
         $id_anak = $this->anakRepository->findByUuid($uuid)->id;
         $data = $this->gangguanRepository->dataPendengaran($id_anak);
         return response()->json($data);
+    }
 
+    public function getAllDataPendengaran(){
+        $data = $this->gangguanRepository->allDataPendengaran();
+        return response()->json($data);
     }
 
     // controller anggota
