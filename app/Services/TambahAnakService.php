@@ -122,7 +122,8 @@ class TambahAnakService{
                 $lampiranNames[] = $namaLampiranBaru;
                 $lampiran->move('dokumen/hasilTest', $namaLampiranBaru);
                 $pathLampiran[] = 'dokumen/hasilTest/' . $namaLampiranBaru;
-            }
+            } 
+        }else{
             
         }
         $lampiran = implode(';', $lampiranNames);

@@ -145,6 +145,6 @@
             <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Simpan</button></div>
         </div>
     </form>
-    {{-- <script src="{{ asset('resources/js/hasilPemeriksaan.js') }}"></script> --}}
+    <script src="{{ asset('resources/js/hasilPemeriksaanbyAdmin.js') }}"></script>
 
 @endsection

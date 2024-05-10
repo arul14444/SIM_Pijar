@@ -35,7 +35,7 @@ class GangguanRepository{
     }
 
     public function allDataPendengaran(){
-        return Gangguan::select('*')
+        return Gangguan::select('gangguan.*','anak.nama_lengkap')
             ->join('anak', 'anak.id', 'gangguan.id_anak')
             ->where('gangguan.flag_aktif', true)
             ->orderBy('tgl_pemeriksaan', 'ASC')

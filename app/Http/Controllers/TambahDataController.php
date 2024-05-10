@@ -107,6 +107,8 @@ class TambahDataController extends Controller
             DB::beginTransaction();
             $this->tambahAnggotaService->setData($request);
             DB::commit();
+
+            return response()->json(['success' => true, 'message' => 'Data anggota berhasil ditambahkan']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menambahkan data anggota: ' . $e->getMessage()]);
         }

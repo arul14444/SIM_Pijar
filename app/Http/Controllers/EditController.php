@@ -63,7 +63,7 @@ class EditController extends Controller
             $data=[
                 'listOrtu' => $this->userRepository->getOrangtua()->get(),
                 'listAbd' => $this->abdRepository->getAbd()->get(),
-                'detail' => $this->anakRepository->findByUuid($uuid)
+                'detail' => $this->anakRepository->findByUuid($uuid),
             ];
             return  view('layout.admin.EditAnak')->with('data', $data);
         }
@@ -187,7 +187,6 @@ class EditController extends Controller
                         'user_update' => Auth::user()->nama
                     ];
                     $this->anakRepository->updateBy($setData,$uuid);
-
                     $anak=$this->anakRepository->findByUuid($uuid);
                     $gangguan = $this->gangguanRepository->findById_anak($anak->id);
                     $setGangguan=[

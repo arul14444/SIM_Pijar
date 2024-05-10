@@ -36,7 +36,11 @@
                                 <div class="alert alert-danger">
                                     {{ session('alert') }}
                                 </div>
-                                @endif
+                                @elseif(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif  
                             </div>
                         </div>
                     </div>
