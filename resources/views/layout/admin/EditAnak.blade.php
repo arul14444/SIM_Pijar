@@ -96,19 +96,19 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" id="inputGangguanTelingaKiri" name="kemampuan_telinga_kiri" type="text" value="{{$data['detail']->kemampuan_kiri}}" />
-                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri (Hz)</label>
+                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri ((dB))</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
                         <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" value="{{$data['detail']->kemampuan_kanan}}" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan (Hz)</label>
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan ((dB))</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
                         <input class="form-control" id="inputGangguanTelingaBinaural" name="kemampuan_telinga_binaural" type="text" value="{{$data['detail']->kemampuan_binaural}}" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural(Hz)</label>
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural((dB))</label>
                     </div>
                 </div>
             </div>

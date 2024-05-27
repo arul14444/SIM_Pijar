@@ -39,9 +39,9 @@
         <thead>
             <tr class="text-center">
                 <th>Tanggal Periksa</th>
-                <th>Telinga Kiri (hz)</th>
-                <th>Telinga Kanan (hz)</th>
-                <th>Binaural (hz)</th>
+                <th>Telinga Kiri ((dB))</th>
+                <th>Telinga Kanan ((dB))</th>
+                <th>Binaural ((dB))</th>
                 <th>Lampiran </th>
                 <th>Aksi</th>
             </tr>

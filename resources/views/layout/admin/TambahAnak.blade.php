@@ -101,19 +101,19 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" id="inputGangguanTelingaKiri" name="kemampuan_telinga_kiri" type="text" placeholder="Enter your first name" />
-                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri (Hz)</label>
+                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri ((dB))</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
                         <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan (Hz)</label>
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan ((dB))</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
                         <input class="form-control" id="inputGangguanTelingaBinaural" name="kemampuan_telinga_binaural" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural(Hz)</label>
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural((dB))</label>
                     </div>
                 </div>
             </div>
