@@ -39,8 +39,8 @@ class GangguanRepository{
         return Gangguan::select('gangguan.*','anak.nama_lengkap')
             ->join('anak', 'anak.id', 'gangguan.id_anak')
             ->where('gangguan.flag_aktif', true)
-            ->orderBy('tgl_pemeriksaan', 'ASC')
             ->orderBy('anak.nama_lengkap', 'ASC')
+            ->orderBy('tgl_pemeriksaan', 'ASC')
             ->get();
     }
     public function findByUuid($uuid)

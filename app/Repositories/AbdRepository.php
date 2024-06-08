@@ -9,7 +9,7 @@ class AbdRepository{
    public function getAbd(){
         return Abd::select('*')
         ->where(['flag_aktif'=>1])
-        ->orderBy('jenis');
+        ->orderBy('jenis','asc');
    }
    public function findByUuid($uuid)
    {

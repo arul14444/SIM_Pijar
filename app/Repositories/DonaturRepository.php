@@ -26,6 +26,7 @@ class DonaturRepository{
        return Donatur::from('donatur as d')
        ->join('instansi as i','i.id','=','d.id_instansi')
        ->select('d.nama','d.alamat','d.nomor_telepon','i.instansi','d.uuid')
+       ->orderBy('d.nama','asc')
        ->where(['d.uuid' => $uuid, 'd.flag_aktif' => true])->first();
    }
    public function delete($uuid)

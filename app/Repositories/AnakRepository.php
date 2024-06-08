@@ -13,6 +13,7 @@ class AnakRepository{
             ->join('user', 'user.id','anak.id_user')
             ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
             ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
+            ->orderBy('anak.nama_lengkap','asc')
             ->where(['anak.flag_aktif'=>1,'user.flag_aktif'=>1]);
     }
     public function getAnakbyIdOrtu($id_ortu){

@@ -11,6 +11,7 @@ class KegiatanRepository{
    public function getKegiatan(){
         return Kegiatan::select('kegiatan.*','sumber_dana.sumber')
             ->join('sumber_dana','sumber_dana.id','kegiatan.id_sumber_dana')
+            ->orderBy('kegiatan.tgl_kegiatan','desc')
             ->where('kegiatan.flag_aktif',true);
    }
    public function getTotalSumberDana($sumber){
@@ -23,7 +24,7 @@ class KegiatanRepository{
    {
         return Kegiatan::select(DB::raw('DATE_FORMAT(tgl_kegiatan, "%m-%Y") as bulan'), DB::raw('COUNT(*) as total'))
         ->groupBy('bulan')
-        ->orderByRaw('MIN(tgl_kegiatan)') // Urutkan berdasarkan tanggal terkecil di setiap kelompok bulan-tahun
+        ->orderByRaw('MIN(tgl_kegiatan)')
         ->where('flag_aktif',true)
         ->get();
     }
