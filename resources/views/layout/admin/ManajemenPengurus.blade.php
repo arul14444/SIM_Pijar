@@ -47,7 +47,7 @@
                         <td>{{$index + 1}}</td>
                         <td>{{$dt->nama}}</td>
                         <td>{{$dt->jabatan}}
-                        <td>0{{$dt->nomor_telepon}}</td>
+                        <td>{{$dt->nomor_telepon}}</td>
                         <td>{{$dt->alamat}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">

@@ -39,7 +39,7 @@
                 <tr>
                     <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah -->
                     <td>{{ $dt->nama_lengkap }}</td>
-                    <td>0{{ $dt->nomor_telepon }}</td>
+                    <td>{{ $dt->nomor_telepon }}</td>
                     <td>{{ $dt->alamat }}</td>
                     <td>{{ $dt->kemampuan_kiri}}</td>
                     <td>{{ $dt->kemampuan_kanan}}</td>

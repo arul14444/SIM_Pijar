@@ -56,7 +56,7 @@
                     <tr>
                         <td>{{$index + 1}}</td>
                         <td>{{$dt->nama}}</td>
-                        <td>0{{$dt->nomor_telepon}}</td>
+                        <td>{{$dt->nomor_telepon}}</td>
                         <td>{{$dt->instansi}}</td>
                         <td>{{$dt->alamat}}</td>
                         <td> 

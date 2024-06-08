@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" value="0{{$data['detail']->nomor_telepon}}" />
+                        <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" value="{{$data['detail']->nomor_telepon}}" />
                         <label for="inputNomorTelepon">Nomor Telepon</label>
                     </div>
                 </div>

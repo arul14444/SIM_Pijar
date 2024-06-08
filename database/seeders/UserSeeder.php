@@ -14,12 +14,20 @@ class UserSeeder extends Seeder
     {
         $userData = [
             [
+                'username' => 'admin',
+                'password' => bcrypt('admin'),
+                'nama' => 'Admin',
+                'alamat' => '-',
+                'role' => 'admin',
+                'nomor_telepon' => '08221797733',
+            ],
+            [
                 'username' => 'ketua',
                 'password' => bcrypt('ketuayayasan'),
                 'nama' => 'Puspajana, S.T',
                 'alamat' => 'Jl. Ki Ageng Gringsing 8, No. 44, RT/RW: 005/001, Pondok Mulyo, Gergunung, Klaten Utara, Klaten, Jawa Tengah.',
                 'role' => 'admin',
-                'nomor_telepon' => 85292556909,
+                'nomor_telepon' => '085292556909',
                  
             ],
             [
@@ -28,7 +36,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Tri Wahyuni',
                 'alamat' => 'Kaligayam, RT/RW: 09/02,Kaligayem, Wedi, Klaten, Jawa Tengah',
                 'role' => 'admin',
-                'nomor_telepon' => 85801786978, 
+                'nomor_telepon' => '085801786978', 
                  
             ],
             [
@@ -37,7 +45,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Harminah',
                 'alamat' => 'Dagaran, Sentono, Karangdowo, Klaten, Jawa Tengah',
                 'role' => 'admin',
-                'nomor_telepon' => 85727769900, 
+                'nomor_telepon' => '085727769900', 
                  
             ],
             [
@@ -46,7 +54,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Niniek Kusumo Wardani',
                 'alamat' => 'Gondang, Rt 06/02, Gondang, Kebonarum, Klaten, Jawa Tengah ',
                 'role' => 'admin',
-                'nomor_telepon' => 85726542588, 
+                'nomor_telepon' => '085726542588', 
                  
             ],
             [
@@ -55,7 +63,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Nining Puji Rahayu',
                 'alamat' => 'Dukuh, Keputran, Kemalang, Klaten, Jawa Tengah',
                 'role' => 'admin',
-                'nomor_telepon' => 82324254854, 
+                'nomor_telepon' => '082324254854', 
                  
             ],[
                 'username' => 'wakilbendahara',
@@ -63,7 +71,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Atik Nuryatin, S.E',
                 'alamat' => 'Perum Griya Cempaka Indah, Kalikotes, Klaten, Jawa Tengah',
                 'role' => 'admin',
-                'nomor_telepon' => 82325236597, 
+                'nomor_telepon' => '082325236597', 
             ]
         ];
 

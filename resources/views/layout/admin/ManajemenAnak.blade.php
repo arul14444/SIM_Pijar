@@ -60,7 +60,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $dt->nama_lengkap }}</td>
-                    <td>0{{ $dt->nomor_telepon }}</td>
+                    <td>{{ $dt->nomor_telepon }}</td>
                     <td>{{ $dt->nama }}</td>
                     <td>{{ $dt->jenis_abd_kiri }}</td>
                     <td>{{ $dt->jenis_abd_kanan }}</td>

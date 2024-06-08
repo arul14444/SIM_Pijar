@@ -20,7 +20,7 @@
                 <label for="inputNama">Nama Lengkap</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" value="0{{$data->nomor_telepon}}" />
+                <input class="form-control" id="inputNomortelepon" name="nomor_telepon" type="text" value="{{$data->nomor_telepon}}" />
                 <label for="inputNomorTelepon">Nomor Telepon</label>
             </div>
             <div class="form-floating mb-3">
