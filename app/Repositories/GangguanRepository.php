@@ -28,9 +28,10 @@ class GangguanRepository{
             ->first();
     }
     public function dataPendengaran($id_anak){
-        return Gangguan::select('id_anak','kemampuan_kanan','kemampuan_kiri','kemampuan_binaural','tgl_pemeriksaan','uuid','path_file_hasil_test','nama_file_hasil_test')
-        ->where(['id_anak'=>$id_anak, 'flag_aktif'=>true])
-        ->orderBy('tgl_pemeriksaan', 'ASC')
+        return Gangguan::select('anak.nama_lengkap','gangguan.kemampuan_kanan','gangguan.kemampuan_kiri','gangguan.kemampuan_binaural','gangguan.tgl_pemeriksaan','gangguan.uuid','gangguan.path_file_hasil_test','gangguan.nama_file_hasil_test')
+        ->join('anak','anak.id','gangguan.id_anak')
+        ->where(['gangguan.id_anak'=>$id_anak, 'gangguan.flag_aktif'=>true])
+        ->orderBy('gangguan.tgl_pemeriksaan', 'ASC')
         ->get();
     }
 

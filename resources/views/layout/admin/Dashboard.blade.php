@@ -180,7 +180,7 @@
                     <div class="row">
                         <div class="col-md-6 d-flex align-items-center justify-content-center">
                             <i class="fas fa-chart-bar me-1"></i>
-                            Riwayat Kemampuan Dengar Anak
+                            Kemampuan Dengar Anak
                         </div>
                         <div class="col-md-6">
                             <select class="form-select" id="inputAnak" name="uuid_anak">

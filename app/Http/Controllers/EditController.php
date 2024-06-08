@@ -237,9 +237,10 @@ class EditController extends Controller
                     $pathLampiran = [];
                     $lampiranFiles = $request->file('lampiran');
                     foreach ($lampiranFiles as $lampiran) {
-                        $lampiranNames[] = $lampiran->getClientOriginalName();
-                        $lampiran->move('dokumen/aset', $lampiran->getClientOriginalName());
-                        $pathLampiran[] = 'dokumen/aset/' . $lampiran->getClientOriginalName();
+                        $namaLampiranBaru = 'Aset_'.random_int(1,999).'_'.$lampiran->getClientOriginalName();
+                        $lampiranNames[] = $namaLampiranBaru;
+                        $lampiran->move('dokumen/aset', $namaLampiranBaru);
+                        $pathLampiran[] = 'dokumen/aset/' . $namaLampiranBaru;
                 }
                     $lampiran = implode('; ', $lampiranNames);
                     $path = implode('; ', $pathLampiran);
@@ -314,9 +315,10 @@ class EditController extends Controller
                     if (is_array($request->file('lampiran')) || is_object($request->file('lampiran'))) {
                         $lampiranFiles = $request->file('lampiran');
                         foreach ($lampiranFiles as $lampiran) {
-                            $lampiranNames[] = $lampiran->getClientOriginalName();
-                            $lampiran->move('dokumen/kegiatan', $lampiran->getClientOriginalName());
-                            $pathLampiran[] = 'dokumen/kegiatan/' . $lampiran->getClientOriginalName();
+                            $namaLampiranBaru = 'Kegiatan_' . random_int(1, 999).'_' . $lampiran->getClientOriginalName();
+                            $lampiranNames[] = $namaLampiranBaru;
+                            $lampiran->move('dokumen/kegiatan', $namaLampiranBaru);
+                            $pathLampiran[] = 'dokumen/kegiatan/' . $namaLampiranBaru;
                         }
                     }
                     $lampiran = implode(';', $lampiranNames);
@@ -368,9 +370,10 @@ class EditController extends Controller
                     if (is_array($request->file('lampiran')) || is_object($request->file('lampiran'))) {
                         $lampiranFiles = $request->file('lampiran');
                         foreach ($lampiranFiles as $lampiran) {
-                            $lampiranNames[] = $lampiran->getClientOriginalName();
-                            $lampiran->move('dokumen/kegiatan', $lampiran->getClientOriginalName());
-                            $pathLampiran[] = 'dokumen/kegiatan/' . $lampiran->getClientOriginalName();
+                            $namaLampiranBaru = 'Arsip_' . random_int(1, 999) .'_'. $lampiran->getClientOriginalName();
+                            $lampiranNames[] = $namaLampiranBaru;
+                            $lampiran->move('dokumen/kegiatan', $namaLampiranBaru);
+                            $pathLampiran[] = 'dokumen/kegiatan/' . $namaLampiranBaru;
                         }
                     }
                     $lampiran = implode(';', $lampiranNames);
@@ -416,7 +419,7 @@ class EditController extends Controller
                     if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
                         $lampiranFiles = $data->file('lampiran');
                         foreach ($lampiranFiles as $lampiran) {
-                            $namaLampiranBaru = $anak->nama_lengkap . '_' . $lampiran->getClientOriginalName();
+                            $namaLampiranBaru = $anak->nama_lengkap . '_' .random_int(1,999) .'_'.$lampiran->getClientOriginalName();
                             $lampiranNames[] = $namaLampiranBaru;
                             $lampiran->move('dokumen/hasilTest', $namaLampiranBaru);
                             $pathLampiran[] = 'dokumen/hasilTest/' . $namaLampiranBaru;
@@ -544,7 +547,7 @@ class EditController extends Controller
                     if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
                         $lampiranFiles = $data->file('lampiran');
                         foreach ($lampiranFiles as $lampiran) {
-                            $namaLampiranBaru = $anak->nama_lengkap . '_' . $lampiran->getClientOriginalName();
+                            $namaLampiranBaru = $anak->nama_lengkap . '_' .random_int(1,999).'_' .$lampiran->getClientOriginalName();
                             $lampiranNames[] = $namaLampiranBaru;
                             $lampiran->move('dokumen/hasilTest', $namaLampiranBaru);
                             $pathLampiran[] = 'dokumen/hasilTest/' . $namaLampiranBaru;

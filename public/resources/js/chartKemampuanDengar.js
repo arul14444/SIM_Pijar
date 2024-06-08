@@ -96,7 +96,7 @@ function createLineChart(labels, dataKanan, dataKiri, dataBinaural) {
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        stepSize: 1,
+                        stepSize: 5,
                         precision: 0
                     }
                 }

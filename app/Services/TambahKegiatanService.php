@@ -28,9 +28,10 @@ class TambahKegiatanService{
         if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
             $lampiranFiles = $data->file('lampiran');
             foreach ($lampiranFiles as $lampiran) {
-                $lampiranNames[] = $lampiran->getClientOriginalName();
-                $lampiran->move('dokumen/kegiatan', $lampiran->getClientOriginalName());
-                $pathLampiran[] = 'dokumen/kegiatan/' . $lampiran->getClientOriginalName();
+                $namaLampiranBaru = 'kegiatan_' . random_int(1,999) . '_' . $lampiran->getClientOriginalName();
+                $lampiranNames[] = $namaLampiranBaru;
+                $lampiran->move('dokumen/kegiatan', $namaLampiranBaru);
+                $pathLampiran[] = 'dokumen/kegiatan/' . $namaLampiranBaru;
             }
         }
         $lampiran = implode(';', $lampiranNames);

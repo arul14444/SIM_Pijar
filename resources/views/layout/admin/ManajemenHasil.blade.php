@@ -35,15 +35,15 @@
             </div>            
         </div>
 </div> 
-<div class="card-body">
+<div class="card-body" style="overflow-y: auto; max-height: 400px;">
     <table id="tabelRiwayat" class="table table-striped table-bordered">
         <thead>
             <tr class="text-center">
                 <th>Nama</th>
                 <th>Tanggal Periksa</th>
-                <th>Telinga Kiri ((dB))</th>
-                <th>Telinga Kanan ((dB))</th>
-                <th>Binaural ((dB))</th>
+                <th>Telinga Kiri (dB)</th>
+                <th>Telinga Kanan (dB)</th>
+                <th>Binaural (dB)</th>
                 <th>Lampiran </th>
                 <th>Aksi</th>
             </tr>

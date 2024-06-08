@@ -101,19 +101,19 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" id="inputGangguanTelingaKiri" name="kemampuan_telinga_kiri" type="text" placeholder="Enter your first name" />
-                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri ((dB))</label>
+                        <label for="inputGangguanTelingaKiri">Kemampuan Dengar Telinga Kiri (dB)</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
                         <input class="form-control" id="inputGangguanTelingaKanan" name="kemampuan_telinga_kanan" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan ((dB))</label>
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Telinga Kanan (dB)</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
                         <input class="form-control" id="inputGangguanTelingaBinaural" name="kemampuan_telinga_binaural" type="text" placeholder="Enter your last name" />
-                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural((dB))</label>
+                        <label for="inputGangguanTelingaKanan">Kemampuan Dengar Binaural(dB)</label>
                     </div>
                 </div>
             </div>
@@ -123,12 +123,15 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="formFileMultiple" class="form-label">Lampiran hasil pemeriksaan</label>
+                    <label for="formFileMultiple" class="form-label">Lampiran hasil pemeriksaan<span style="color: red;">*</span></label>
                     <input class="form-control" type="file" id="formFileMultiple" name="lampiran[]" multiple>
                 </div>
             </div>
             <div class="mt-4 mb-0">
                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
+            </div>
+            <div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
+                <div class="mr-auto"> <span style="color: red;">*</span>File berjenis PDF ukuran maksimal 2048kb</div>
             </div>
         </div>
     </form>

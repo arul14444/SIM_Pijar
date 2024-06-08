@@ -91,7 +91,16 @@
     scroll-behavior: smooth;
   }
 }
-
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+  }
 /* #tabelRiwayat td:nth-child(7) {
   display: flex;
   justify-content: center;
@@ -122,8 +131,8 @@ body {
 #tabelAnggota th:nth-child(1), #tabelAnggota td:nth-child(1) { width: 3%; }
 #tabelAnggota th:nth-child(2), #tabelAnggota td:nth-child(2) { width: 20%; }
 #tabelAnggota th:nth-child(3), #tabelAnggota td:nth-child(3) { width: 17%; }
-#tabelAnggota th:nth-child(4), #tabelAnggota td:nth-child(4) { width: 20%; }
-#tabelAnggota th:nth-child(5), #tabelAnggota td:nth-child(5) { width: 15%; }
+#tabelAnggota th:nth-child(4), #tabelAnggota td:nth-child(4) { width: 25%; }
+#tabelAnggota th:nth-child(5), #tabelAnggota td:nth-child(5) { width: 10%; }
 
 #tabelAnak th:nth-child(1), #tabelAnak td:nth-child(1) {width: 3%; }
 #tabelAnak th:nth-child(2), #tabelAnak td:nth-child(2) {width: 15%; }
@@ -159,11 +168,10 @@ body {
 #tabelKegiatan th:nth-child(7),#tabelKegiatan td:nth-child(7) { width: 15%; }
 
 #tabelArsip th:nth-child(1), #tabelArsip td:nth-child(1) {width: 3%; }
-#tabelArsip th:nth-child(2), #tabelArsip td:nth-child(2) {width: 20%; }
-#tabelArsip th:nth-child(3), #tabelArsip td:nth-child(3) {width: 20%; }
-#tabelArsip th:nth-child(4), #tabelArsip td:nth-child(4) {width: 20%; }
-#tabelArsip th:nth-child(5), #tabelArsip td:nth-child(5) {width: 22%; }
-#tabelArsip th:nth-child(6), #tabelArsip td:nth-child(6) {width: 15%; }
+#tabelArsip th:nth-child(2), #tabelArsip td:nth-child(2) {width: 25%; }
+#tabelArsip th:nth-child(3), #tabelArsip td:nth-child(3) {width: 25%; }
+#tabelArsip th:nth-child(4), #tabelArsip td:nth-child(4) {width: 22%; }
+#tabelArsip th:nth-child(5), #tabelArsip td:nth-child(5) {width: 15%; }
 
 #tabelSurat th:nth-child(1), #tabelSurat td:nth-child(1) {width: 3%; }
 #tabelSurat th:nth-child(2), #tabelSurat td:nth-child(2) {width: 10%; }

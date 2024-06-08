@@ -6,7 +6,8 @@ namespace App\Services;
 use App\Repositories\ArsipRepository;
 use Illuminate\Support\Facades\Auth;
 
-class TambahArsipService{
+class TambahArsipService
+{
     protected $arsipRepository;
 
     public function __construct(
@@ -16,16 +17,18 @@ class TambahArsipService{
         $this->arsipRepository = $arsipRepository;
     }
 
-    public function setData($data) {
+    public function setData($data)
+    {
         $lampiranNames = [];
         $pathLampiran = [];
-        
+
         if (is_array($data->file('lampiran')) || is_object($data->file('lampiran'))) {
             $lampiranFiles = $data->file('lampiran');
             foreach ($lampiranFiles as $lampiran) {
-                $lampiranNames[] = $lampiran->getClientOriginalName();
-                $lampiran->move('dokumen/kegiatan', $lampiran->getClientOriginalName());
-                $pathLampiran[] = 'dokumen/kegiatan/' . $lampiran->getClientOriginalName();
+                $namaLampiranBaru = 'Arsip_' . random_int(1, 999) . $lampiran->getClientOriginalName();
+                $lampiranNames[] = $namaLampiranBaru;
+                $lampiran->move('dokumen/arsip', $namaLampiranBaru);
+                $pathLampiran[] = 'dokumen/arsip/' . $namaLampiranBaru;
             }
         }
         $lampiran = implode(';', $lampiranNames);
@@ -37,11 +40,7 @@ class TambahArsipService{
             'path_file_dokumen' => $path,
             'user_update' => Auth::user()->nama
         ];
-    
+
         return $this->arsipRepository->create($setData);
     }
-    
-    
-    
-    
 }

@@ -27,9 +27,9 @@
                 <thead>
                     <tr class="text-center">
                         <th>Tanggal</th>
-                        <th>Telinga Kiri ((dB))</th>
-                        <th>Telinga Kanan ((dB))</th>
-                        <th>Binaural ((dB))</th>
+                        <th>Telinga Kiri (dB)</th>
+                        <th>Telinga Kanan (dB)</th>
+                        <th>Binaural (dB)</th>
                     </tr>
                 </thead>
                 <tbody>

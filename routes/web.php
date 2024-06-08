@@ -36,6 +36,10 @@ Route::get('/home',function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/profile', [LoginController::class, 'profile']);
+    Route::get('/profile',function(){
+        return view('layout/Profile');
+    });
     Route::post('/kegiatan/print-pdf', [PrintController::class, 'printPdfKegiatan']);
     Route::get('/get/pendengaran-anak/{uuid}',[DataController::class,'getDataPendengaran']);
     Route::get('/get/pendengaran-anak/',[DataController::class,'getAllDataPendengaran']);
