@@ -1,9 +1,9 @@
 @extends('layout.admin.MasterAdmin')
-@section('title','Tambah Anak')
+@section('title','Tambah Data Anak')
 @section('route')
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{url('manajemen/anak')}}">Manajemen Anak</a></li>
-        <li class="breadcrumb-item active">Tambah Anak</li>
+        <li class="breadcrumb-item active">Tambah Data Anak</li>
     </ol>
 @endsection
 @section('content')

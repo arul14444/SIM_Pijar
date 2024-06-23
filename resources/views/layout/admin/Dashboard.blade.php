@@ -195,7 +195,7 @@
                 <div class="card-body">
                     <canvas id="chartPendengaran" width="100%" height="330px"></canvas>
                 </div>
-                <div class="mr-auto p-2"> <span style="color: red;">*</span>Semakin meningkat maka kemampuan pendengaran semakin membaik</div>
+                <div class="mr-auto p-2"> <span style="color: red;">*</span>Semakin menurun grafik, maka kemampuan pendengaran semakin membaik</div>
             </div>
         </div>
     </div>

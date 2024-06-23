@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gangguan extends Model
 {
-    protected $table = 'gangguan';
+    protected $table = 'pendengaran';
     protected $hidden = [
         'id',
         'flag_aktif',

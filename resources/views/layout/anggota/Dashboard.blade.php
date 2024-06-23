@@ -21,7 +21,7 @@
         <div class="card-body">
             <canvas id="chartPendengaran" width="100%" height="330px"></canvas>
         </div>
-        
+        <div class="mr-auto p-2" style="font-size: smaller; text-align: right;"> <span style="color: red;">*</span>Semakin menurun grafik, maka kemampuan pendengaran semakin membaik</div>
         <div class="card-body">
             <table id="tabelRiwayat" class="table table-striped table-bordered">
                 <thead>

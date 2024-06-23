@@ -15,65 +15,101 @@ class DonaturSeeder extends Seeder
     {
         $userData = [
             [
-                'nama' => 'Joko',
-                'nomor_telepon' => 8734836482,
-                'alamat' => 'Gentan',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'AKBP H. Jaka Wibawa, SH',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Jaki',
-                'nomor_telepon' => 8734836481,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'Arisan Amanah',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Jaka',
-                'nomor_telepon' => 8734836483,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036032, // Pemerintah
+                'nama' => 'Dinsos Kabupaten Klaten',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Nana',
-                'nomor_telepon' => 8734836484,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'dr. Bodro Prastowo, Sp.THT.KL.',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Nini',
-                'nomor_telepon' => 8734836485,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'dr. Dinar Rosmala, Sp.THT-KL., Mkes',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Nunu',
-                'nomor_telepon' => 8734836486,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'H. Arief, ST',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Nene',
-                'nomor_telepon' => 8734836487,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'H. Puspo, ST',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Dodo',
-                'nomor_telepon' => 8734836488,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'H. Sunarto, ST',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Didi',
-                'nomor_telepon' => 8734836489,
-                'alamat' => 'Sleman',
-                 
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'H. Tiyok Subekti, S.E,. M.,S.E.',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
             ],
             [
-                'nama' => 'Dede',
-                'nomor_telepon' => 8734836490,
-                'alamat' => 'Sleman',
-                 
-            ]
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'Hj. Suyud',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
+            [
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'Hj. Trias',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
+            [
+                'id_instansi' => 100820070309036034, // Swasta
+                'nama' => 'Mami Photo Klaten',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
+            [
+                'id_instansi' => 100820070309036033, // Pribadi
+                'nama' => 'Marlia Wulansari',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
+            [
+                'id_instansi' => 100820070309036034, // Swasta
+                'nama' => 'Nobel Audiology Center',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
+            [
+                'id_instansi' => 100820070309036034, // Swasta
+                'nama' => 'Notaris Widi Astuti. SH',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
+            [
+                'id_instansi' => 100820070309036034, // Swasta
+                'nama' => 'Teknik Informatika UII',
+                'alamat' => '', // Alamat kosong
+                'nomor_telepon' => '', // Nomor telepon kosong
+            ],
         ];
 
         foreach ($userData as $key => $val) {
