@@ -47,8 +47,8 @@ async function processDataForTable(data){
 
         cell1.textContent = user.nama_lengkap;
         cell2.textContent = user.tgl_pemeriksaan;
-        cell3.textContent = user.kemampuan_kanan;
-        cell4.textContent = user.kemampuan_kiri;
+        cell3.textContent = user.kemampuan_kiri;
+        cell4.textContent = user.kemampuan_kanan;
         cell5.textContent = user.kemampuan_binaural;
 
         // Tampilkan tautan file hasil test

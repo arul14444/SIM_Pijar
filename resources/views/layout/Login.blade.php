@@ -81,6 +81,11 @@
                                         <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
                                         <label for="password">Password</label>
                                     </div>
+                                    {{-- show passwprd --}}
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+                                        <label class="form-check-label" for="showPassword">Tampilkan password</label>
+                                    </div>
                                     
                                     <div class="d-flex align-items-center justify-content-end mt-4 mb-0">
                                         {{-- <a class="small" href="password.html">Lupa Password?</a> --}}
@@ -99,5 +104,16 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var toggleButton = document.querySelector("button"); // Sesuaikan selector jika perlu
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>

@@ -68,14 +68,14 @@
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <a href="{{ route('anak.edit', $dt->uuid) }}">
-                                <button type="button" class="btn btn-primary" style="margin-right: 10px;">
+                                <button type="button" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary" style="margin-right: 10px;">
                                     <i class="far fa-edit"></i> 
                                 </button>
                             </a>                            
                             <form method="POST" action="/anak/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')
-                                <button id="hapusData" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                <button id="hapusData" data-toggle="tooltip" data-placement="top" title="Hapus" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                     <i class="fas fa-trash"></i>
                                 </button>                                
                             </form>
@@ -97,6 +97,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             new simpleDatatables.DataTable('#tabelAnak');
+        });
+
+        $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
         });
     </script>
 @endpush

@@ -62,14 +62,14 @@
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
                                 <a href="/donatur/edit/{{$dt->uuid}}">                                    
-                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;">
+                                    <button type="button"  data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary" style="margin-right: 10px;">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                 </a>
                                 <form method="POST" action="/donatur/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')
-                                    <button id="hapusData" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                    <button id="hapusData" data-toggle="tooltip" data-placement="top" title="Hapus"type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                         <i class="fas fa-trash"></i>
                                     </button>                                                                 
                                 </form>
@@ -91,5 +91,13 @@
         document.addEventListener('DOMContentLoaded', function () {
             new simpleDatatables.DataTable('#tabelDonatur');
         });
+        //tooltip
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+
     </script>
 @endpush

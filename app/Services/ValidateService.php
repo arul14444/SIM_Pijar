@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 class ValidateService{
     public function valArsip($request){
         $validator = Validator::make($request->all(), [
-            "lampiran.*" => "file|mimes:pdf|max:2048",
+            "lampiran.*" => "file|max:2048",
             "lampiran" => "required",
             "nama_dokumen" => "required",
         ], [

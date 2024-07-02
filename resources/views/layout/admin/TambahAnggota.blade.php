@@ -36,6 +36,10 @@
                     </div>
                 </div>
             </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+                <label class="form-check-label" for="showPassword">Tampilkan password</label>
+            </div>
             <div class="form-floating mb-3">
                 <input class="form-control" id="inputAlamat" name="alamat" type="text" rows="3" placeholder="Masukan alamat lengkap" />
                 <label for="inputAlamat">Alamat</label>
@@ -46,4 +50,21 @@
         </div>
     </form>
     <script src="{{ asset('resources/js/anggota.js') }}"></script>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("inputPassword");
+            var confirmPasswordInput = document.getElementById("inputKonfirmasiPassword");
+            var toggleButton = document.getElementById("showPassword");
+            if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            confirmPasswordInput.type = "text";
+            toggleButton.textContent = "Hide"; // Ubah teks menjadi "Hide"
+            } else {
+            passwordInput.type = "password";
+            confirmPasswordInput.type = "password";
+            toggleButton.textContent = "Show"; // Ubah teks kembali menjadi "Show"
+            }
+        }
+    </script>
 @endsection

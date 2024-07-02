@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    @include('print.header')
+     
     <div class="mx-auto text-center" style="font-size: 16px; text-decoration: underline;">
         <b>Data Donatur</b>
     </div>    

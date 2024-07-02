@@ -13,7 +13,6 @@
     </style>
 </head>
 <body>
-    @include('print.header')
     <div class="row text-center">
         <div class="col-md-5"  style="font-size: 12pt; text-decoration: underline;">
             <b>SURAT TUGAS</b> 
