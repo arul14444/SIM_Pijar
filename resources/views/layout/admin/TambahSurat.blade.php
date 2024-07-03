@@ -1,7 +1,8 @@
 @extends('layout.admin.MasterAdmin')
-@section('title','Tambah Surat')
+@section('title','Tambah Surat Tugas')
 @section('route')
-        <li class="breadcrumb-item active">Tambah Surat</li>
+        <li class="breadcrumb-item"><a href="/manajemen/surat">Manajemen Surat Tugas</a></li>
+        <li class="breadcrumb-item active">Tambah Surat Tugas</li>
 
 @endsection
 @section('content')

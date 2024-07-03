@@ -3,7 +3,7 @@
 @section('route')
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Manajemen Donatur</a></li>
-        <li class="breadcrumb-item active">Edit</li>
+        <li class="breadcrumb-item active">Edit Data Donatur</li>
     </ol>
 @endsection
 @section('content')    

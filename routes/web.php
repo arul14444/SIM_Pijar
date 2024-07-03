@@ -73,6 +73,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/pengurus/print-pdf', [PrintController::class, 'printPdfPengurus']);
         Route::get('/pengurus/edit/{uuid}', [EditController::class, 'detailPengurus']);
         Route::put('/pengurus/edit/{uuid}', [EditController::class, 'editPengurus']);
+        Route::put('/pengurus/delete/{uuid}', [DeleteController::class, 'deletePengurus']);
+       
+
 
 
         //manajemen anak
@@ -140,6 +143,12 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::get('/manajemen/kemampuan-dengar', [DataController::class, 'hasilPemeriksaanbyAdmin']);
 
+        //tambah pengurus
+        Route::get('/tambah/pengurus', function () {
+            return view('layout/admin/TambahPengurusInti');
+        });
+        Route::post('/tambah/pengurus', [TambahDataController::class, 'tambahPengurus']);
+        Route::get('/tambah/pengurus', [TambahDataController::class, 'listDataPengurus']);
         //tambah anggota
         Route::get('/tambah/anggota', function () {
             return view('layout/admin/TambahAnggota');

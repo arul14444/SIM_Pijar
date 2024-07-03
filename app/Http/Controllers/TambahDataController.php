@@ -65,7 +65,14 @@ class TambahDataController extends Controller
             $this->instansiRepository = $instansiRepository;
         }
 
-        // Ambil Data
+        // =========================== list Data ===========================
+        public function listDataPengurus(){
+            $data = [
+                'listAnggota' => $this->userRepository->getAnggota()->get(),
+                'listJabatan' => $this->jabatanRepository->getJabatan()->get(),
+            ] ;
+            return view('layout.admin.TambahPengurusInti')->with('data', $data);
+        }
         public function listDataTambahAnak(){
             $data=[
                 'listOrtu' => $this->userRepository->getOrangtua()->get(),
@@ -84,7 +91,7 @@ class TambahDataController extends Controller
         public function listPengurus(){
             $data = [
                 'pengurusInti'=>$this->jabatanRepository->getJabatan()->get(),
-                'pengurus'=>$this->userRepository->getAnggota()->get()
+                'pengurus'=>$this->userRepository->getAll()->get()
             ];
             return  view('layout.admin.TambahSurat')->with('data', $data);
         }
@@ -97,6 +104,21 @@ class TambahDataController extends Controller
         }
 
         //=========================== tambah Data =========================== 
+        public function tambahPengurus(Request $request){
+            try {
+                $validasi = $this->validateService->valPengurus($request);
+                if ($validasi->fails()) {
+                    $msg = $validasi->errors()->all();
+                    return response()->json(['success' => false, 'message' => 'Data pengurus gagal ditambahkan: '.$msg[0] ]);
+                }
+                DB::beginTransaction();
+                $this->tambahAnggotaService->setData($request);
+                DB::commit();
+                return response()->json(['success' => true, 'message' => 'Data pengurus berhasil ditambahkan']);
+            } catch (\Exception $e) {
+                return response()->json(['success' => false, 'message' => 'Gagal menambahkan data pengurus: ' . $e->getMessage()]);
+            }
+        }
     public function tambahAnggota(Request $request){
         try{
             $validasi = $this->validateService->valAnggota($request);

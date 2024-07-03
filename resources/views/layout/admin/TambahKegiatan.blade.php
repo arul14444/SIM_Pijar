@@ -1,9 +1,9 @@
 @extends('layout.admin.MasterAdmin')
-@section('title','Tambah Kegiatan')
+@section('title','Tambah Data Kegiatan')
 @section('route')
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{url('manajemen/kegiatan')}}">Manajemen Kegiatan</a></li>
-        <li class="breadcrumb-item active">Tambah Kegiatan</li>
+        <li class="breadcrumb-item active">Tambah Data Kegiatan</li>
     </ol>
 @endsection
 

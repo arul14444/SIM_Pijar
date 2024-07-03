@@ -1,6 +1,7 @@
 @extends('layout.admin.MasterAdmin')
 @section('title','Edit Surat')
 @section('route')
+        <li class="breadcrumb-item"><a href="/manajemen/surat">Manajemen Surat Tugas</a></li>
         <li class="breadcrumb-item active">Edit Surat</li>
 
 @endsection

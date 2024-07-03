@@ -1,9 +1,9 @@
 @extends('layout.admin.MasterAdmin')
-@section('title','Edit Anggota')
+@section('title','Edit Data Anggota')
 @section('route')
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Manajemen Anggota</a></li>
-        <li class="breadcrumb-item active">Edit</li>
+        <li class="breadcrumb-item"><a href="/manajemen/anggota">Manajemen Anggota</a></li>
+        <li class="breadcrumb-item active">Edit Data Anggota</li>
     </ol>
 @endsection
 @section('content')

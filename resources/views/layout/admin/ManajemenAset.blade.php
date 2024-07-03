@@ -73,14 +73,14 @@
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <a href="/aset/edit/{{$dt->uuid}}">
-                                <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                <button type="button" class="btn btn-primary" data-placement="top" title="Edit" style="margin-right: 10px;" onclick="editRow(this)">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                             </a>
                             <form method="POST" action="/aset/delete/{{$dt->uuid}}">
                                 @csrf
                                 @method('PUT')
-                                <button id="hapusData" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                <button id="hapusData" type="button" data-placement="top" title="Hapus" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
                                     <i class="fas fa-trash"></i>
                                 </button>                                                                 
                             </form>

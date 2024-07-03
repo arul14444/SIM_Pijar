@@ -53,19 +53,19 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <form method="POST" action="/surat/print-pdf/{{$dt->uuid}}" target="_blank">
                                     @csrf
-                                    <button type="submit" class="btn btn-dark" style="margin-right: 10px">
+                                    <button type="submit" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Unduh" style="margin-right: 10px">
                                         <i class="fa-solid  fa-download"></i>
                                     </button>
                                 </form>
                                 <a href="/surat/edit/{{$dt->uuid}}">
-                                    <button type="button" class="btn btn-primary" style="margin-right: 10px;" onclick="editRow(this)">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit" style="margin-right: 10px;" onclick="editRow(this)">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                 </a>
                                 <form method="POST" action="/surat/delete/{{$dt->uuid}}">
                                     @csrf
                                     @method('PUT')
-                                    <button id="hapusData" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                    <button id="hapusData" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="confirmDelete('{{ $dt->uuid }}')">
                                         <i class="fas fa-trash"></i>
                                     </button>                                                                 
                                 </form>

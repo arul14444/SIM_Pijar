@@ -63,6 +63,7 @@ async function processDataForTable(data){
         const editButton = document.createElement('button');
 
         editButton.innerHTML = '<i class="fa-regular fa-pen-to-square ml-2"></i>';
+        editButton.title = 'Edit'; // Add tooltip text for edit button
         editButton.classList.add('btn', 'btn-primary', 'mr-2');
         editButton.addEventListener('click', () => editRow(user)); // Ganti editRow dengan fungsi yang sesuai
         
@@ -70,7 +71,8 @@ async function processDataForTable(data){
         const deleteButton = document.createElement('button');
         deleteButton.style.marginLeft= '5px';
         deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-        deleteButton.classList.add('btn', 'btn-danger');
+        deleteButton.title = 'Delete'; // Add tooltip text for delete button
+        deleteButton.classList.add('btn', 'btn-danger',);
         deleteButton.addEventListener('click', () => confirmDelete(user.uuid)); // Ganti confirmDelete dengan fungsi yang sesuai
         
         // Buat elemen spasi
@@ -152,6 +154,7 @@ function confirmDelete(uuid) {
         });
     }
 }
+
 
 
 
