@@ -4,8 +4,10 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Validator;
 
-class ValidateService{
-    public function valArsip($request){
+class ValidateService
+{
+    public function valArsip($request)
+    {
         $validator = Validator::make($request->all(), [
             "lampiran.*" => "file|max:2048",
             "lampiran" => "required",
@@ -18,13 +20,14 @@ class ValidateService{
         ]);
         return $validator;
     }
-    public function valKegiatan($request){
+    public function valKegiatan($request)
+    {
         $validator = Validator::make($request->all(), [
             'nama_kegiatan' => 'required',
             'tanggal' => 'required',
             'lokasi' => 'required',
             'sumber_dana' => 'required',
-            'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096', 
+            'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096',
             'lampiran' => 'required',
         ], [
             'lampiran.required' => 'Setiap lampiran harus diunggah',
@@ -36,17 +39,18 @@ class ValidateService{
             'lokasi.required' => 'Lokasi kegiatan harus diisi',
             'sumber_dana.required' => 'Sumber dana kegiatan harus diisi',
         ]);
-        
-        
+
+
         return $validator;
     }
-    public function valAset($request){
+    public function valAset($request)
+    {
         $validator = Validator::make($request->all(), [
             'nama_barang' => 'required',
             'kode' => 'required',
-            'uuid_status_aset' => 'required',   
+            'uuid_status_aset' => 'required',
             'lampiran.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096',
-            'lampiran' => 'required', 
+            'lampiran' => 'required',
         ], [
             'lampiran.required' => 'Lampiran harus diunggah',
             'lampiran.*.image' => 'Lampiran harus berupa gambar',
@@ -56,10 +60,11 @@ class ValidateService{
             'kode.required' => 'Kode barang harus diisi',
             'uuid_status_aset.required' => 'Status aset harus diisi',
         ]);
-        
+
         return $validator;
     }
-    public function valHasilPemeriksaan($request){
+    public function valHasilPemeriksaan($request)
+    {
         $validator = Validator::make($request->all(), [
             "uuid_anak" => "required",
             "tgl_pemeriksaan" => "required",
@@ -68,7 +73,7 @@ class ValidateService{
             "binaural_nilai1" => "required",
             "lampiran.*" => "required|file|mimes:pdf|max:2048",
             "lampiran" => "required",
-            
+
         ], [
             'lampiran.required' => 'Lampiran harus diunggah',
             'lampiran.*.mimes' => 'Lampiran harus pdf',
@@ -81,7 +86,8 @@ class ValidateService{
         ]);
         return $validator;
     }
-    public function valAnggota($request){
+    public function valAnggota($request)
+    {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nomor_telepon' => 'required',
@@ -98,11 +104,11 @@ class ValidateService{
             'konfirmasi_password.required' => 'Konfirmasi password harus diisi',
             'konfirmasi_password.same' => 'Konfirmasi password tidak sama dengan password'
         ]);
-        
-        return $validator;
 
+        return $validator;
     }
-    public  function valAnak($request){
+    public  function valAnak($request)
+    {
         $validator = Validator::make($request->all(), [
             'nama_lengkap' => 'required',
             'nama_panggilan' => 'required',
@@ -130,10 +136,11 @@ class ValidateService{
             'uuid_abd_kiri.required' => 'Abd kiri harus diisi',
             'uuid_abd_kanan.required' => 'Abd kanan harus diisi',
         ]);
-        
+
         return $validator;
     }
-    public function valDonatur($request){
+    public function valDonatur($request)
+    {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nomor_telepon' => 'required',
@@ -145,13 +152,14 @@ class ValidateService{
             'alamat.required' => 'Alamat harus diisi',
             'uuid_instansi.required' => 'Instansi harus diisi',
         ]);
-        
+
         return $validator;
     }
-    public function valSurat($request){
+    public function valSurat($request)
+    {
         $validator = Validator::make($request->all(), [
             'nomor_surat' => 'required',
-            'uuid_jabatan_pemberi' => 'required',
+            'uuid_pemberi' => 'required',
             'uuid_penerima' => 'required',
             'jabatan_penerima' => 'required',
             'keperluan' => 'required',
@@ -159,18 +167,19 @@ class ValidateService{
             'tgl_dibuat' => 'required',
         ], [
             'nomor_surat.required' => 'Nomor surat harus diisi',
-            'uuid_jabatan_pemberi.required' => 'Yang bertanda tangan harus diisi',
+            'uuid_pemberi.required' => 'Yang bertanda tangan harus diisi',
             'uuid_penerima.required' => 'Penerima tugas harus diisi',
             'jabatan_penerima.required' => 'Jabatan penerima harus diisi',
             'keperluan.required' => 'Keperluan harus diisi',
             'tempat_dibuat.required' => 'Tempat dibuat harus diisi',
             'tgl_dibuat.required' => 'Tanggal dibuat harus diisi',
         ]);
-        
+
         return $validator;
     }
 
-    public function valPengurus($request){
+    public function valPengurus($request)
+    {
         $validator = Validator::make($request->all(), [
             'uuid_nama' => 'required',
             'uuid_jabatan' => 'required',
@@ -178,7 +187,17 @@ class ValidateService{
             'uuid_nama.required' => 'Nama harus diisi',
             'uuid_jabatan.required' => 'Jabatan harus diisi',
         ]);
-        
+
+        return $validator;
+    }
+    public function valJabatan($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_jabatan' => 'required',
+        ], [
+            'nama_jabatan.required' => 'Nama jabatan harus diisi',
+        ]);
+
         return $validator;
     }
 }

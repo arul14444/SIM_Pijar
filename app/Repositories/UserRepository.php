@@ -22,7 +22,7 @@ class UserRepository
     public function getPengurus()
     {
         return User::select('user.nama', 'user.nomor_telepon', 'user.alamat', 'j.jabatan', 'user.uuid')
-            ->join('jabatan as j', 'j.id_user', 'user.id')
+            ->join('jabatan as j', 'j.id', 'user.id_jabatan')
             ->where(['user.role' => 'admin', 'user.flag_aktif' => 1]);
     }
     public function getOrangtua()
@@ -38,7 +38,7 @@ class UserRepository
     {
         return User::from('user as pengurus')
             ->select('jabatan.jabatan', 'pengurus.nama', 'pengurus.alamat', 'pengurus.uuid', 'pengurus.nomor_telepon')
-            ->join('jabatan', 'pengurus.id', 'jabatan.id_user')
+            ->join('jabatan', 'jabatan.id', 'pengurus.id_jabatan')
             ->where(['pengurus.uuid' => $uuid, 'pengurus.flag_aktif' => true])->first();
     }
     public function updateByUuid($data, $uuid)

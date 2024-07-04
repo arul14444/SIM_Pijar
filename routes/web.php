@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pengurus/edit/{uuid}', [EditController::class, 'detailPengurus']);
         Route::put('/pengurus/edit/{uuid}', [EditController::class, 'editPengurus']);
         Route::put('/pengurus/delete/{uuid}', [DeleteController::class, 'deletePengurus']);
-       
+
 
 
 
@@ -147,8 +147,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/tambah/pengurus', function () {
             return view('layout/admin/TambahPengurusInti');
         });
-        Route::post('/tambah/pengurus', [TambahDataController::class, 'tambahPengurus']);
+        Route::put('/tambah/pengurus', [TambahDataController::class, 'tambahPengurus']);
         Route::get('/tambah/pengurus', [TambahDataController::class, 'listDataPengurus']);
+        Route::post('/tambah/jabatan', [TambahDataController::class, 'tambahJabatan']);
+
         //tambah anggota
         Route::get('/tambah/anggota', function () {
             return view('layout/admin/TambahAnggota');
@@ -231,8 +233,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/hasil-pemeriksaan/delete/{uuid}', [DeleteController::class, 'deleteHasilPemeriksaan']);
         Route::put('/hasil-pemeriksaan/edit/{uuid}', [EditController::class, 'editHasilPemeriksaan']);
 
-
-
+        //kegiatan
         Route::get('/kegiatan/anggota', function () {
             return view('layout/anggota/Kegiatan');
         });

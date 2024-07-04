@@ -20,7 +20,7 @@
             <div class="row mb-3">
                 <div class="col">
                     <div class="form-floating">
-                        <select class="form-select" id="inputPemberiTugas" name="uuid_jabatan_pemberi" aria-label="Pilih Pemberi Tugas">
+                        <select class="form-select" id="inputPemberiTugas" name="uuid_pemberi" aria-label="Pilih Pemberi Tugas">
                             <option selected disabled>Pilih pemberi tugas</option>
                                 @foreach ($data['pengurusInti'] as $dt)    
                                     <option value="{{$dt->uuid}}">{{$dt->nama}} ({{$dt->jabatan}})</option>

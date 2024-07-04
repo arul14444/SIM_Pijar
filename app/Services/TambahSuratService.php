@@ -22,10 +22,11 @@ class TambahSuratService{
     }
 
     public function setData($data){
-        $pemberi = $this->jabatanRepository->findByUuid($data->uuid_jabatan_pemberi);
+        
+        $pemberi = $this->userRepository->findByUuid($data->uuid_pemberi);
         $penerima = $this->userRepository->findByUuid($data->uuid_penerima);
             $setData = [
-                'id_jabatan_pemberi' => $pemberi->id,
+                'id_user_pemberi' => $pemberi->id,
                 'id_user_penerima'=> $penerima->id,
                 'jabatan_penerima' => $data->jabatan_penerima,
                 'nomor_surat' => $data->nomor_surat,
