@@ -36,7 +36,8 @@
                 </div>
                 <div class="mt-4 mb-0">
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin ingin menambahkan pengurus inti?')">Simpan</button>
+                    </div>
                     </div>
                 </div>
             </div>

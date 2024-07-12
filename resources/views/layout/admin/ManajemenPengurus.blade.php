@@ -60,20 +60,27 @@
                         <td>{{$dt->nomor_telepon}}</td>
                         <td>{{$dt->alamat}}</td>
                         <td> 
+                            
                             <div class="d-flex justify-content-center align-items-center">
                                 <a href="/pengurus/edit/{{$dt->uuid}}">
-                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"style="margin-right: 10px;" onclick="editRow(this)">
-                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    <button type="button" class="btn btn-primary" data-placement="top" title="Edit" style="margin-right: 10px;" onclick="editRow(this)">                                        <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                 </a>
-                            </div>                    
+                                <form method="POST" action="/pengurus/delete/{{$dt->uuid}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button id="hapusData" type="button" data-placement="top" title="Hapus" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>                                                                 
+                                </form>               
+                            </div>     
                         </td>
                     </tr>
                 @endforeach
                 
             </tbody>
         </table>
-        
+        <script src="{{ asset('resources/js/pengurus.js') }}"></script>
     </div>
 @endsection
 

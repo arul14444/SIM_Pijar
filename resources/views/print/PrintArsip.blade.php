@@ -22,7 +22,6 @@
                 <tr class="text-center">
                     <th>No</th>
                     <th>Nama dokumen</th>
-                    <th>kode</th>
                     <th>Deskripsi</th>
                 </tr>
             </thead>

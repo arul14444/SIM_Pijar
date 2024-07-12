@@ -11,6 +11,7 @@ use App\Repositories\KegiatanRepository;
 use App\Repositories\SuratRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteController extends Controller
 {
@@ -55,7 +56,7 @@ class DeleteController extends Controller
             return response()->json(['success' => false, 'message' => 'Gagal menghapus data donatur: ' . $e->getMessage()]);
         }
     }
-    
+
     public function deleteKegiatan($uuid)
     {
         try {
@@ -112,6 +113,21 @@ class DeleteController extends Controller
             return response()->json(['success' => true, 'message' => 'Berhasil menghapus data hasil pemeriksaan']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menghapus data hasil pemeriksaan: ' . $e->getMessage()]);
+        }
+    }
+
+    public function deletePengurus($uuid)
+    {
+        try {
+            $data = [
+                'id_jabatan' => null,
+                'role' => 'anggota',
+                'user_update' => Auth::user()->nama
+            ];
+            $this->userRepository->updateByUuid($data, $uuid);
+            return response()->json(['success' => true, 'message' => 'Berhasil menghapus data jabatan']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data jabatan: ' . $e->getMessage()]);
         }
     }
 }

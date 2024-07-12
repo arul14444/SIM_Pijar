@@ -116,27 +116,29 @@ class TambahDataController extends Controller
             $validasi = $this->validateService->valPengurus($request);
             if ($validasi->fails()) {
                 $msg = $validasi->errors()->all();
-                return response()->json(['success' => false, 'message' => 'Data pengurus gagal ditambahkan: ' . $msg[0]]);
+                return redirect('tambah/pengurus')->with('alert', 'Data pengurus inti gagal ditambahkan: ' . $msg[0]);
             }
-    
+
             DB::beginTransaction();
-    
+
             $jabatan = $this->jabatanRepository->findByUuid($request->uuid_jabatan);
             $setData = [
                 'id_jabatan' => $jabatan->id,
-                'role' => 'admin'
+                'role' => 'admin',
+                'user_update' => Auth::user()->nama,
             ];
-    
-            $this->userRepository->updateByUuid($request->uuid_nama, $setData);
-    
+
+            $this->userRepository->updateByUuid($setData,$request->uuid_nama);
+
             DB::commit();
-    
-            return response()->json(['success' => true, 'message' => 'Data pengurus berhasil ditambahkan']);
+
+            return redirect('/tambah/pengurus')->with('success', 'Data pengurus inti berhasil ditambahkan');
         } catch (\Exception $e) {
-     }
+            return redirect('tambah/pengurus')->with('alert', 'Data anak gagal diubah: ' . $e->getMessage());
+        }
     }
-    
-    
+
+
 
     public function tambahJabatan(Request $request)
     {

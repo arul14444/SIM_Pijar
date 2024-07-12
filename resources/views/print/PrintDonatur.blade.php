@@ -23,6 +23,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Nomor Telepon</th>
+                    <th>Instansi</th>
                     <th>Alamat</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                     <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah -->
                     <td>{{ $dt->nama }}</td>
                     <td>{{ $dt->nomor_telepon }}</td>
+                    <td>{{ $dt->instansi }}</td>
                     <td>{{ $dt->alamat }}</td>
                 </tr>
                 @endforeach 

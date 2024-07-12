@@ -70,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
             return view('layout/admin/manajemenAnggota');
         });
         Route::get('/manajemen/pengurus', [DataController::class, 'dataPengurus']);
+        Route::put('/pengurus/delete/{uuid}', [DeleteController::class, 'deletePengurus']);
         Route::post('/pengurus/print-pdf', [PrintController::class, 'printPdfPengurus']);
         Route::get('/pengurus/edit/{uuid}', [EditController::class, 'detailPengurus']);
         Route::put('/pengurus/edit/{uuid}', [EditController::class, 'editPengurus']);

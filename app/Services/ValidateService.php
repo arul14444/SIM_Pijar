@@ -181,8 +181,8 @@ class ValidateService
     public function valPengurus($request)
     {
         $validator = Validator::make($request->all(), [
-            'uuid_nama' => 'required',
             'uuid_jabatan' => 'required',
+            'uuid_nama' => 'required',
         ], [
             'uuid_nama.required' => 'Nama harus diisi',
             'uuid_jabatan.required' => 'Jabatan harus diisi',

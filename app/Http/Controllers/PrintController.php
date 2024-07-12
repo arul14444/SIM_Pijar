@@ -191,6 +191,28 @@ class PrintController extends Controller
     public function printPdfKegiatan()
     {
         $data = $this->kegiatanRepository->getKegiatan()->get();
+
+        foreach ($data as $dt){
+            $tgl_kegiatan = Carbon::parse($dt->tgl_kegiatan);
+            $bulanIndonesia = [
+                1 => 'Januari',
+                2 => 'Februari',
+                3 => 'Maret',
+                4 => 'April',
+                5 => 'Mei',
+                6 => 'Juni',
+                7 => 'Juli',
+                8 => 'Agustus',
+                9 => 'September',
+                10 => 'Oktober',
+                11 => 'November',
+                12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_kegiatan->month];
+            $formatted_tgl_kegiatan = $tgl_kegiatan->day . ' ' . $namaBulan . ' ' . $tgl_kegiatan->year;
+            $dt->tgl_kegiatan = $formatted_tgl_kegiatan;
+        }
+
         $html = view('print.PrintKegiatan', ['data' => $data])->render();
 
         $options = new Options();
@@ -227,6 +249,25 @@ class PrintController extends Controller
     public function printPdfSurat($uuid)
     {
         $data = $this->suratRepository->findByUuid($uuid);
+
+        $tgl_dibuat = Carbon::parse($data->tgl_dibuat);
+            $bulanIndonesia = [
+                1 => 'Januari',
+                2 => 'Februari',
+                3 => 'Maret',
+                4 => 'April',
+                5 => 'Mei',
+                6 => 'Juni',
+                7 => 'Juli',
+                8 => 'Agustus',
+                9 => 'September',
+                10 => 'Oktober',
+                11 => 'November',
+                12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_dibuat->month];
+            $formatted_tgl_dibuat = $tgl_dibuat->day . ' ' . $namaBulan . ' ' . $tgl_dibuat->year;
+            $data->tgl_dibuat = $formatted_tgl_dibuat;
 
         $html = view('print.PrintSurat', ['data' => $data])->render();
 
