@@ -22,7 +22,6 @@ class TambahSuratService{
     }
 
     public function setData($data){
-        
         $pemberi = $this->userRepository->findByUuid($data->uuid_pemberi);
         $penerima = $this->userRepository->findByUuid($data->uuid_penerima);
             $setData = [

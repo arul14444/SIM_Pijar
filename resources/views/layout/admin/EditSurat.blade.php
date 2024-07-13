@@ -21,7 +21,7 @@
             <div class="row mb-3">
                 <div class="col">
                     <div class="form-floating">
-                        <select class="form-select" id="inputPemberiTugas" name="uuid_jabatan_pemberi" aria-label="Pilih Pemberi Tugas">
+                        <select class="form-select" id="inputPemberiTugas" name="uuid_pemberi" aria-label="Pilih Pemberi Tugas">
                             @foreach ($data['pengurusInti'] as $dt)    
                                 <option value="{{$dt->uuid}}" @if($dt->nama == $data['detail']->nama_pemberi && $dt->jabatan == $data['detail']->jabatan_pemberi) selected @endif>{{$dt->nama}} ({{$dt->jabatan}})</option>
                             @endforeach
@@ -36,7 +36,7 @@
                     <div class="form-floating">
                         <select class="form-select" id="inputPenerimaTugas" name="uuid_penerima" aria-label="Pilih Penerima Tugas">
                             @foreach ($data['pengurus'] as $dt)    
-                                <option value="{{$dt->uuid}}" @if($dt->nama == $data['detail']->nama_penerima) selected @endif>{{$dt->nama}}</option>
+                                <option value="{{$dt->uuid}}" @if($dt->nama == $data['detail']->penerima) selected @endif>{{$dt->nama}}</option>
                             @endforeach
                         </select>
                         <label for="inputNamaOrangTua">Penerima Tugas</label>

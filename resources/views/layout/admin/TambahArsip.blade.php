@@ -26,7 +26,7 @@
         <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Apakah Anda yakin menyimpan untuk data ini?')">Tambah</button></div>
     </div>
     <div class="d-flex align-items-center justify-content-end mt-3" style="font-size: 14px;">
-        <div class="mr-auto"> <span style="color: red;">*</span>File berjenis pdf ukuran maksimal 2048kb</div>
+        <div class="mr-auto"> <span style="color: red;">*</span>File berukuran maksimal 2048kb</div>
     </div>
 </form>
 <script src="{{ asset('resources/js/arsip.js') }}"></script>

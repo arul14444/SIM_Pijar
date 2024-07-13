@@ -118,8 +118,8 @@ class EditController extends Controller
     public function detailSurat($uuid)
     {
         $data = [
-            'pengurusInti' => $this->jabatanRepository->getJabatan()->get(),
-            'pengurus' => $this->userRepository->getAnggota()->get(),
+            'pengurusInti' => $this->userRepository->getPengurus()->get(),
+            'pengurus' => $this->userRepository->getAll()->get(),
             'detail' => $this->suratRepository->findByUuid($uuid)
         ];
         return  view('layout.admin.EditSurat')->with('data', $data);
@@ -303,10 +303,10 @@ class EditController extends Controller
     {
         try {
             DB::beginTransaction();
-            $pemberi = $this->jabatanRepository->findByUuid($request->uuid_jabatan_pemberi);
+            $pemberi = $this->userRepository->findByUuid($request->uuid_pemberi);
             $penerima = $this->userRepository->findByUuid($request->uuid_penerima);
             $setData = [
-                'id_jabatan_pemberi' => $pemberi->id,
+                'id_user_pemberi' => $pemberi->id,
                 'id_user_penerima' => $penerima->id,
                 'jabatan_penerima' => $request->jabatan_penerima,
                 'nomor_surat' => $request->nomor_surat,

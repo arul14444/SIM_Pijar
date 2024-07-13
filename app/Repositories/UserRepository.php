@@ -11,12 +11,15 @@ class UserRepository
     public function getAnggota()
     {
         return User::select('*')
+            ->whereNotIn('nama', ['admin'])
+            ->orderBy('nama', 'asc')
             ->where(['role' => 'anggota', 'flag_aktif' => 1]);
     }
     public function getAll()
     {
         return User::select('*')
             ->whereNotIn('nama', ['admin'])
+            ->orderBy('nama', 'asc')
             ->where(['flag_aktif' => 1]);
     }
     public function getPengurus()
