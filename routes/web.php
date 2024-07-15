@@ -36,6 +36,8 @@ Route::get('/home', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/logout-error', [LoginController::class, 'logoutWithError']);
+
     Route::get('/profile', [LoginController::class, 'profile']);
     //fungsi untuk cek output surat
     Route::get('/header', function () {

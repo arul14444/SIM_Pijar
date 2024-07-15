@@ -513,8 +513,6 @@ class EditController extends Controller
                     'kemampuan_kiri' => $kemampuanTelingaKiri,
                     'kemampuan_kanan' => $kemampuanTelingaKanan,
                     'kemampuan_binaural' => $kemampuanBinaural,
-
-
                 ];
                 $this->anakRepository->updateBy($setUpdate, $data->uuid_anak);
                 DB::commit();

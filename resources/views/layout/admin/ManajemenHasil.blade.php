@@ -35,7 +35,7 @@
             </div>            
         </div>
 </div> 
-<div class="card-body" style="overflow-y: auto; max-height: 400px;">
+<div class="card-body" >
     <table id="tabelRiwayat" class="table table-striped table-bordered">
         <thead>
             <tr class="text-center">
@@ -58,5 +58,9 @@
     appUrl = "{{ config('app.url') }}";
 </script> --}}
 <script src="{{ asset('resources/js/dataPemeriksaanbyAdmin.js') }}"></script>
+@push('script')
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+@endpush
 
 @endsection

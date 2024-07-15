@@ -21,7 +21,7 @@ class LoginController extends Controller
     
         if(Auth::attempt($credentials)){
             if(Auth::user()->flag_aktif == false){
-                return redirect('/logout');
+                return redirect('/logout-error');
             }
             if(Auth::user()->role == 'admin'){
                 return redirect('/dashboard/admin');
@@ -36,5 +36,9 @@ class LoginController extends Controller
     public function logout(){
         Auth::logout();
         return redirect('');
+    }
+    public function logoutWithError(){
+        Auth::logout();
+        return redirect()->back()->withErrors('Akun anda tidak aktif, silahkan hubungi admin');
     }
 }

@@ -69,8 +69,8 @@ class TambahDataController extends Controller
     public function listDataPengurus()
     {
         $data = [
-            'pengurusInti' => $this->userRepository->getPengurus()->get(),
-            'pengurus' => $this->userRepository->getAll()->get(),
+            'listAnggota' => $this->userRepository->getAnggota()->get(),
+            'listJabatan' => $this->jabatanRepository->getJabatan()->get()
         ];
         return view('layout.admin.TambahPengurusInti')->with('data', $data);
     }
@@ -128,7 +128,7 @@ class TambahDataController extends Controller
                 'user_update' => Auth::user()->nama,
             ];
 
-            $this->userRepository->updateByUuid($setData,$request->uuid_nama);
+            $this->userRepository->updateByUuid($setData, $request->uuid_nama);
 
             DB::commit();
 

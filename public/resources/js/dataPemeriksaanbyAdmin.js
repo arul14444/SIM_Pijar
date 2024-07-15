@@ -96,7 +96,9 @@ async function processDataForTable(data){
         // Masukkan tombol dan elemen spasi ke dalam sel
         cell7.appendChild(actionButton);
         // cell7.appendChild(deleteButton);
-    });
+    })
+    
+    new simpleDatatables.DataTable('#tabelRiwayat');;
 }
 
 

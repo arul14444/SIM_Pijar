@@ -64,6 +64,7 @@ function tambahJabatan(formData) {
             setTimeout(function() {
                 responseMessage.innerText = '';
                 document.getElementById('responseMessage').style.backgroundColor = 'white';
+                window.location.reload();
                 
             }, 3000);
         });

@@ -22,13 +22,20 @@ async function getData(){
     const fullUrlPendengaran = `${apiUrlPendengaran}/${uuid}`; // Membuat URL lengkap dengan UUID
 
     try {
-        const response = await fetch(fullUrlPendengaran);
-        const data = await response.json();
-        console.log(data, 'res data');
-        // Data yang diperoleh dari API siap untuk digunakan
-        // Memproses data untuk dibuat menjadi line chart
-        processDataForChart(data);
-        processDataForTable(data);
+        if (uuid) {
+            const response = await fetch(fullUrlPendengaran);
+            const data = await response.json();
+            console.log(data, 'res data');
+            // Data yang diperoleh dari API siap untuk digunakan
+            // Memproses data untuk dibuat menjadi line chart
+            processDataForChart(data);
+            processDataForTable(data);
+        } else {
+            const data = null;
+            processDataForChart(data);
+            processDataForTable(data);
+        }
+        
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -50,6 +57,7 @@ function processDataForTable(data){
         cell3.textContent = user.kemampuan_kiri;
         cell4.textContent = user.kemampuan_binaural;
       });
+      new simpleDatatables.DataTable('#tabelRiwayat');
 }
 function processDataForChart(data) {
     // Memproses data untuk line chart

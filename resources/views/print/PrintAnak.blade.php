@@ -18,10 +18,10 @@
         <b>Data Anak</b>
     </div>    
     <div class="card-body">
-        <table id="myTable" class="table table-striped table-bordered">
+        <table id="tabelAnak" class="table table-striped table-bordered mx-auto">
             <thead class="thead-light">
                 <tr class="text-center">
-                    <th>No</th>
+                    {{-- <th>No</th> --}}
                     <th>Nama</th>
                     <th>Nomor telepon</th>
                     <th>Alamat</th>
@@ -33,11 +33,11 @@
             <tbody>
                 {{-- Daftar Anggota --}}
                 @php
-                    $nomor = 1; // Inisialisasi nomor urut
+                    // $nomor = 1; // Inisialisasi nomor urut
                 @endphp
                 @foreach($data as $dt)
                 <tr>
-                    <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah -->
+                    {{-- <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah --> --}}
                     <td>{{ $dt->nama_lengkap }}</td>
                     <td>{{ $dt->nomor_telepon }}</td>
                     <td>{{ $dt->alamat }}</td>

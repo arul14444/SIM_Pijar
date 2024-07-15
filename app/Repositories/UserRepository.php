@@ -26,6 +26,7 @@ class UserRepository
     {
         return User::select('user.nama', 'user.nomor_telepon', 'user.alamat', 'j.jabatan', 'user.uuid')
             ->join('jabatan as j', 'j.id', 'user.id_jabatan')
+            ->orderBy('j.order', 'asc')
             ->where(['user.role' => 'admin', 'user.flag_aktif' => 1]);
     }
     public function getOrangtua()

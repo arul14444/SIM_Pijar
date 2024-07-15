@@ -22,11 +22,16 @@ async function getData(){
     const fullUrlPendengaran = `${apiUrlPendengaran}/${uuid}`; // Membuat URL lengkap dengan UUID
 
     try {
-        const response = await fetch(fullUrlPendengaran);
-        const data = await response.json();
-        console.log(data, 'res data');
+        if (uuid) {
+            const response = await fetch(fullUrlPendengaran);
+            const data = await response.json();
+            console.log(data, 'res data');
 
-        processDataForTable(data);
+            processDataForTable(data);
+        } else {
+            const data = null;
+            processDataForTable(data);
+        }
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -76,6 +81,8 @@ async function processDataForTable(data){
         cell6.appendChild(editButton);
         cell6.appendChild(deleteButton);
     });
+    new simpleDatatables.DataTable('#tabelRiwayat');
+
 }
 
 
