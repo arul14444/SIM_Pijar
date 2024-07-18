@@ -35,10 +35,10 @@
                 @foreach($data as $dt)
                 <tr>
                     <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah -->
-                    <td>{{ $dt->nama }}</td>
-                    <td>{{ $dt->nomor_telepon }}</td>
-                    <td>{{ $dt->instansi }}</td>
-                    <td>{{ $dt->alamat }}</td>
+                    <td>{{ $dt->nama ?? '-' }}</td>
+                    <td>{{ $dt->nomor_telepon ?? '-' }}</td>
+                    <td>{{ $dt->instansi ?? '-' }}</td>
+                    <td>{{ $dt->alamat ?? '-' }}</td>
                 </tr>
                 @endforeach 
             </tbody>

@@ -216,11 +216,55 @@ class DataController extends Controller
     public function getDataPendengaran($uuid){
         $id_anak = $this->anakRepository->findByUuid($uuid)->id;
         $data = $this->gangguanRepository->dataPendengaran($id_anak);
+        foreach ($data as $dt){
+            // Ubah format tanggal pemeriksaan
+            $tgl_pemeriksaan = Carbon::parse($dt->tgl_pemeriksaan);
+            $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_pemeriksaan->month];
+            $formatted_tgl_pemeriksaan = $tgl_pemeriksaan->day . ' ' . $namaBulan . ' ' . $tgl_pemeriksaan->year;
+            $dt->tgl_pemeriksaan = $formatted_tgl_pemeriksaan;
+        }
         return response()->json($data);
     }
 
     public function getAllDataPendengaran(){
         $data = $this->gangguanRepository->allDataPendengaran();
+
+        foreach ($data as $dt){
+            // Ubah format tanggal pemeriksaan
+            $tgl_pemeriksaan = Carbon::parse($dt->tgl_pemeriksaan);
+            $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+            ];
+            $namaBulan = $bulanIndonesia[$tgl_pemeriksaan->month];
+            $formatted_tgl_pemeriksaan = $tgl_pemeriksaan->day . ' ' . $namaBulan . ' ' . $tgl_pemeriksaan->year;
+            $dt->tgl_pemeriksaan = $formatted_tgl_pemeriksaan;
+        }
+        
         return response()->json($data);
     }
 

@@ -38,12 +38,13 @@
                 @foreach($data as $dt)
                 <tr>
                     {{-- <td class="text-center">{{ $nomor++ }}</td> <!-- Menambahkan nomor urut dan mengatur teks menjadi rata tengah --> --}}
-                    <td>{{ $dt->nama_lengkap }}</td>
-                    <td>{{ $dt->nomor_telepon }}</td>
-                    <td>{{ $dt->alamat }}</td>
-                    <td>{{ $dt->kemampuan_kiri}}</td>
-                    <td>{{ $dt->kemampuan_kanan}}</td>
-                    <td>{{ $dt->kemampuan_binaural}}</td>
+                    <td style="font-size: 15px;">{{ $dt->nama_lengkap ?? '-' }}</td>
+                    <td style="font-size: 15px;">{{ $dt->nomor_telepon ?? '-' }}</td>
+                    <td style="font-size: 15px;">{{ $dt->alamat ?? '-' }}</td>
+                    <td style="font-size: 15px;">{{ $dt->kemampuan_kiri ?? '-' }}</td>
+                    <td style="font-size: 15px;">{{ $dt->kemampuan_kanan ?? '-' }}</td>
+                    <td style="font-size: 15px;">{{ $dt->kemampuan_binaural ?? '-' }}</td>
+                </tr>
                 </tr>
                 @endforeach 
             </tbody>

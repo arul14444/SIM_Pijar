@@ -8,6 +8,7 @@
     <meta name="author" content="" />
     <link rel="icon" href="{{url('asset/logoYayasan3yayasan.png')}}" type="image/png">
     <title>Login - SIM Pijar</title>
+    <link rel="icon" href="{{url('asset/logoYayasan3.png')}}" type="image/png">
     <link href="{{ asset('resources/css/app.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>

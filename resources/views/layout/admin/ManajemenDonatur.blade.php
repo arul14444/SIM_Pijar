@@ -55,10 +55,10 @@
                 @foreach($data as $index => $dt)
                     <tr>
                         <td>{{$index + 1}}</td>
-                        <td>{{$dt->nama}}</td>
-                        <td>{{$dt->nomor_telepon}}</td>
-                        <td>{{$dt->instansi}}</td>
-                        <td>{{$dt->alamat}}</td>
+                        <td>{{$dt->nama ?? '-'}}</td>
+                        <td>{{$dt->nomor_telepon ?? '-'}}</td>
+                        <td>{{$dt->instansi ?? '-'}}</td>
+                        <td>{{$dt->alamat ?? '-'}}</td>
                         <td> 
                             <div class="d-flex justify-content-center align-items-center">
                                 <a href="/donatur/edit/{{$dt->uuid}}">                                    

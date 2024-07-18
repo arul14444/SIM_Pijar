@@ -26,11 +26,13 @@ async function getData(){
         const data = await response.json();
         console.log(data, 'res data');
 
+        
         processDataForTable(data);
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
+
 async function processDataForTable(data){
     const tableBody = document.querySelector('#tabelRiwayat tbody');
     tableBody.innerHTML = '';
@@ -45,19 +47,23 @@ async function processDataForTable(data){
         const cell6 = row.insertCell(5); 
         const cell7 = row.insertCell(6); 
 
-        cell1.textContent = user.nama_lengkap;
-        cell2.textContent = user.tgl_pemeriksaan;
-        cell3.textContent = user.kemampuan_kiri;
-        cell4.textContent = user.kemampuan_kanan;
-        cell5.textContent = user.kemampuan_binaural;
+        cell1.textContent = user.nama_lengkap ? user.nama_lengkap : '-';
+        cell2.textContent = user.tgl_pemeriksaan ? user.tgl_pemeriksaan : '-';
+        cell3.textContent = user.kemampuan_kiri ? user.kemampuan_kiri : '-';
+        cell4.textContent = user.kemampuan_kanan ? user.kemampuan_kanan : '-';
+        cell5.textContent = user.kemampuan_binaural ? user.kemampuan_binaural : '-';
 
         // Tampilkan tautan file hasil test
         const fileLink = document.createElement('a');
-        fileLink.href = 'http://127.0.0.1:8000/' + user.path_file_hasil_test; // Menggunakan appUrl yang telah ditetapkan sebelumnya
-        fileLink.target = "_blank"; // Buka tautan di tab baru
-        fileLink.textContent = user.nama_file_hasil_test; // Menampilkan tautan
+        if (user.path_file_hasil_test) {
+            fileLink.href = 'http://127.0.0.1:8000/' + user.path_file_hasil_test; // Menggunakan appUrl yang telah ditetapkan sebelumnya
+            fileLink.target = "_blank"; // Buka tautan di tab baru
+            fileLink.textContent = user.nama_file_hasil_test; // Menampilkan tautan
+        } else {
+            fileLink.textContent = '-';
+        }
         cell6.appendChild(fileLink);
-        cell6.style.display = "table-cell"
+        cell6.style.display = "table-cell";
         
         // Buat tombol edit
         const editButton = document.createElement('button');
@@ -96,9 +102,10 @@ async function processDataForTable(data){
         // Masukkan tombol dan elemen spasi ke dalam sel
         cell7.appendChild(actionButton);
         // cell7.appendChild(deleteButton);
-    })
-    
-    new simpleDatatables.DataTable('#tabelRiwayat');;
+        // simpleDatatables.DataTable('#tabelRiwayat').destroy();
+    });
+    // new simpleDatatables.DataTable('#tabelRiwayat');
+
 }
 
 

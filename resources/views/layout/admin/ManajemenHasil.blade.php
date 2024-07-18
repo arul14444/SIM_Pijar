@@ -35,7 +35,8 @@
             </div>            
         </div>
 </div> 
-<div class="card-body" >
+<div class="card-body" style="max-height: 550px; overflow-y: auto;">
+{{-- <div class="card-body"> --}}
     <table id="tabelRiwayat" class="table table-striped table-bordered">
         <thead>
             <tr class="text-center">
