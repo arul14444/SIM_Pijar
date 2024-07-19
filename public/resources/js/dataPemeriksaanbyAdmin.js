@@ -28,6 +28,16 @@ async function getData(){
 
         
         processDataForTable(data);
+        var x = document.getElementById("charts");
+
+        if (uuid) {
+            x.style.display = "block";
+            processDataForChart(data);
+        } else{
+            x.style.display = "none";
+
+        }
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -108,10 +118,6 @@ async function processDataForTable(data){
 
 }
 
-
-
-
-
 function editRow(user) {
     // Fungsi yang akan dijalankan saat tombol edit diklik
     // Lakukan operasi pengeditan sesuai kebutuhan, misalnya:
@@ -162,6 +168,84 @@ function confirmDelete(uuid) {
             alert('Terjadi kesalahan saat menghapus data.');
         });
     }
+}
+
+
+function processDataForChart(data) {
+    // Memproses data untuk line chart
+    var labels = ''; // Label untuk sumbu x (tgl_pemeriksaan)
+    var kemampuanKanan = ''; // Data untuk garis kemampuan kanan
+    var kemampuanKiri = ''; // Data untuk garis kemampuan kiri
+    var kemampuanBinaural = ''; // Data untuk garis kemampuan binaural
+
+    if (data.length > 0) {
+        labels = [];
+        kemampuanKanan = [];
+        kemampuanKiri = [];
+        kemampuanBinaural = [];
+    
+        // Loop through each element in the data array
+        data.forEach(item => {
+            labels.push(item.tgl_pemeriksaan);
+            kemampuanKanan.push(item.kemampuan_kanan);
+            kemampuanKiri.push(item.kemampuan_kiri);
+            kemampuanBinaural.push(item.kemampuan_binaural);
+        });
+    }
+    
+
+    if (myChart){
+        myChart.destroy();
+    }
+
+    // Memanggil fungsi untuk membuat line chart dengan data yang diproses
+    createLineChart(labels, kemampuanKanan, kemampuanKiri, kemampuanBinaural);
+}
+
+function createLineChart(labels, dataKanan, dataKiri, dataBinaural) {
+    var ctx = document.getElementById('chartPendengaran').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels, // Label sumbu x (tgl_pemeriksaan)
+            datasets: [{
+                label: 'Kemampuan Kanan',
+                data: dataKanan,
+                borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 2,
+                fill: false
+            },
+            {
+                label: 'Kemampuan Kiri',
+                data: dataKiri,
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 2,
+                fill: false
+            },
+            {
+                label: 'Kemampuan Binaural',
+                data: dataBinaural,
+                borderColor: 'rgb(75, 192, 192)',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 5,
+                        precision: 0
+                    }
+                }
+            },
+            responsive: true, 
+            maintainAspectRatio: false, 
+            aspectRatio: 1 
+        }
+    });
+    myChart.update();
 }
 
 

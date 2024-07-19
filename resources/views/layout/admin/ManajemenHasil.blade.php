@@ -35,6 +35,10 @@
             </div>            
         </div>
 </div> 
+
+<div class="card-body" id="charts" style="display: none">
+    <canvas id="chartPendengaran" width="100%" height="330px"></canvas>
+</div>
 <div class="card-body" style="max-height: 550px; overflow-y: auto;">
 {{-- <div class="card-body"> --}}
     <table id="tabelRiwayat" class="table table-striped table-bordered">
@@ -58,6 +62,7 @@
 {{-- <script>
     appUrl = "{{ config('app.url') }}";
 </script> --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ asset('resources/js/dataPemeriksaanbyAdmin.js') }}"></script>
 @push('script')
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.css" rel="stylesheet">
