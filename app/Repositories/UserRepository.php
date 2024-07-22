@@ -25,6 +25,7 @@ class UserRepository
     public function getPengurus()
     {
         return User::select('user.nama', 'user.nomor_telepon', 'user.alamat', 'j.jabatan', 'user.uuid')
+            ->whereNotIn('nama', ['admin'])
             ->join('jabatan as j', 'j.id', 'user.id_jabatan')
             ->orderBy('j.order', 'asc')
             ->where(['user.role' => 'admin', 'user.flag_aktif' => 1]);
@@ -32,6 +33,8 @@ class UserRepository
     public function getOrangtua()
     {
         return User::select('*')
+            ->orderBy('nama', 'asc')
+            ->whereNotIn('nama', ['admin'])
             ->where(['user.flag_aktif' => 1]);
     }
     public function create($data)
