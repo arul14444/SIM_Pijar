@@ -69,4 +69,8 @@ class UserRepository
     {
         return User::where('uuid', $uuid)->update(['flag_aktif' => 0, 'user_update' => Auth::user()->nama]);
     }
+    public function reactive($uuid)
+    {
+        return User::where('uuid', $uuid)->update(['flag_aktif' => 1, 'user_update' => Auth::user()->nama]);
+    }
 }

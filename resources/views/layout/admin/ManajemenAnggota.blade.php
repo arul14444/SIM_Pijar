@@ -90,6 +90,7 @@
                                             <i class="fa-solid fa-check"></i>
                                         </button>
                                     </form>
+                                </div>
                             @endif
                             </div>                    
                         </td>

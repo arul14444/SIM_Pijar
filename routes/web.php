@@ -213,6 +213,9 @@ Route::middleware(['auth'])->group(function () {
             return view('print/PrintSurat');
         });
         Route::get('/print/surat', [TambahDataController::class, 'dataSurat']);
+
+        Route::put('/anggota/restore/{uuid}', [DeleteController::class, 'reactiveAnggota']);
+        Route::put('/anak/restore/{uuid}', [DeleteController::class, 'reactiveAnak']);
     });
 
     Route::middleware('userAkses:anggota')->group(function () {

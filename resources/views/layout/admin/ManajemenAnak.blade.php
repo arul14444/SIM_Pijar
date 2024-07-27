@@ -13,14 +13,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="{{ url('/tambah/anak')}}" class="btn btn-outline-success" style="width: 110px; height: 35px;"> 
-                        <i class="fa-solid fa-add me-2"></i> Tambah
+                        <i class="fas fa-add me-2"></i> Tambah
                     </a>     
                 </div>
                 <div class="col-md-6 text-end">
                     <form method="POST" action="/anak/print-pdf" target="_blank">
                         @csrf
                         <button type="submit" class="btn btn-outline-dark" style="width: 110px; height: 35px;">
-                            <i class="fa-solid fa-download me-2"></i> Unduh
+                            <i class="fas fa-download me-2"></i> Unduh
                         </button>
                     </form>
                 </div>
@@ -76,36 +76,44 @@
                     </td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="{{ route('anak.edit', $dt->uuid) }}">
-                                <button type="button" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary" style="margin-right: 10px;">
-                                    <i class="far fa-edit"></i> 
-                                </button>
-                            </a>                            
-                            <form method="POST" action="/anak/delete/{{$dt->uuid}}">
-                                @csrf
-                                @method('PUT')
-                                <button id="hapusData" data-toggle="tooltip" data-placement="top" title="Hapus" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
-                                    <i class="fas fa-trash"></i>
-                                </button>                                
-                            </form>
-                            
+                            @if($dt->flag_aktif == 1)
+                                <a href="{{ route('anak.edit', $dt->uuid) }}">
+                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary" style="margin-right: 10px;">
+                                        <i class="far fa-edit"></i> 
+                                    </button>
+                                </a>                            
+                                <form method="POST" action="/anak/delete/{{$dt->uuid}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button id="hapusData" data-toggle="tooltip" data-placement="top" title="Hapus" type="button" class="btn btn-danger" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>                                
+                                </form>
+                            @else
+                                <form method="POST" action="/anak/restore/{{$dt->uuid}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Aktifkan kembali" onclick="confirmRestore('{{ $dt->uuid }}')">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </div>                    
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        
     </div>
     <script src="{{ asset('resources/js/anak.js') }}"></script>
-    @endsection
-    
-    @push('script')
-    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#tabelAnak');
-        });
-    </script>
+@endsection
+
+@push('script')
+<link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new simpleDatatables.DataTable('#tabelAnak');
+    });
+</script>
 @endpush

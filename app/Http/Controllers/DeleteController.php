@@ -40,13 +40,13 @@ class DeleteController extends Controller
     public function deleteAnggota($uuid)
     {
         try {
-            $anak = $this->anakRepository->getAnakbyUuidOrtu($uuid)->get();
-            if ($anak!=null) {
-                foreach ($anak as $a) {
-                    $this->anakRepository->deleteByid($a->id);
-                }
-            }
-            
+            // $anak = $this->anakRepository->getAnakbyUuidOrtu($uuid)->get();
+            // if ($anak!=null) {
+            //     foreach ($anak as $a) {
+            //         $this->anakRepository->deleteByid($a->id);
+            //     }
+            // }
+
             $this->userRepository->delete($uuid);
 
             return response()->json(['success' => true, 'message' => 'Berhasil menghapus data Anggota']);
@@ -136,6 +136,24 @@ class DeleteController extends Controller
             return response()->json(['success' => true, 'message' => 'Berhasil menghapus data jabatan']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menghapus data jabatan: ' . $e->getMessage()]);
+        }
+    }
+    public function reactiveAnggota($uuid)
+    {
+        try {
+            $this->userRepository->reactive($uuid);
+            return response()->json(['success' => true, 'message' => 'Berhasil mengaktifkan data Anggota']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal mengaktifkan data Anggota: ' . $e->getMessage()]);
+        }
+    }
+    public function reactiveAnak($uuid)
+    {
+        try {
+            $this->anakRepository->reactive($uuid);
+            return response()->json(['success' => true, 'message' => 'Berhasil mengaktifkan data Anak']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal mengaktifkan data Anggota: ' . $e->getMessage()]);
         }
     }
 }
