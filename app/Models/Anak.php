@@ -10,7 +10,6 @@ class Anak extends Model
     protected $table = 'anak';
     protected $hidden = [
         'id',
-        'flag_aktif',
         'created_at',
         'updated_at'
     ];

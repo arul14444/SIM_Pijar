@@ -36,6 +36,7 @@
                     <th>Nama</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                     <th>Nama</th>
                     <th>Nomor Telepon</th>
                     <th>Alamat</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
@@ -56,20 +58,39 @@
                         <td>{{$dt->nama}}</td>
                         <td>{{$dt->nomor_telepon}}</td>
                         <td>{{$dt->alamat}}</td>
+                        <td>
+                            @if($dt->flag_aktif == 1)
+                                Aktif
+                            @else
+                                Tidak Aktif
+                            @endif
+                        </td>
                         <td> 
-                            <div class="d-flex justify-content-center align-items-center">
-                                <a href="{{ route('anggota.edit', $dt->uuid) }}">
-                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"style="margin-right: 10px;" onclick="editRow(this)">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                </a>
-                                <form method="POST" action="/anggota/delete/{{$dt->uuid}}">
-                                    @csrf
-                                    @method('PUT')
-                                    <button id="hapusData" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="confirmDelete('{{ $dt->uuid }}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>                                                                 
-                                </form>
+                            @if($dt->flag_aktif == 1)
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a href="{{ route('anggota.edit', $dt->uuid) }}">
+                                        <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit" style="margin-right: 10px;" onclick="editRow(this)">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
+                                    </a>
+                                    <form method="POST" action="/anggota/delete/{{$dt->uuid}}">
+                                        @csrf
+                                        @method('PUT')
+                                        <button id="hapusData" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>                                                                 
+                                    </form>
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <form method="POST" action="/anggota/restore/{{$dt->uuid}}">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Aktifkan kembali" onclick="confirmRestore('{{ $dt->uuid }}')">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                    </form>
+                            @endif
                             </div>                    
                         </td>
                     </tr>

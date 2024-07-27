@@ -39,6 +39,7 @@
                     <th>ABD Kiri</th>
                     <th>ABD Kanan</th>
                     <th>Alamat</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -51,6 +52,7 @@
                     <th>ABD Kiri</th>
                     <th>ABD Kanan</th>
                     <th>Alamat</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
@@ -65,6 +67,13 @@
                     <td>{{ $dt->jenis_abd_kiri }}</td>
                     <td>{{ $dt->jenis_abd_kanan }}</td>
                     <td>{{ $dt->alamat }}</td>
+                    <td>
+                        @if($dt->flag_aktif == 1)
+                            Aktif
+                        @else
+                            Tidak Aktif
+                        @endif
+                    </td>
                     <td> 
                         <div class="d-flex justify-content-center align-items-center">
                             <a href="{{ route('anak.edit', $dt->uuid) }}">

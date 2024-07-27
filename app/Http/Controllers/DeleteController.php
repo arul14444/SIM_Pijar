@@ -40,7 +40,15 @@ class DeleteController extends Controller
     public function deleteAnggota($uuid)
     {
         try {
+            $anak = $this->anakRepository->getAnakbyUuidOrtu($uuid)->get();
+            if ($anak!=null) {
+                foreach ($anak as $a) {
+                    $this->anakRepository->deleteByid($a->id);
+                }
+            }
+            
             $this->userRepository->delete($uuid);
+
             return response()->json(['success' => true, 'message' => 'Berhasil menghapus data Anggota']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Gagal menghapus data Anggota: ' . $e->getMessage()]);

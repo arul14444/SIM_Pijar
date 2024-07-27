@@ -69,7 +69,7 @@ class TambahDataController extends Controller
     public function listDataPengurus()
     {
         $data = [
-            'listAnggota' => $this->userRepository->getAnggota()->get(),
+            'listAnggota' => $this->userRepository->getOrangtuaAktif()->get(),
             'listJabatan' => $this->jabatanRepository->getJabatan()->get()
         ];
         return view('layout.admin.TambahPengurusInti')->with('data', $data);

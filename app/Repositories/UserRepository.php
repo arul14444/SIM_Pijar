@@ -12,8 +12,9 @@ class UserRepository
     {
         return User::select('*')
             ->whereNotIn('nama', ['admin'])
+            ->orderBy('flag_aktif', 'desc')
             ->orderBy('nama', 'asc')
-            ->where(['role' => 'anggota', 'flag_aktif' => 1]);
+            ->where(['role' => 'anggota']);
     }
     public function getAll()
     {
@@ -34,8 +35,16 @@ class UserRepository
     {
         return User::select('*')
             ->orderBy('nama', 'asc')
+            ->orderBy('flag_aktif', 'desc')
+            ->whereNotIn('nama', ['admin']);
+    }
+    public function getOrangtuaAktif()
+    {
+        return User::select('*')
+            ->orderBy('nama', 'asc')
+            ->orderBy('flag_aktif', 'desc')
             ->whereNotIn('nama', ['admin'])
-            ->where(['user.flag_aktif' => 1]);
+            ->where(['flag_aktif' => 1]);
     }
     public function create($data)
     {

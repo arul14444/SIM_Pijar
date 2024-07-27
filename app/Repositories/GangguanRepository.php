@@ -10,8 +10,7 @@ class GangguanRepository
 {
     public function getAnak()
     {
-        return Gangguan::select('')
-            ->where(['anak.flag_aktif' => 1]);
+        return Gangguan::select('');
     }
 
     public function create($data)

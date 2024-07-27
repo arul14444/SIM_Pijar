@@ -13,8 +13,9 @@ class AnakRepository{
             ->join('user', 'user.id','anak.id_user')
             ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
             ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
-            ->orderBy('anak.nama_lengkap','asc')
-            ->where(['anak.flag_aktif'=>1,'user.flag_aktif'=>1]);
+            ->orderBy('flag_aktif', 'desc')
+            ->orderBy('anak.nama_lengkap','asc');
+
     }
     public function getAnakbyIdOrtu($id_ortu){
             return Anak::select('anak.*','abd_kiri.jenis as jenis_abd_kiri','abd_kanan.jenis as jenis_abd_kanan','user.nama','user.alamat')
@@ -22,6 +23,13 @@ class AnakRepository{
             ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
             ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
             ->where(['anak.flag_aktif'=>1,'user.id'=>$id_ortu]);
+    }
+    public function getAnakbyUuidOrtu($uuid_ortu){
+            return Anak::select('anak.*','abd_kiri.jenis as jenis_abd_kiri','abd_kanan.jenis as jenis_abd_kanan','user.nama','user.alamat')
+            ->join('user', 'user.id','anak.id_user')
+            ->join('abd as abd_kiri','abd_kiri.id','anak.id_abd_kiri')
+            ->join('abd as abd_kanan','abd_kanan.id','anak.id_abd_kanan')
+            ->where(['anak.flag_aktif'=>1,'user.uuid'=>$uuid_ortu]);
     }
     public function getFirst(){
     return Anak::orderBy('created_at', 'DESC')->first();
@@ -54,10 +62,14 @@ class AnakRepository{
             ->join('user', 'user.id','a.id_user')
             ->join('abd as abd_kiri','abd_kiri.id','a.id_abd_kiri')
             ->join('abd as abd_kanan','abd_kanan.id','a.id_abd_kanan')
-            ->where(['a.uuid' => $uuid, 'a.flag_aktif' => true])->first();
+            ->where(['a.uuid' => $uuid])->first();
     }
     public function delete($uuid)
     {
         return Anak::where('uuid', $uuid)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
+    }
+    public function deleteByid($id)
+    {
+        return Anak::where('id', $id)->update(['flag_aktif' => 0,'user_update'=>Auth::user()->nama]);
     }
 }
