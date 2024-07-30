@@ -39,7 +39,7 @@ class GangguanRepository
 
     public function allDataPendengaran()
     {
-        return Gangguan::select('pendengaran.*', 'anak.nama_lengkap')
+        return Gangguan::select('pendengaran.*', 'anak.nama_lengkap', 'anak.flag_aktif')
             ->join('anak', 'anak.id', 'pendengaran.id_anak')
             ->where('pendengaran.flag_aktif', true)
             ->orderBy('anak.nama_lengkap', 'ASC')

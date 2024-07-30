@@ -76,8 +76,8 @@
                                     <form method="POST" action="/anggota/delete/{{$dt->uuid}}">
                                         @csrf
                                         @method('PUT')
-                                        <button id="hapusData" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="confirmDelete('{{ $dt->uuid }}')">
-                                            <i class="fas fa-trash"></i>
+                                        <button id="hapusData" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Nonaktif data" onclick="confirmDelete('{{ $dt->uuid }}')">
+                                             <i class="fa-solid fa-xmark"></i>
                                         </button>                                                                 
                                     </form>
                                 </div>

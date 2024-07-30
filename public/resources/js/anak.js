@@ -36,7 +36,7 @@ function tambahAnak(formData) {
 
 
 function confirmDelete(uuid) {
-    if (confirm('Apakah Anda yakin ingin menghapus data?')) {
+    if (confirm('Apakah Anda yakin ingin menonaktifkan data?')) {
         fetch(`/anak/delete/${uuid}`, {
             method: 'PUT',
             headers: {

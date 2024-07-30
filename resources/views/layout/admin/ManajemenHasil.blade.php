@@ -9,7 +9,7 @@
     <select class="form-select" id="inputAnak" name="uuid_anak">
         <option selected value="">Semua</option>
         @foreach ($data as $dt)    
-            <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}}</option>
+            <option value="{{$dt->uuid}}">{{$dt->nama_lengkap}} @if($dt->flag_aktif == 0) (Tidak Aktif) @endif</option>
         @endforeach
     </select>               
 </div>

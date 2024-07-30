@@ -35,7 +35,7 @@ function tambahAnggota(formData) {
 
 function confirmDelete(uuid) {
 
-    if (confirm('Apakah Anda yakin ingin menghapus data anggota?')) {
+    if (confirm('Apakah Anda yakin ingin menonaktifkan data ini?')) {
         fetch(`/anggota/delete/${uuid}`, {
             method: 'PUT',
             headers: {
